@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="100%" height="100%">
+  <!-- Top Left: Blue Block -->
+  <rect x="0" y="0" width="29" height="29" rx="6" fill="#54B4ED"/>
+
+  <!-- Top Right: Green Block -->
+  <rect x="35" y="0" width="29" height="29" rx="6" fill="#5CE3A1"/>
+
+  <!-- Bottom Left: Orange Block -->
+  <rect x="0" y="35" width="29" height="29" rx="6" fill="#F86320"/>
+
+  <!-- Bottom Right: Cream Block -->
+  <rect x="35" y="35" width="29" height="29" rx="6" fill="#F4EFE6"/>
+</svg>

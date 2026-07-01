@@ -1,0 +1,390 @@
+/* ── RumptyCloud — dark, warm, retro-tech ────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --bg: #0c0f14;
+    --bg-2: #11151c;
+    --bg-3: #161b24;
+
+    --ink: #f5efe4;
+    --ink-2: #c9c1b3;
+    --ink-3: #7d7568;
+
+    --cream: #f1ead9;
+    --cream-ink: #1a1812;
+
+    --accent: #59C2FF;
+    --accent-2: #c8f542;
+    --accent-3: #ff6b2c;
+
+    --line: rgba(245, 239, 228, 0.08);
+    --line-2: rgba(245, 239, 228, 0.14);
+
+    --rad: 14px;
+    --rad-sm: 8px;
+    --rad-lg: 22px;
+
+    --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
+    --font-body: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --ifm-color-primary: #59C2FF;
+    --ifm-color-primary-dark: #36b3ff;
+    --ifm-color-primary-darker: #24acff;
+    --ifm-color-primary-darkest: #0091ee;
+    --ifm-color-primary-light: #7cd1ff;
+    --ifm-color-primary-lighter: #8ed7ff;
+    --ifm-color-primary-lightest: #c1eaff;
+
+    --ifm-font-family-base: var(--font-body);
+    --ifm-heading-font-family: var(--font-display);
+    --ifm-font-family-monospace: var(--font-mono);
+    --ifm-font-size-base: 15px;
+    --ifm-line-height-base: 1.7;
+    --ifm-heading-font-weight: 700;
+    --ifm-code-font-size: 90%;
+    --ifm-border-radius: var(--rad-sm);
+
+    --ifm-navbar-height: 64px;
+    --ifm-navbar-padding-horizontal: 1.5rem;
+    /*--ifm-breadcrumb-item-background-active: green;*/
+
+    --docusaurus-highlighted-code-line-bg: rgba(89, 194, 255, 0.08);
+}
+
+/* ── DARK MODE (primary) ─────────────────────────────── */
+[data-theme='dark'] {
+    --ifm-color-primary: #59C2FF;
+    --ifm-color-primary-dark: #36b3ff;
+    --ifm-color-primary-darker: #24acff;
+    --ifm-color-primary-darkest: #0091ee;
+    --ifm-color-primary-light: #7cd1ff;
+    --ifm-color-primary-lighter: #8ed7ff;
+    --ifm-color-primary-lightest: #c1eaff;
+
+    --ifm-background-color: var(--bg);
+    --ifm-background-surface-color: var(--bg-2);
+    --ifm-navbar-background-color: var(--bg);
+    --ifm-footer-background-color: var(--bg-3);
+    --ifm-toc-border-color: var(--line-2);
+    --ifm-hr-border-color: var(--line);
+
+    --ifm-color-content: var(--ink);
+    --ifm-color-content-secondary: var(--ink-2);
+    --ifm-heading-color: var(--ink);
+
+    --ifm-menu-color: var(--ink-3);
+    --ifm-menu-color-active: var(--accent);
+    --ifm-menu-link-sublist-icon-filter: invert(1);
+
+    --ifm-code-background: var(--bg-3);
+    --ifm-pre-background: var(--bg-3);
+
+    --ifm-card-background-color: var(--bg-2);
+    --ifm-table-stripe-background: rgba(89, 194, 255, 0.04);
+}
+
+/* ── LIGHT MODE → cream inversion ─────────────────────── */
+[data-theme='light'] {
+    --ifm-background-color: var(--cream);
+    --ifm-background-surface-color: #ffffff;
+    --ifm-navbar-background-color: var(--bg);
+    --ifm-footer-background-color: var(--bg);
+    --ifm-toc-border-color: rgba(26, 24, 18, 0.12);
+
+    --ifm-color-content: var(--cream-ink);
+    --ifm-color-content-secondary: #5a544a;
+    --ifm-heading-color: var(--cream-ink);
+
+    --ifm-menu-color: #5a544a;
+    --ifm-menu-color-active: #0091ee;
+    --ifm-code-background: #e9e0cc;
+    --ifm-pre-background: var(--bg-3);
+}
+
+[data-theme='light'] .prism-code {
+  background: var(--bg-3) !important;
+  color: var(--ink) !important;
+}
+
+[data-theme='light'] .prism-code .token {
+  color: var(--ink-2);
+}
+
+/* ── Typography ───────────────────────────────────────── */
+h1, h2, h3, .navbar__title {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+}
+
+article h1:first-child {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.05;
+    font-weight: 800;
+}
+
+article h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--ifm-toc-border-color);
+}
+
+article h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* Mono eyebrow style for small labels / breadcrumbs */
+.breadcrumbs {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+    color: var(--accent);
+}
+
+/* ── Navbar ───────────────────────────────────────────── */
+.navbar {
+    background-color: var(--bg) !important;
+    border-bottom: 1px solid var(--line-2);
+    backdrop-filter: blur(8px);
+}
+
+.navbar__title {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--ink);
+}
+
+.navbar__logo {
+    height: 32px;
+}
+
+.navbar__link {
+    color: var(--ink-2) !important;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+    color: var(--accent) !important;
+}
+
+.navbar__color-mode-toggle svg,
+[class*="colorModeToggle"] svg,
+button[class*="colorModeToggle"] svg {
+  color: var(--ink-2);
+  fill: var(--ink-2);
+}
+
+.navbar__color-mode-toggle:hover svg,
+[class*="colorModeToggle"]:hover svg {
+  color: var(--accent);
+  fill: var(--accent);
+}
+
+/* ── Sidebar ──────────────────────────────────────────── */
+.menu {
+    padding: 1rem 0.5rem;
+    background-color: var(--bg);
+}
+
+.menu__list-item-collapsible .menu__link--sublist {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    color: var(--ink-3);
+}
+
+.menu__link {
+    color: #a19d95;
+    border-radius: var(--rad-sm);
+    font-size: 0.88rem;
+    padding: 0.4rem 0.75rem;
+    transition: background 0.15s, color 0.15s;
+}
+
+.menu__link:hover {
+    background: rgba(89, 194, 255, 0.08);
+    color: var(--accent);
+}
+
+.menu__link--active {
+    background: rgba(89, 194, 255, 0.12) !important;
+    color: var(--accent) !important;
+    font-weight: 600;
+}
+
+/* Rotate accent across top-level categories */
+/*.menu__list > .menu__list-item:nth-child(3n+1) .menu__link--sublist {*/
+/*    color: var(--accent);*/
+/*}*/
+
+/*.menu__list > .menu__list-item:nth-child(3n+2) .menu__link--sublist {*/
+/*    color: var(--accent-2);*/
+/*}*/
+
+/*.menu__list > .menu__list-item:nth-child(3n+3) .menu__link--sublist {*/
+/*    color: var(--accent-3);*/
+/*}*/
+
+.theme-doc-sidebar-container {
+  background-color: var(--bg);
+  border-right: 1px solid var(--line);
+}
+
+/* ── Code blocks ──────────────────────────────────────── */
+.prism-code {
+    background: var(--bg-3) !important;
+    border: 1px solid var(--line-2);
+    border-radius: var(--rad-sm);
+    font-family: var(--font-mono);
+}
+
+code {
+    font-family: var(--font-mono);
+    border-radius: 4px;
+    padding: 0.1em 0.4em;
+    font-size: 0.85em;
+    background: var(--bg-3);
+    color: var(--accent-2);
+}
+
+pre code {
+    color: inherit;
+    background: none;
+}
+
+/* ── Tables ───────────────────────────────────────────── */
+table {
+    border-radius: var(--rad-sm);
+    overflow: hidden;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+thead tr {
+    background: rgba(89, 194, 255, 0.1) !important;
+}
+
+thead tr th {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ── Admonitions ──────────────────────────────────────── */
+.alert {
+    border-radius: var(--rad-sm);
+    border-left-width: 3px;
+}
+
+.alert--info {
+    border-left-color: var(--accent);
+    background: rgba(89, 194, 255, 0.07);
+}
+
+.alert--warning {
+    border-left-color: var(--accent-3);
+    background: rgba(255, 107, 44, 0.07);
+}
+
+.alert--danger {
+    border-left-color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.07);
+}
+
+.alert--success {
+    border-left-color: var(--accent-2);
+    background: rgba(200, 245, 66, 0.07);
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+    background: var(--bg-3) !important;
+    border-top: 1px solid var(--line);
+    color: var(--ink-3);
+}
+
+.footer__title {
+    font-family: var(--font-mono);
+    color: var(--ink-2);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.footer__link-item {
+    color: var(--ink-3);
+    font-size: 0.88rem;
+}
+
+.footer__link-item:hover {
+    color: var(--accent);
+}
+
+.footer__copyright {
+    font-family: var(--font-mono);
+    color: var(--ink-3);
+    font-size: 0.78rem;
+}
+
+/* ── TOC / pagination ─────────────────────────────────── */
+.table-of-contents__link {
+    font-size: 0.82rem;
+    color: var(--ink-3);
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+    color: var(--accent);
+}
+
+.pagination-nav__link {
+    border-radius: var(--rad-sm);
+    border-color: var(--line-2);
+}
+
+.pagination-nav__link:hover {
+    border-color: var(--accent);
+}
+
+/* ── Search ───────────────────────────────────────────── */
+.navbar__search-input {
+    background: rgba(245, 239, 228, 0.06);
+    border: 1px solid var(--line-2);
+    border-radius: var(--rad-sm);
+    color: var(--ink);
+    font-family: var(--font-mono);
+}
+
+.navbar__search-input::placeholder {
+    color: var(--ink-3);
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+[data-theme='dark'] {
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-3) transparent;
+}
+
+[data-theme='dark']::-webkit-scrollbar {
+    width: 6px;
+}
+
+[data-theme='dark']::-webkit-scrollbar-thumb {
+    background: var(--bg-3);
+    border-radius: 3px;
+}
