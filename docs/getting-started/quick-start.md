@@ -8,6 +8,19 @@ sidebar_label: Quick Start
 
 Get your first app running in under 5 minutes.
 
+## Launch a virtual machine
+
+1. Go to **Compute → Virtual Machines → Create VM**
+2. Choose an OS image, plan, and region
+3. Attach your SSH key
+4. Click **Create VM**
+
+Connect using the [Rumpty CLI](/virtual-machines/connecting) once it's ready:
+
+```bash
+rumpty ssh <vm-name> --ws <workspace-id>
+```
+
 ## Deploy from GitHub
 
 1. Go to **Deployments → New Deployment**
@@ -25,19 +38,6 @@ Future pushes to your selected branch will trigger deployments automatically.
 2. Upload your package or provide a Docker image URL
 3. Set any environment variables
 4. Click **Deploy**
-
-## Launch a virtual machine
-
-1. Go to **Compute → Virtual Machines → Create VM**
-2. Choose an OS image, plan, and region
-3. Attach your SSH key
-4. Click **Create VM**
-
-Connect using the [Rumpty CLI](/virtual-machines/connecting) once it's ready:
-
-```bash
-rumpty ssh <vm-name> --ws <workspace-id>
-```
 
 ## What's next?
 
