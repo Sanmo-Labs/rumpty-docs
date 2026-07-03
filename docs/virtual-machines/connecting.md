@@ -24,13 +24,9 @@ From the VM detail page, click **Get the Rumpty CLI** under the **Connect** tab,
   <pre><code>rumpty ssh &lt;vm-name&gt; --ws &lt;workspace-id&gt;</code></pre>
 </div>
 
-For example:
+The VM detail page shows this command with your VM name and workspace ID already filled in.
 
-```bash
-rumpty ssh created --ws qa-testing-019ef102
-```
-
-This opens a secure SSH session tunneled through the platform — no public IP or manual port-forwarding required.
+This opens a secure SSH session tunneled through the platform. No public IP or manual port-forwarding required.
 
 ## Finding your workspace ID and VM name
 
