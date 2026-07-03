@@ -89,8 +89,8 @@ const sidebars: SidebarsConfig = {
           label: 'Databases',
           items: [
             'databases/introduction',
+            'databases/create-a-database',
             'databases/connecting',
-            'databases/backups',
           ],
         },
       ],

@@ -7,25 +7,29 @@ slug: /databases/introduction
 
 # Databases
 
-Create and manage fully managed database clusters with automated backups, failover, and connection pooling.
+Managed Postgres, Redis, and MySQL databases for apps, demos, and internal tools. Go to **Data → Databases**.
 
-## Supported engines
+## Dashboard stats
 
-| Engine | Versions |
+| Stat | Meaning |
+|------|---------|
+| **Total databases** | All database instances in the workspace |
+| **Ready** | Databases that are live and accepting connections |
+| **Provisioning** | Databases currently being created |
+
+## Database table columns
+
+| Column | Meaning |
 |--------|---------|
-| PostgreSQL | 14, 15, 16 |
-| MySQL | 8.0 |
-| Redis | 7.x |
-
-## Create a database
-
-1. Go to **Data → Databases → New Database**
-2. Choose an engine and version
-3. Select a plan and region
-4. Optionally enable **High Availability** (adds a standby replica)
-5. Click **Create**
+| **Database** | Name of the instance |
+| **Engine** | Postgres, Redis, or MySQL |
+| **Status** | `Ready`, `Provisioning`, or `Failed` |
+| **Connection** | Connection host (shown once ready) |
+| **Plan** | The size tier selected |
+| **Created** | Creation date |
+| **Actions** | Delete or manage |
 
 ## What's next
 
+- [Create a database](./create-a-database)
 - [Connecting](./connecting)
-- [Backups](./backups)

@@ -5,30 +5,30 @@ sidebar_label: Introduction
 slug: /getting-started/introduction
 ---
 
-# Welcome to the Cloud Platform
+# Welcome to RumptyCloud
 
-Our cloud platform gives you everything you need to deploy, scale, and manage your infrastructure — from virtual machines and Kubernetes clusters to managed databases, object storage, and deployment pipelines.
+RumptyCloud is a cloud platform for developers. Run virtual machines, deploy projects from GitHub or manually, spin up Kubernetes clusters, store files and data, and control network access — all organised into workspaces.
 
-## What you can do
+## Core features
 
 | Feature | Description |
-|---|---|
-| **Virtual Machines** | Spin up Linux VMs in seconds with your choice of size and region |
-| **Kubernetes (K8s)** | Managed Kubernetes clusters with autoscaling |
-| **Deployments** | Deploy packaged projects manually or via GitHub integration |
-| **Volumes** | Persistent block storage attached to your VMs |
-| **Buckets** | S3-compatible object storage for files, assets, and backups |
-| **Database** | Managed databases with automated backups and failover |
-| **Firewall** | Define inbound and outbound rules per resource or project |
-| **Billing** | Pay-as-you-go with detailed cost breakdowns |
+|---------|-------------|
+| **Virtual Machines** | Linux VMs with private networking, SSH via the Rumpty CLI, snapshots, and metrics |
+| **Deployments** | Deploy packaged projects from a GitHub repository or a manual repo URL — web apps, static sites, and backend APIs |
+| **Kubernetes** | Managed K8s clusters with autoscaling node pools |
+| **Volumes** | Persistent block storage you can attach, detach, and move between VMs |
+| **Buckets** | S3-compatible object storage with public or private visibility |
+| **Databases** | Managed Postgres, Redis, and MySQL with a public connection endpoint |
+| **Firewall Policies** | Workspace-scoped network rules — default inbound deny with per-port allow rules |
 
-## How to navigate these docs
+## How it's organised
 
-- **New here?** Start with [Account Setup](./account-setup) then follow the [Quick Start](./quick-start) guide.
-- **Deploying an app?** Head to [Deployments](/deployments/introduction).
-- **Managing infrastructure?** See [Compute](/virtual-machines/introduction) or [Kubernetes](/kubernetes/introduction).
-- **Need storage or a database?** Check [Volumes](/volumes/introduction), [Buckets](/buckets/introduction), or [Database](/databases/introduction).
+All resources live inside a **workspace**. Use workspaces to separate environments, projects, or clients. Switch between them from the top navbar at any time.
 
-## Support
+See [Workspaces](./workspaces) to create your first one.
 
-If you run into any issues, reach out via our [support portal](https://yourplatform.com/support) or check the [status page](https://status.yourplatform.com).
+## Where to start
+
+- New to the platform? → [Account Setup](./account-setup)
+- Ready to deploy? → [Quick Start](./quick-start)
+- Setting up the CLI? → [Rumpty CLI](/cli/introduction)
