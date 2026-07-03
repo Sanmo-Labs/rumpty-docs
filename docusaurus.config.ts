@@ -54,11 +54,11 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'RumptyCloud',
+      title: '',
       logo: {
         alt: 'RumptyCloud Logo',
-        src: 'img/logo.svg',
-        srcDark: 'img/logo.svg',
+        src: 'img/brand-logo.svg',
+        srcDark: 'img/brand-logo.svg',
       },
       items: [
         {

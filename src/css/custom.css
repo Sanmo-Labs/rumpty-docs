@@ -163,7 +163,12 @@ article h3 {
 }
 
 .navbar__logo {
-    height: 32px;
+    height: 36px;
+}
+
+.navbar__logo img {
+    width: auto;
+    height: 36px;
 }
 
 .navbar__link {
@@ -387,4 +392,133 @@ thead tr th {
 [data-theme='dark']::-webkit-scrollbar-thumb {
     background: var(--bg-3);
     border-radius: 3px;
+}
+
+/* ── Rumpty docs splash ───────────────────────────────── */
+.rumpty-docs-splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background:
+        radial-gradient(circle at 50% 48%, rgba(89, 194, 255, 0.12), transparent 34%),
+        linear-gradient(180deg, #0c0f14 0%, #090c11 100%);
+    color: var(--ink);
+    animation: rumpty-splash-fade 1.4s ease forwards;
+}
+
+.rumpty-docs-splash::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.22;
+    background-image:
+        linear-gradient(rgba(245, 239, 228, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245, 239, 228, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.rumpty-docs-splash__mark {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 4rem;
+    height: 4rem;
+    padding: 0.65rem;
+    border: 1px solid rgba(245, 239, 228, 0.12);
+    border-radius: 1rem;
+    background: #0b1117;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 34px rgba(89, 194, 255, 0.12);
+}
+
+.rumpty-docs-splash__mark span {
+    display: block;
+    border-radius: 0.32rem;
+    animation: rumpty-tile-pulse 1.35s ease-in-out infinite;
+}
+
+.rumpty-docs-splash__mark span:nth-child(1) {
+    background: #3b82f6;
+}
+
+.rumpty-docs-splash__mark span:nth-child(2) {
+    background: #22c55e;
+    animation-delay: 0.12s;
+}
+
+.rumpty-docs-splash__mark span:nth-child(3) {
+    background: #f97316;
+    animation-delay: 0.24s;
+}
+
+.rumpty-docs-splash__mark span:nth-child(4) {
+    background: #f8e7c9;
+    animation-delay: 0.36s;
+}
+
+.rumpty-docs-splash__label {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+
+.rumpty-docs-splash__label::after {
+    content: "";
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    margin-left: 0.18rem;
+    border-right: 2px solid currentColor;
+    vertical-align: -0.15em;
+    animation: rumpty-caret-blink 0.9s steps(2, start) infinite;
+}
+
+@keyframes rumpty-tile-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% {
+        transform: scale(1.1);
+        filter: brightness(1.18);
+    }
+}
+
+@keyframes rumpty-caret-blink {
+    0%, 45% {
+        opacity: 1;
+    }
+    46%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes rumpty-splash-fade {
+    0%, 72% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rumpty-docs-splash,
+    .rumpty-docs-splash__mark span,
+    .rumpty-docs-splash__label::after {
+        animation: none;
+    }
 }
