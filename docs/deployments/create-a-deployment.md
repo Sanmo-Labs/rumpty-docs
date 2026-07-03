@@ -57,4 +57,8 @@ Pick a compute plan in the right panel:
 
 **Start a build after creating this deployment** is checked by default — uncheck it if you want to configure more settings before the first build runs.
 
+## Auto-canceling Superseded Builds
+
+To maximize resource efficiency, Rumpty Cloud automatically cancels any older, ongoing runs (whether they are still `queued` or actively `building`) for a deployment if you trigger a newer run. This prevents redundant builds and ensures your latest commit or manual update is deployed as fast as possible.
+
 Click **Create deployment** to finish.
