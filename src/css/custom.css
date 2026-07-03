@@ -153,7 +153,7 @@ article h3 {
 .navbar {
     background-color: var(--bg) !important;
     border-bottom: 1px solid var(--line-2);
-    backdrop-filter: blur(8px);
+    /*backdrop-filter: blur(8px);*/
 }
 
 .navbar__title {
@@ -189,6 +189,43 @@ button[class*="colorModeToggle"] svg {
   color: var(--accent);
   fill: var(--accent);
 }
+
+/* ── Mobile: keep navbar always on top ──────────────── */
+.navbar {
+  z-index: 10000 !important;
+  position: sticky !important;
+  top: 0;
+}
+
+/* ── Mobile: hamburger icon visibility ──────────────── */
+.navbar__toggle {
+  color: var(--ink-2) !important;
+}
+
+.navbar__toggle svg {
+  fill: var(--ink-2) !important;
+  stroke: var(--ink-2) !important;
+}
+
+.navbar__toggle:hover svg {
+  fill: var(--accent) !important;
+  stroke: var(--accent) !important;
+}
+
+/* ── Mobile: theme toggle icon visibility ───────────── */
+.navbar button[class*="colorModeToggle"] svg,
+.navbar button[class*="toggle"] svg,
+.navbar__items button svg {
+  fill: var(--ink-2) !important;
+  color: var(--ink-2) !important;
+  opacity: 1 !important;
+}
+
+.navbar__items button:hover svg {
+  fill: var(--accent) !important;
+  color: var(--accent) !important;
+}
+
 
 /* ── Sidebar ──────────────────────────────────────────── */
 .menu {

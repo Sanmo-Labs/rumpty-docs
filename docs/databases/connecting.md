@@ -1,69 +1,52 @@
 ---
 id: connecting
-title: Connecting to Your Database
+title: Connecting
 sidebar_label: Connecting
 ---
 
 # Connecting to Your Database
 
-## Find your connection details
+Once provisioned, open the database detail page. It shows the engine, version, creation date, and status at the top. The detail page has four tabs: **Connection**, **Metrics**, **Firewall**, and **Settings**.
 
-1. Open the database detail page
-2. Click **Connection** tab
+## Connection tab
 
-You'll see the host, port, database name, username, and a generated password.
+The Connection tab provides everything you need to connect:
 
-## Connection string formats
+| Field | Example |
+|-------|---------|
+| **Connection string** | `postgresql://postgres:password@pg-4b4151.ws-qa-testing-019ef102.stg.db.rumptycloud.com:5432/main_db` |
+| **Host** | `pg-4b4151.ws-qa-testing-019ef102.stg.db.rumptycloud.com` |
+| **Port** | `5432` |
+| **Database** | `main_db` |
+| **Username** | `postgres` |
+| **Password** | Shown masked — click **Refresh** to rotate, copy icon to copy |
 
-**PostgreSQL:**
+All fields have a copy button. Use the full connection string for most clients and ORMs.
+
+## Connect from your app
+
+Set the connection string as an environment variable:
+
+```bash
+export DATABASE_URL="postgresql://postgres:<password>@<host>:5432/main_db"
 ```
-postgresql://username:password@host:5432/dbname?sslmode=require
+
+In a deployment, add it under the deployment's **Environment variables** before the first build.
+
+## Connect locally
+
+The database exposes a public connection endpoint by default. Connect directly from your local machine using any Postgres client:
+
+```bash
+psql "postgresql://postgres:<password>@<host>:5432/main_db"
 ```
 
-**MySQL:**
-```
-mysql://username:password@host:3306/dbname
-```
+Or with a GUI client (TablePlus, DBeaver, pgAdmin) using the individual host, port, database, username, and password fields.
 
-**Redis:**
-```
-rediss://username:password@host:6379
-```
+## Rotate the password
 
-:::info
-Always use SSL (`sslmode=require` / `rediss://`) for connections. Plain-text connections are disabled.
+Click **Refresh** next to the password field to generate a new password. Update your app's environment variables immediately after rotating.
+
+:::warning
+Rotating the password invalidates the old one immediately. Any running apps using the old connection string will lose database access until updated.
 :::
-
-## Connect from a VM or deployment
-
-Store your connection string as an environment variable:
-
-```bash
-export DATABASE_URL="postgresql://..."
-```
-
-In a deployment, add it under **Settings → Environment**.
-
-## Connect from your local machine
-
-By default, databases are not publicly accessible. To connect locally:
-
-### Option 1 — Trusted IP
-
-1. Open the database → **Settings → Trusted Sources**
-2. Add your IP address
-3. Connect directly using any database client
-
-### Option 2 — SSH tunnel (recommended)
-
-Use a VM in the same region as a jump host:
-
-```bash
-ssh -L 5432:db-host:5432 root@your-vm-ip -N
-```
-
-Then connect to `localhost:5432` with your local client.
-
-## Connection pooling
-
-Connection pooling is built-in via PgBouncer (PostgreSQL) or ProxySQL (MySQL). Use the **pooled connection string** shown in the Connection tab to reduce connection overhead for high-traffic apps.
