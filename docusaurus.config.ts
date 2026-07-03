@@ -5,11 +5,15 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'RumptyCloud Documentation',
   tagline: 'Deploy and scale your infrastructure with ease',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
   url: 'https://docs.rumptycloud.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   i18n: { defaultLocale: 'en', locales: ['en'] },
 
@@ -30,17 +34,31 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/social-card.png',
+    metadata: [
+      {name: 'keywords', content: 'virtual machines, AI sandboxes, kubernetes, databases, storage, domains, CI/CD pipelines, cloud provider'},
+      {name: 'description', content: 'RumptyCloud Documentation - Provision and manage virtual machines, AI sandboxes, Kubernetes, databases, storage, domains, and CI/CD workflows with ease.'},
+      {property: 'og:title', content: 'RumptyCloud Documentation'},
+      {property: 'og:description', content: 'Provision and manage virtual machines, AI sandboxes, Kubernetes, databases, storage, domains, and CI/CD workflows with ease.'},
+      {property: 'og:type', content: 'website'},
+      {property: 'og:url', content: 'https://docs.rumptycloud.com/'},
+      {property: 'og:image', content: 'https://docs.rumptycloud.com/img/social-card.png'},
+      {property: 'og:site_name', content: 'RumptyCloud'},
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'twitter:title', content: 'RumptyCloud Documentation'},
+      {name: 'twitter:description', content: 'Provision and manage virtual machines, AI sandboxes, Kubernetes, databases, storage, domains, and CI/CD workflows with ease.'},
+      {name: 'twitter:image', content: 'https://docs.rumptycloud.com/img/social-card.png'},
+    ],
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'RumptyCloud',
+      title: '',
       logo: {
         alt: 'RumptyCloud Logo',
-        src: 'img/logo.svg',
-        srcDark: 'img/logo.svg',
+        src: 'img/brand-logo.svg',
+        srcDark: 'img/brand-logo.svg',
       },
       items: [
         {
@@ -79,7 +97,7 @@ const config: Config = {
             { label: 'Volumes', to: '/volumes/introduction' },
             { label: 'Buckets', to: '/buckets/introduction' },
             { label: 'Databases', to: '/databases/introduction' },
-            { label: 'Firewall Policies', to: '/firewall.md-policies/introduction' },
+            { label: 'Firewall Policies', to: '/firewall-policies/introduction' },
           ],
         },
         {
