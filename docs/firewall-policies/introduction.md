@@ -2,7 +2,7 @@
 id: introduction
 title: Firewall Policies
 sidebar_label: Introduction
-slug: /firewall.md-policies/introduction
+slug: /firewall-policies/introduction
 ---
 
 # Firewall Policies

@@ -79,7 +79,7 @@ const config: Config = {
             { label: 'Volumes', to: '/volumes/introduction' },
             { label: 'Buckets', to: '/buckets/introduction' },
             { label: 'Databases', to: '/databases/introduction' },
-            { label: 'Firewall Policies', to: '/firewall.md-policies/introduction' },
+            { label: 'Firewall Policies', to: '/firewall-policies/introduction' },
           ],
         },
         {
