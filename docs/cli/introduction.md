@@ -72,13 +72,13 @@ These flags work with any command:
 |---------|-------------|
 | [`login`](./login) | Authenticate with Rumpty |
 | [`logout`](./login#logout) | Remove the local Rumpty session |
-| [`ssh`](./ssh) | Open an SSH session to a workspace VM |
-| [`copy`](./copy) | Copy files between your machine and a VM |
-| [`exec`](./exec) | Run a non-interactive command on a VM |
-| [`expose`](./expose) | Expose a VM service with a public URL |
-| [`unexpose`](./expose#unexpose) | Remove a VM service public URL |
-| [`vm`](./vm) | Manage workspace VMs |
-| [`workspaces`](./workspaces) | List workspaces you can access |
+| `ssh` | Open an SSH session to a workspace VM |
+| `copy` | Copy files between your machine and a VM |
+| `exec` | Run a non-interactive command on a VM |
+| `expose` | Expose a VM service with a public URL |
+| `unexpose` | Remove a VM service public URL |
+| `vm` | Manage workspace VMs |
+| `workspaces` | List workspaces you can access |
 | `completion` | Generate shell autocompletion script |
 
 Use `rumpty [command] --help` for details on any command.
