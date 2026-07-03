@@ -14,9 +14,15 @@ From the VM detail page, click **Get the Rumpty CLI** under the **Connect** tab,
 
 ## Connect to a VM
 
-```bash
-rumpty ssh <vm-name> --ws <workspace-id>
-```
+<div className="rumpty-shell">
+  <div className="rumpty-shell__bar" aria-hidden="true">
+    <span className="rumpty-shell__dot"></span>
+    <span className="rumpty-shell__dot"></span>
+    <span className="rumpty-shell__dot"></span>
+    <span className="rumpty-shell__title">Rumpty CLI</span>
+  </div>
+  <pre><code>rumpty ssh &lt;vm-name&gt; --ws &lt;workspace-id&gt;</code></pre>
+</div>
 
 For example:
 

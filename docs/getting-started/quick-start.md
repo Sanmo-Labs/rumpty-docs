@@ -17,9 +17,15 @@ Get your first app running in under 5 minutes.
 
 Connect using the [Rumpty CLI](/virtual-machines/connecting) once it's ready:
 
-```bash
-rumpty ssh <vm-name> --ws <workspace-id>
-```
+<div className="rumpty-shell">
+  <div className="rumpty-shell__bar" aria-hidden="true">
+    <span className="rumpty-shell__dot"></span>
+    <span className="rumpty-shell__dot"></span>
+    <span className="rumpty-shell__dot"></span>
+    <span className="rumpty-shell__title">Rumpty CLI</span>
+  </div>
+  <pre><code>rumpty ssh &lt;vm-name&gt; --ws &lt;workspace-id&gt;</code></pre>
+</div>
 
 ## Deploy from GitHub
 

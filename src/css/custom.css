@@ -306,6 +306,70 @@ pre code {
     background: none;
 }
 
+
+/* ── Rumpty shell snippets ───────────────────────────── */
+.rumpty-shell {
+    margin: 1rem 0 1.4rem;
+    overflow: hidden;
+    border: 1px solid rgba(245, 239, 228, 0.12);
+    border-radius: var(--rad-sm);
+    background: #0b1117;
+    box-shadow: 0 18px 54px rgba(0, 0, 0, 0.26);
+}
+
+.rumpty-shell__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.65rem 0.85rem;
+    border-bottom: 1px solid rgba(245, 239, 228, 0.08);
+    background: #111821;
+}
+
+.rumpty-shell__dot {
+    width: 0.52rem;
+    height: 0.52rem;
+    border-radius: 999px;
+}
+
+.rumpty-shell__dot:nth-child(1) { background: #ff6b6b; }
+.rumpty-shell__dot:nth-child(2) { background: #ffc857; }
+.rumpty-shell__dot:nth-child(3) { background: #4ade80; }
+
+.rumpty-shell__title {
+    margin-left: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+.rumpty-shell pre {
+    margin: 0;
+    padding: 1rem 1.05rem;
+    overflow-x: auto;
+    background: transparent;
+}
+
+.rumpty-shell code {
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.rumpty-shell code::before {
+    content: "$";
+    margin-right: 0.7rem;
+    color: var(--accent);
+}
+
 /* ── Tables ───────────────────────────────────────────── */
 table {
     border-radius: var(--rad-sm);
