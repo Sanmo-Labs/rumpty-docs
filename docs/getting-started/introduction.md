@@ -7,7 +7,7 @@ slug: /getting-started/introduction
 
 # Welcome to Rumpty<span style={{color: '#59C2FF'}}>Cloud</span>
 
-RumptyCloud is a cloud platform for developers. Run virtual machines, deploy projects from GitHub or manually, spin up Kubernetes clusters, store files and data, and control network access — all organised into workspaces.
+RumptyCloud is a cloud platform for developers and everyone. Run virtual machines, deploy projects from GitHub or manually, spin up Kubernetes clusters, store files and data, and control network access — all organised into workspaces.
 
 ## Core features
 
