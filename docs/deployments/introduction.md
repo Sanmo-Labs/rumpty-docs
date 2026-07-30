@@ -17,3 +17,4 @@ Your deployments overview shows four live counters:
 
 - [Create a deployment](./create-a-deployment)
 - [GitHub deploy](./github-deploy)
+- [Ports & health checks](./ports)

@@ -40,6 +40,7 @@ const sidebars: SidebarsConfig = {
             'deployments/introduction',
             'deployments/create-a-deployment',
             'deployments/github-deploy',
+            'deployments/ports',
           ],
         },
         {

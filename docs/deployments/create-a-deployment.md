@@ -30,6 +30,14 @@ For Manual, fill in:
 
 Selecting **Backend API** reveals a **Backend readiness path** field (default `/`) — the platform polls this endpoint to confirm your service is healthy before marking the deployment active.
 
+## Port
+
+Backend APIs also get a **Port** field (default `8080`). This is the port your app must listen on — the platform routes traffic to it, health-checks it, and injects it into your container as the `PORT` environment variable.
+
+The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the default always works. If your app listens on a hardcoded port instead, set this field to match. A mismatch here is the most common reason a deployment builds successfully but never becomes active — see [Ports & Health Checks](./ports) for details and troubleshooting.
+
+For **Web or static app** deployments the port is managed automatically and cannot be changed.
+
 ## Build method
 
 | Option | When to use |
