@@ -42,7 +42,7 @@ Your terminal completes automatically:
 Logged in as `<your-username>`.
 
 :::tip
-For non-interactive environments like CI pipelines, skip `rumpty login` entirely — pass your API key via the `--token` flag or `RUMPTY_API_KEY` environment variable instead. Generate one from [Settings → API Keys](/settings/api-keys).
+For non-interactive environments like CI pipelines, skip `rumpty login` entirely. Pass your API key via the `--token` flag or `RUMPTY_API_KEY` environment variable instead. Generate one from [Settings → API Keys](/settings/api-keys).
 :::
 
 ## Logout

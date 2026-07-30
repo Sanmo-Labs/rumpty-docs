@@ -64,7 +64,7 @@ These flags work with any command:
 | `--api-url` | `RUMPTY_API_URL` | Rumpty API base URL |
 | `--ws` / `--workspace` | `RUMPTY_WORKSPACE` | Workspace slug |
 | `--log-level` | `RUMPTY_LOG_LEVEL` | Log level: `error`, `warn`, `info`, `debug` |
-| `-v`, `--verbose` | — | Enable debug logging (same as `--log-level=debug`) |
+| `-v`, `--verbose` |  | Enable debug logging (same as `--log-level=debug`) |
 
 ## Available commands
 

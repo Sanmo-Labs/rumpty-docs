@@ -17,7 +17,7 @@ Percentage of vCPU utilisation over the selected period. Sustained high CPU may 
 RAM usage as a percentage of the plan's total. For example, 28.3% on a 512 MB plan means roughly 145 MB in use.
 
 **Disk Usage**
-Root disk utilisation percentage. This reflects the VM's root disk only — attached volumes report separately once the rumpty agent is running.
+Root disk utilisation percentage. This reflects the VM's root disk only; attached volumes report separately once the rumpty agent is running.
 
 **Bandwidth**
 Inbound and outbound network throughput in B/s, shown as two separate series (In / Out). Useful for spotting traffic spikes or unexpected egress.

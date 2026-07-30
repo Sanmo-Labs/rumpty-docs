@@ -44,4 +44,4 @@ Exposed port URLs are listed in the table and can be shared directly.
 Permanently destroys the VM and all its data. This cannot be undone.
 :::
 
-Click **Destroy VM** at the bottom of the Settings tab. Attached volumes are detached but not deleted — they remain in **Storage → Volumes** and can be reattached to another VM.
+Click **Destroy VM** at the bottom of the Settings tab. Attached volumes are detached but not deleted; they remain in **Storage → Volumes** and can be reattached to another VM.

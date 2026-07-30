@@ -7,11 +7,11 @@ slug: /virtual-machines/introduction
 
 # Virtual Machines
 
-Virtual machines (VMs) give you an isolated Linux instance to run anything — from a quick test environment to a long-running service. Every VM is provisioned inside a **workspace**, joins your workspace's private network automatically, and is reachable over SSH using the **Rumpty CLI**.
+Virtual machines (VMs) give you an isolated Linux instance to run anything, from a quick test environment to a long-running service. Every VM is provisioned inside a **workspace**, joins your workspace's private network automatically, and is reachable over SSH using the **Rumpty CLI**.
 
 ## How it works
 
-Each workspace (e.g. `QA | Testing`) acts as a rack — a logical grouping for your VMs, volumes, and networking. When you create a VM, it's:
+Each workspace (e.g. `QA | Testing`) acts as a rack: a logical grouping for your VMs, volumes, and networking. When you create a VM, it's:
 
 - assigned a **private IP** on the workspace's default network (e.g. `10.16.0.0/16`)
 - given a **guest hostname**

@@ -31,4 +31,4 @@ aws s3 cp ./photo.jpg s3://<bucket-name>/ \
 
 ## Signed URLs (Private buckets)
 
-For private buckets, generate a signed URL server-side before serving a file to a client. Signed URLs expire after a set duration — objects are never directly public-read.
+For private buckets, generate a signed URL server-side before serving a file to a client. Signed URLs expire after a set duration; objects are never directly public-read.

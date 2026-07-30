@@ -10,7 +10,7 @@ sidebar_label: Attach & Mount
 
 From the volume detail page, click **Attach to VM** and select a running VM in the same zone.
 
-Or from the VM's create form — select an existing volume under **Select or Create Volumes**.
+Or from the VM's create form: select an existing volume under **Select or Create Volumes**.
 
 ## Mount on the VM
 

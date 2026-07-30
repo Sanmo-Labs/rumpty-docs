@@ -10,7 +10,7 @@ The **Integrations** tab manages external service connections. Currently the onl
 
 ## GitHub App
 
-The GitHub App lets RumptyCloud access your repositories for deployments — choosing repos to build, building private code, and receiving automatic deploys on Git pushes.
+The GitHub App lets RumptyCloud access your repositories for deployments: choosing repos to build, building private code, and receiving automatic deploys on Git pushes.
 
 ### Install
 

@@ -22,8 +22,8 @@ The **Account** tab shows your profile, active policies, billing cycle, and pass
 
 Two policies are required before you can create virtual machines:
 
-- **Privacy and Data Policy** — how account, workspace, and platform safety data is handled
-- **Fair Use Policy** — what belongs on RumptyCloud, what gets stopped, and why
+- **Privacy and Data Policy**: how account, workspace, and platform safety data is handled
+- **Fair Use Policy**: what belongs on RumptyCloud, what gets stopped, and why
 
 The date you accepted them is shown. Both must be accepted to use the platform.
 
@@ -37,7 +37,7 @@ Shows usage for the current billing period:
 | **Resources** | Number of active billable resources |
 | **Cycle ends** | End date of the current billing period |
 
-**Usage breakdown** lists charges by resource type, e.g. `VM Runtime — 10.69 hour · 1 resource — $0.14`.
+**Usage breakdown** lists charges by resource type, e.g. `VM Runtime · 10.69 hour · 1 resource · $0.14`.
 
 ## Free usage
 

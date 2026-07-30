@@ -6,15 +6,15 @@ sidebar_label: Deploy
 
 # Deploy
 
-The Deploy tab gives you everything needed to ship build artifacts to this VM — either automatically via GitHub Actions or manually via the Rumpty CLI.
+The Deploy tab gives you everything needed to ship build artifacts to this VM, either automatically via GitHub Actions or manually via the Rumpty CLI.
 
 ## How it works
 
-Your build runs in GitHub Actions (or locally). The Rumpty action uploads the compiled artifact to the VM and runs your after-deploy command. Your source code never leaves GitHub — only the build output is transferred.
+Your build runs in GitHub Actions (or locally). The Rumpty action uploads the compiled artifact to the VM and runs your after-deploy command. Your source code never leaves GitHub; only the build output is transferred.
 
 ## GitHub Actions setup
 
-### Step 1 — Add secrets
+### Step 1: Add secrets
 
 Add these two secrets to your GitHub repository under **Settings → Secrets → Actions**:
 
@@ -23,7 +23,7 @@ Add these two secrets to your GitHub repository under **Settings → Secrets →
 | `RUMPTY_TOKEN` | Your platform API token (shown on the Deploy tab) |
 | `RUMPTY_VM_ID` | The VM's unique ID (shown on the Deploy tab) |
 
-### Step 2 — Configure a reverse proxy
+### Step 2: Configure a reverse proxy
 
 Set up a reverse proxy on the VM once to route traffic to your app. Rumpty only needs a deploy target directory and an after-deploy command.
 
@@ -33,7 +33,7 @@ Set up a reverse proxy on the VM once to route traffic to your app. Rumpty only 
 | **HAProxy** | `/etc/haproxy/haproxy.cfg` | Forwarding traffic to a local app port |
 | **Caddy** | `/etc/caddy/Caddyfile` | Automatic HTTPS with minimal config |
 
-### Step 3 — Add the workflow file
+### Step 3: Add the workflow file
 
 The Deploy tab generates a ready-to-use workflow. Copy it to `.github/workflows/rumpty-deploy.yml` in your repository:
 
@@ -58,7 +58,7 @@ jobs:
       # Rumpty action uploads artifact and runs after-deploy hook
 ```
 
-### Step 4 — Push to deploy
+### Step 4: Push to deploy
 
 Every push to `main` triggers the workflow. GitHub runs the build; Rumpty uploads the artifact and runs your after-deploy command on the VM.
 

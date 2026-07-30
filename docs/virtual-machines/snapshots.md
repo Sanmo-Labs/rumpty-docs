@@ -28,7 +28,7 @@ Restoring overwrites the current disk state with the snapshot. Any changes made 
 
 ## Create a new VM from a snapshot
 
-You can spin up a new VM pre-loaded with a snapshot's disk state — useful for cloning a working environment or testing a change without touching the original VM.
+You can spin up a new VM pre-loaded with a snapshot's disk state, useful for cloning a working environment or testing a change without touching the original VM.
 
 1. Open the **Snapshots** tab
 2. Click **Create VM from snapshot** next to the snapshot
@@ -48,4 +48,4 @@ Snapshots consume storage and are billed accordingly. Delete ones you no longer 
 | Before a major package upgrade | Take a snapshot first |
 | Before editing nginx / system config | Take a snapshot first |
 | Setting up a reusable base environment | Snapshot once, clone as needed |
-| Routine backups of stateful data | Use a [Volume](/volumes/introduction) instead — volumes are better suited for persistent data backups |
+| Routine backups of stateful data | Use a [Volume](/volumes/introduction) instead; volumes are better suited for persistent data backups |

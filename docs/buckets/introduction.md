@@ -7,7 +7,7 @@ slug: /buckets/introduction
 
 # Buckets
 
-S3-compatible image buckets for uploads, SDK access, and public or signed image delivery. Create a bucket to start uploading images, documents, HTML, and video — and serve them via a permanent CDN URL or signed read URLs.
+S3-compatible image buckets for uploads, SDK access, and public or signed image delivery. Create a bucket to start uploading images, documents, HTML, and video, then serve them via a permanent CDN URL or signed read URLs.
 
 ## Dashboard stats
 

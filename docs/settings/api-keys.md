@@ -6,10 +6,10 @@ sidebar_label: API Keys
 
 # API Keys
 
-API keys are tokens for CLI tools and automation — used with the Rumpty CLI and GitHub Actions workflows. Manage them under **Settings → API Keys**.
+API keys are tokens for CLI tools and automation, used with the Rumpty CLI and GitHub Actions workflows. Manage them under **Settings → API Keys**.
 
 :::warning
-The token is only shown once immediately after creation. Copy it before leaving the page — it cannot be viewed again.
+The token is only shown once immediately after creation. Copy it before leaving the page; it cannot be viewed again.
 :::
 
 ## Create an API key

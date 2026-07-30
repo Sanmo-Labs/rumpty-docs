@@ -10,9 +10,9 @@ Go to **Storage → Buckets → Create bucket**.
 
 ## Fields
 
-**Bucket name** — a unique name within your workspace, e.g. `stage-images`.
+**Bucket name**: a unique name within your workspace, e.g. `stage-images`.
 
-**Visibility** — choose how files in this bucket are read by browsers and apps:
+**Visibility**: choose how files in this bucket are read by browsers and apps:
 
 | Option | Best for |
 |--------|----------|
@@ -28,10 +28,10 @@ Click **Create bucket**.
 Once ready, the bucket detail page shows:
 
 - **Status** badge (`READY`) and **visibility** badge (`PUBLIC` or `PRIVATE`)
-- **CDN URL** — e.g. `https://assets.stg.rumptycloud.com/projects/<id>/<bucket-name>`
-- **Drag and drop upload** area — supports images, documents, HTML, and video
-- **Assets tab** — lists all uploaded files with name, type, size, status, and created date
-- **Access Keys tab** — S3-compatible credentials for SDK access
+- **CDN URL**: e.g. `https://assets.stg.rumptycloud.com/projects/<id>/<bucket-name>`
+- **Drag and drop upload** area: supports images, documents, HTML, and video
+- **Assets tab**: lists all uploaded files with name, type, size, status, and created date
+- **Access Keys tab**: S3-compatible credentials for SDK access
 
 ## What's next
 

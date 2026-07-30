@@ -19,7 +19,7 @@ The Connection tab provides everything you need to connect:
 | **Port** | `5432` |
 | **Database** | `main_db` |
 | **Username** | `postgres` |
-| **Password** | Shown masked — click **Refresh** to rotate, copy icon to copy |
+| **Password** | Shown masked. Click **Refresh** to rotate, copy icon to copy |
 
 All fields have a copy button. Use the full connection string for most clients and ORMs.
 

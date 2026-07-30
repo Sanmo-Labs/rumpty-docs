@@ -7,7 +7,7 @@ slug: /volumes/introduction
 
 # Volumes
 
-Persistent block storage volumes you can attach to a virtual machine, format, mount, and keep across rebuilds. Volumes live independently of VMs — they survive VM deletion and can be moved between machines.
+Persistent block storage volumes you can attach to a virtual machine, format, mount, and keep across rebuilds. Volumes live independently of VMs; they survive VM deletion and can be moved between machines.
 
 ## Dashboard stats
 
@@ -28,7 +28,7 @@ The table lists each volume with its name, status, size, filesystem, attached VM
 |--------|---------|
 | `Ready` | Volume is available to attach |
 | `Attached` | Volume is mounted to a running VM |
-| `Failed` | Volume creation failed — check Last Failure on the detail page |
+| `Failed` | Volume creation failed. Check Last Failure on the detail page |
 
 ## What's next
 

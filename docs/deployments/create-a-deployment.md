@@ -25,15 +25,15 @@ The platform polls this path (default `/`) to confirm your service is healthy be
 
 ## Port
 
-The **Port** field (default `8080`) is the port your app must listen on — the platform routes traffic to it, health-checks it, and injects it into your container as the `PORT` environment variable. It's editable for **Web Service/Backend** apps; for **Static Site/SPA** deployments it's locked, since the platform serves your built assets from its own web server.
+The **Port** field (default `8080`) is the port your app must listen on. The platform routes traffic to it, health-checks it, and injects it into your container as the `PORT` environment variable. It's editable for **Web Service/Backend** apps; for **Static Site/SPA** deployments it's locked, since the platform serves your built assets from its own web server.
 
-The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the default always works. If your app listens on a hardcoded port instead, set this field to match. A mismatch here is the most common reason a deployment builds successfully but never becomes active — see [Ports & Health Checks](./ports) for details and troubleshooting.
+The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the default always works. If your app listens on a hardcoded port instead, set this field to match. A mismatch here is the most common reason a deployment builds successfully but never becomes active. See [Ports & Health Checks](./ports) for details and troubleshooting.
 
 ## Build method
 
 | Option | When to use |
 |--------|-------------|
-| **Auto** | Common frameworks — the platform detects your stack and builds automatically |
+| **Auto** | Common frameworks: the platform detects your stack and builds automatically |
 | **Dockerfile** | When your repo root directory contains a `Dockerfile` |
 
 ## Environment variables
@@ -54,7 +54,7 @@ Pick a compute plan in the right panel:
 
 ## Start a build
 
-**Start a build after creating this deployment** is checked by default — uncheck it if you want to configure more settings before the first build runs.
+**Start a build after creating this deployment** is checked by default. Uncheck it if you want to configure more settings before the first build runs.
 
 ## Auto-canceling Superseded Builds
 

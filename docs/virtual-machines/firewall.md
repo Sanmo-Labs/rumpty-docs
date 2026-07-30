@@ -17,7 +17,7 @@ The Firewall tab on a VM lets you attach or detach a firewall policy to control 
 The policy's allow rules are enforced immediately. If no policy is attached, the message "No firewall policies are attached to this VM" is shown.
 
 :::warning
-Attaching a policy activates default inbound deny — only traffic matching allow rules gets through. Confirm port 22 is included in the policy before attaching or you will lose `rumpty ssh` access.
+Attaching a policy activates default inbound deny: only traffic matching allow rules gets through. Confirm port 22 is included in the policy before attaching or you will lose `rumpty ssh` access.
 :::
 
 ## Detach a policy

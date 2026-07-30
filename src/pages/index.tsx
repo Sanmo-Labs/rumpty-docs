@@ -104,7 +104,7 @@ function ProductCard({code, color, title, description, to}: Product): ReactNode 
 
 export default function Home(): ReactNode {
   return (
-    <Layout description="RumptyCloud documentation — deployments, virtual machines, Kubernetes, databases, storage, and networking, built and operated in Lagos.">
+    <Layout description="RumptyCloud documentation: deployments, virtual machines, Kubernetes, databases, storage, and networking, built and operated in Lagos.">
       <main className={styles.home}>
         {/* Hero */}
         <section className={styles.hero}>

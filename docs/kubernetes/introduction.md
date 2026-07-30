@@ -7,7 +7,7 @@ slug: /kubernetes/introduction
 
 # Kubernetes
 
-Run containerised workloads on managed Kubernetes clusters with automated upgrades, autoscaling, and built-in monitoring — without managing control-plane infrastructure yourself.
+Run containerised workloads on managed Kubernetes clusters with automated upgrades, autoscaling, and built-in monitoring, without managing control-plane infrastructure yourself.
 
 ## How it works
 

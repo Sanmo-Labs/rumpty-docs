@@ -14,7 +14,7 @@ Track current cycle usage, credits, invoices, and payment settings from one plac
 | Card | Meaning |
 |------|---------|
 | **Current cycle due** | Usage for this billing cycle before credits are applied |
-| **Cloud credit** | Available credit balance — credits are applied first before charging your card |
+| **Cloud credit** | Available credit balance. Credits are applied first before charging your card |
 | **Wallet** | Fund your account with cloud credit or apply a credit code |
 
 ### Fund or redeem credit
@@ -39,7 +39,7 @@ Lists charges by resource type for the current billing period (e.g. `1 Jul 2026 
 
 | Resource | Example |
 |----------|---------|
-| **VM Runtime** | `11.34 hour across 1 resource — $0.15` |
+| **VM Runtime** | `11.34 hour across 1 resource · $0.15` |
 | **Deployments** | Per compute unit per hour |
 | **Volumes** | Per GB per month, prorated hourly |
 | **Databases** | Per hour based on plan |
@@ -59,6 +59,6 @@ Cloud credit is always applied first. Any remainder is charged to the default ca
 ## How billing works
 
 - All resources are billed **hourly** and invoiced at the end of each cycle
-- Stopped VMs and idle databases are still billed — delete resources you no longer need to stop charges
+- Stopped VMs and idle databases are still billed. Delete resources you no longer need to stop charges
 - The billing cycle end date is shown in your profile under **Account → Billing cycle**
 - Estimates shown when creating a resource reflect the monthly equivalent of the hourly rate

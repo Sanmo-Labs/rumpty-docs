@@ -10,7 +10,7 @@ Go to **Data → Databases → Create database**.
 
 > Start with a small managed database. You can verify the routing and tighten access controls once the service is online.
 
-## Step 1 — Database engine
+## Step 1: Database engine
 
 Choose the engine that fits your workload. Versions and sizes are selected separately.
 
@@ -20,13 +20,13 @@ Choose the engine that fits your workload. Versions and sizes are selected separ
 | **Redis** | Queues, cache, sessions, rate limits, realtime counters, and coordination locks | Low-latency cache, Great beside your app, Persistent storage |
 | **MySQL** | Laravel, WordPress-style apps, internal tools, and services already built around MySQL | Familiar SQL, Broad app support, Independent versions |
 
-## Step 2 — Version
+## Step 2: Version
 
 Pick the database build. This maps to a backend image but stays separate from size.
 
 Available versions are shown per engine (e.g. Postgres 16).
 
-## Step 3 — Size
+## Step 3: Size
 
 Choose compute, memory, and storage. Version is selected separately.
 
@@ -37,16 +37,16 @@ Choose compute, memory, and storage. Version is selected separately.
 | **Sprout** | $2.70/mo | 1 CPU | 1 GB | 10 GB |
 | **Bloom** | $4.60/mo | 1 CPU | 2 GB | 20 GB |
 
-## Step 4 — Zone
+## Step 4: Zone
 
 Choose where the database runs. New databases default to `olas-closet`. Your database will be provisioned in the selected zone with the resources included in the plan.
 
-## Step 5 — Service basics
+## Step 5: Service basics
 
 | Field | Details |
 |-------|---------|
 | **Database name** | A name for the instance, e.g. `main-db` |
-| **Public connection endpoint** | Checked by default — creates a connection URL for clients outside the cluster |
+| **Public connection endpoint** | Checked by default. Creates a connection URL for clients outside the cluster |
 
 ## Service summary
 

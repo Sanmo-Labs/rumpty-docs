@@ -41,7 +41,7 @@ Click any row to open the full detail panel:
 | **User UID** | The unique ID of the user account that triggered the event |
 | **Category** | Resource category (e.g. `database`, `vm`, `volume`) |
 | **Severity** | `info` for successful actions, `error` for failures |
-| **Request context** | Raw request details — IP address, action, and user-agent of the browser or CLI client |
+| **Request context** | Raw request details: IP address, action, and user-agent of the browser or CLI client |
 
 ## Event codes
 
@@ -56,4 +56,4 @@ Event codes follow the pattern `<resource>.<action>.<result>`:
 
 ## What gets logged
 
-Every create, update, delete, and attach action on any resource in your workspace is logged — including failed attempts. Auth events (login, session creation) are also captured with their session ID and IP.
+Every create, update, delete, and attach action on any resource in your workspace is logged, including failed attempts. Auth events (login, session creation) are also captured with their session ID and IP.

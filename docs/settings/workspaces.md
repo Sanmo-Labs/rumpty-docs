@@ -27,4 +27,4 @@ Deleting a workspace permanently removes it and all resources inside it. This ca
 
 ## Create a new workspace
 
-Use the workspace switcher in the top-left navbar — click your current workspace name and select **+ New Workspace**. See [Workspaces](/getting-started/workspaces) in Getting Started for the full flow.
+Use the workspace switcher in the top-left navbar: click your current workspace name and select **+ New Workspace**. See [Workspaces](/getting-started/workspaces) in Getting Started for the full flow.

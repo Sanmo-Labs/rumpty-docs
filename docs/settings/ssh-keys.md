@@ -38,4 +38,4 @@ The **Saved SSH Keys** panel lists all keys on your account:
 
 ## Delete a key
 
-Click **Delete** next to a key. Deleting a key does not affect VMs that were already created with it — the key remains on those VMs. It only prevents the key from being injected into future VMs.
+Click **Delete** next to a key. Deleting a key does not affect VMs that were already created with it; the key remains on those VMs. It only prevents the key from being injected into future VMs.
