@@ -29,19 +29,18 @@ You'll land on that workspace's dashboard. See [Workspaces](./workspaces) for sw
 
 Resources are billed hourly, so set up billing before you start creating things. Go to **Others → Billing**:
 
-- Click **+ Fund cloud credit** to top up your prepaid balance with a card
-- Or add a card under the **Cards** tab; any usage not covered by credit is charged to your default card at the end of the cycle
-- Have a promo or referral code? Enter it in the **Wallet** card and click **Apply code**
+- Click **+ Fund cloud credit** to top up your prepaid balance with a card. You can save the card during checkout for faster top-ups later
+- Have a promo code? Open the **Wallet** tab, enter it under **Promo code**, and click **Apply code**
 
-Cloud credit is always applied first. See [Billing](/billing/introduction) for how usage, credit, and card charges fit together.
+Usage draws down from your credit as resources run. See [Billing](/billing/introduction) for how usage, credit, and invoices fit together.
 
 ## Add an SSH key
 
 SSH keys are injected into new virtual machines so you can open a shell without passwords.
 
-1. Go to **Settings → SSH Keys**
+1. Go to **Settings → SSH keys** in your workspace sidebar
 2. Enter a **Key name** (e.g. `MacBook Pro`)
-3. Paste your **Public key** and click **+ Add key**
+3. Paste your **Public key** and click **Add key**
 
 Generate a key first if you don't have one:
 

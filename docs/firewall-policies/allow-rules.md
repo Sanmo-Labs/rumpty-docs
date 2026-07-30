@@ -18,7 +18,7 @@ New policies include two default allow rules:
 
 | Direction | Protocol | Port | Source | Description |
 |-----------|----------|------|--------|-------------|
-| INBOUND | TCP | 22 | 0.0.0.0/0 | Allow SSH access. Required for `rumpty vm ssh` and CLI connectivity. |
+| INBOUND | TCP | 22 | 0.0.0.0/0 | Allow SSH access. Required for `rumpty ssh` and CLI connectivity. |
 | INBOUND | TCP | 8080 | 0.0.0.0/0 | Allow HTTP traffic on the default app port used by RumptyCloud VMs. |
 
 Default rules are marked with a **Default** badge and cannot be edited. They can be deleted; the confirmation dialog warns you what traffic will be blocked. Deleting the port 22 default blocks SSH access to attached VMs.

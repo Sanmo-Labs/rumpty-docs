@@ -29,7 +29,7 @@ A resource can have more than one policy attached. The allow rules from all atta
 :::
 
 :::warning
-Attaching a policy replaces all previously open ports with only what the policy allows. Make sure port 22 is included in your allow rules before attaching, or you will lose SSH (`rumpty vm ssh`) access.
+Attaching a policy replaces all previously open ports with only what the policy allows. Make sure port 22 is included in your allow rules before attaching, or you will lose SSH (`rumpty ssh`) access.
 :::
 
 ## Detach a policy
