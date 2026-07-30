@@ -290,11 +290,6 @@ button[class*="colorModeToggle"] svg {
     font-weight: 600;
 }
 
-/* Accent bar marks the current page in the sidebar */
-.menu__link--active:not(.menu__link--sublist) {
-    box-shadow: inset 2px 0 0 var(--accent);
-}
-
 /* Breathing room between top-level sidebar sections */
 .theme-doc-sidebar-menu > .theme-doc-sidebar-item-category {
     margin-bottom: 0.85rem;
