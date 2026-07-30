@@ -43,8 +43,12 @@ if port == "" {
 http.ListenAndServe(":"+port, nil)
 ```
 
-:::note
-You cannot override `PORT` yourself. If you add a `PORT` variable in your deployment's environment variables, the platform's injected value wins — this is intentional, so the port your app binds always matches the port being routed and health-checked.
+:::note[The Port setting always wins]
+The `PORT` variable your app receives always comes from the deployment's **Port** setting — not from your environment variables. If you set **Port** to `3000` and also add an environment variable `PORT=5000`, your app sees `PORT=3000`; the `5000` is silently ignored. This is intentional: the port your app binds must always match the port the platform routes traffic to and health-checks. To change the port, change the **Port** setting.
+:::
+
+:::warning
+The one place you *can* accidentally override `PORT` is the **start command**, which runs in a shell. Something like `PORT=3000 node server.js` replaces the injected value — your app will bind `3000` while traffic and health checks still go to the configured port, and the deployment will never become active. Don't set `PORT` in your start command; change the **Port** setting instead.
 :::
 
 ## Apps with a hardcoded port

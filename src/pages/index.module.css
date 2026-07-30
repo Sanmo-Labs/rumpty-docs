@@ -1,23 +1,453 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/* ── Docs landing page — reuses the global brand variables ── */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.home {
+  background: var(--bg);
+  color: var(--ink);
+  animation: homeEnter 0.35s ease both;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+@keyframes homeEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.buttons {
+@media (prefers-reduced-motion: reduce) {
+  .home {
+    animation: none;
+  }
+}
+
+/* Light mode keeps the page readable without a separate design */
+:global([data-theme='light']) .home {
+  background: var(--cream);
+  color: var(--cream-ink);
+}
+
+.eyebrow {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── Hero ─────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(245, 239, 228, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 239, 228, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 75% 70% at 40% 30%, #000 15%, transparent 75%);
+}
+
+:global([data-theme='light']) .hero::before {
+  background-image:
+    linear-gradient(rgba(26, 24, 18, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 24, 18, 0.06) 1px, transparent 1px);
+}
+
+.heroInner {
+  position: relative;
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+  width: min(100%, 1220px);
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 5.5rem) 1.5rem;
+}
+
+@media (min-width: 997px) {
+  .heroInner {
+    grid-template-columns: 0.95fr 1.15fr;
+    gap: clamp(3rem, 5vw, 4.5rem);
+  }
+}
+
+.heroTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.heroAccent {
+  color: var(--accent);
+}
+
+.heroLede {
+  margin: 1.2rem 0 0;
+  max-width: 32rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+:global([data-theme='light']) .heroLede {
+  color: #5a544a;
+}
+
+.heroActions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.btnPrimary,
+.btnGhost {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 42px;
+  padding: 0 1.15rem;
+  border-radius: var(--rad-sm);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btnPrimary {
+  background: var(--accent-3);
+  color: #1a1812;
+  border: 1px solid transparent;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-1px);
+  background: #ff7d45;
+  color: #1a1812;
+  text-decoration: none;
+}
+
+.btnGhost {
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+  background: transparent;
+}
+
+:global([data-theme='light']) .btnGhost {
+  border-color: rgba(26, 24, 18, 0.2);
+  color: var(--cream-ink);
+}
+
+.btnGhost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ── Hero terminal ────────────────────────────────────── */
+.heroShell {
+  overflow: hidden;
+  border: 1px solid rgba(245, 239, 228, 0.12);
+  border-radius: var(--rad);
+  background: #0b1117;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.shellBar {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid rgba(245, 239, 228, 0.08);
+  background: #111821;
+}
+
+.shellDot {
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 999px;
+}
+
+.shellDot:nth-child(1) { background: #ff6b6b; }
+.shellDot:nth-child(2) { background: #ffc857; }
+.shellDot:nth-child(3) { background: #4ade80; }
+
+.shellTitle {
+  margin-left: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.shellBody {
+  margin: 0;
+  padding: clamp(1.1rem, 2vw, 1.6rem) clamp(1.2rem, 2.2vw, 1.8rem);
+  border: none;
+  border-radius: 0;
+  overflow-x: auto;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 0.9vw, 0.92rem);
+  line-height: 1.75;
+  color: var(--ink);
+  /* Wrap long MOTD lines like a real terminal instead of scrolling */
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.shellPrompt {
+  color: var(--accent-2);
+  font-weight: 700;
+}
+
+.shellCmd {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.shellStep {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.shellMuted {
+  color: var(--ink-3);
+}
+
+.shellBanner {
+  display: inline-block;
+  color: var(--accent);
+  /* Block glyphs must sit flush so the ASCII art reads as one piece */
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.shellUser {
+  color: var(--accent-2);
+}
+
+.shellPath {
+  color: var(--accent);
+}
+
+.shellCaret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  vertical-align: -0.18em;
+  background: var(--ink);
+  animation: shell-caret-blink 1s steps(2, start) infinite;
+}
+
+@keyframes shell-caret-blink {
+  0%, 45% { opacity: 1; }
+  46%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shellCaret {
+    animation: none;
+  }
+}
+
+/* ── Sections ─────────────────────────────────────────── */
+.section {
+  width: min(100%, 1120px);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+}
+
+.sectionTitle {
+  margin: 0 0 1.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* ── Product cards ────────────────────────────────────── */
+.cardGrid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.card {
+  position: relative;
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--rad);
+  background: var(--bg-2);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+:global([data-theme='light']) .card {
+  background: #ffffff;
+  border-color: rgba(26, 24, 18, 0.12);
+  color: var(--cream-ink);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+:global([data-theme='light']) .card:hover {
+  color: var(--cream-ink);
+}
+
+.cardMark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--rad-sm);
+  background: var(--bg-3);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+:global([data-theme='light']) .cardMark {
+  background: var(--bg);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-right: 1rem;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.cardDesc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+
+:global([data-theme='light']) .cardDesc {
+  color: #5a544a;
+}
+
+.cardArrow {
+  position: absolute;
+  top: 1.05rem;
+  right: 1rem;
+  color: var(--ink-3);
+  transition: color 0.15s, transform 0.15s;
+}
+
+.card:hover .cardArrow {
+  color: var(--accent);
+  transform: translateX(2px);
+}
+
+/* ── Popular links ────────────────────────────────────── */
+.popularGrid {
+  display: grid;
+  gap: 0.5rem 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.popularLink {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--rad-sm);
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+:global([data-theme='light']) .popularLink {
+  color: #5a544a;
+}
+
+.popularLink::before {
+  content: '›';
+  font-family: var(--font-mono);
+  color: var(--accent);
+}
+
+.popularLink:hover {
+  background: rgba(89, 194, 255, 0.08);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* ── Help strip ───────────────────────────────────────── */
+.helpGrid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.helpCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--rad);
+  background: var(--bg-2);
+}
+
+:global([data-theme='light']) .helpCard {
+  background: #ffffff;
+  border-color: rgba(26, 24, 18, 0.12);
+}
+
+.helpTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.helpDesc {
+  margin: 0 0 0.5rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+:global([data-theme='light']) .helpDesc {
+  color: #5a544a;
 }

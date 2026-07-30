@@ -81,7 +81,7 @@
     --ifm-pre-background: var(--bg-3);
 
     --ifm-card-background-color: var(--bg-2);
-    --ifm-table-stripe-background: rgba(89, 194, 255, 0.04);
+    --ifm-table-stripe-background: transparent;
 }
 
 /* ── LIGHT MODE → cream inversion ─────────────────────── */
@@ -134,6 +134,30 @@ article h2 {
 article h3 {
     font-size: 1.05rem;
     font-weight: 700;
+    color: var(--accent);
+}
+
+/* Anchored headings clear the sticky navbar */
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+    scroll-margin-top: calc(var(--ifm-navbar-height) + 1.25rem);
+}
+
+/* Lede: first paragraph after the page title reads bigger and softer */
+.markdown header + p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-2);
+}
+
+/* Heading anchor links */
+.hash-link {
+    color: var(--ink-3);
+    transition: color 0.15s;
+}
+
+.hash-link:hover {
     color: var(--accent);
 }
 
@@ -266,6 +290,16 @@ button[class*="colorModeToggle"] svg {
     font-weight: 600;
 }
 
+/* Accent bar marks the current page in the sidebar */
+.menu__link--active:not(.menu__link--sublist) {
+    box-shadow: inset 2px 0 0 var(--accent);
+}
+
+/* Breathing room between top-level sidebar sections */
+.theme-doc-sidebar-menu > .theme-doc-sidebar-item-category {
+    margin-bottom: 0.85rem;
+}
+
 /* Rotate accent across top-level categories */
 /*.menu__list > .menu__list-item:nth-child(3n+1) .menu__link--sublist {*/
 /*    color: var(--accent);*/
@@ -281,7 +315,7 @@ button[class*="colorModeToggle"] svg {
 
 .theme-doc-sidebar-container {
   background-color: var(--bg);
-  border-right: 1px solid var(--line);
+  border-right: none !important;
 }
 
 /* ── Code blocks ──────────────────────────────────────── */
@@ -290,6 +324,27 @@ button[class*="colorModeToggle"] svg {
     border: 1px solid var(--line-2);
     border-radius: var(--rad-sm);
     font-family: var(--font-mono);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+/* Titled code blocks get a terminal-style header */
+div[class*="codeBlockTitle"] {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    background: #111821 !important;
+    border: 1px solid var(--line-2);
+    border-bottom: none;
+    border-top-left-radius: var(--rad-sm);
+    border-top-right-radius: var(--rad-sm);
+}
+
+div[class*="codeBlockTitle"] + div .prism-code {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 code {
@@ -391,10 +446,42 @@ thead tr th {
     letter-spacing: 0.04em;
 }
 
+/* No zebra striping — uniform rows with separators read cleaner */
+table tr:nth-child(2n) {
+    background: transparent;
+}
+
+table tr {
+    border-bottom: 1px solid var(--line);
+    background: transparent;
+}
+
+table td,
+table th {
+    border: none;
+    padding: 0.7rem 0.9rem;
+}
+
+table {
+    border: 1px solid var(--line-2);
+}
+
+tbody tr:hover {
+    background: rgba(89, 194, 255, 0.05);
+}
+
 /* ── Admonitions ──────────────────────────────────────── */
 .alert {
     border-radius: var(--rad-sm);
     border-left-width: 3px;
+}
+
+.alert [class*="admonitionHeading"] {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .alert--info {
@@ -448,9 +535,23 @@ thead tr th {
 }
 
 /* ── TOC / pagination ─────────────────────────────────── */
+/* "On this page" label above the desktop TOC */
+.theme-doc-toc-desktop::before {
+    content: "On this page";
+    display: block;
+    padding: 0 var(--ifm-toc-padding-horizontal) 0.55rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+}
+
 .table-of-contents__link {
     font-size: 0.82rem;
     color: var(--ink-3);
+    transition: color 0.15s;
 }
 
 .table-of-contents__link:hover,
@@ -458,13 +559,83 @@ thead tr th {
     color: var(--accent);
 }
 
+.table-of-contents__link--active {
+    font-weight: 600;
+}
+
+/* Mobile "On this page" collapsible */
+.theme-doc-toc-mobile button {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
 .pagination-nav__link {
     border-radius: var(--rad-sm);
     border-color: var(--line-2);
+    background: var(--bg-2);
+    padding: 0.9rem 1.1rem;
+    transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+
+.pagination-nav__sublabel {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+}
+
+.pagination-nav__label {
+    font-family: var(--font-display);
+    font-weight: 700;
 }
 
 .pagination-nav__link:hover {
     border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+}
+
+.pagination-nav__link:hover .pagination-nav__label {
+    color: var(--accent);
+}
+
+/* ── Page-enter transition ────────────────────────────── */
+/* Doc routes remount their content row on navigation, so this replays
+   every time a page is opened — same fade-up feel as the console. */
+main[class*="docMainContainer"] .row {
+    animation: rumpty-page-enter 0.35s ease both;
+}
+
+@keyframes rumpty-page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main[class*="docMainContainer"] .row {
+        animation: none;
+    }
+}
+
+/* ── Doc content extras ───────────────────────────────── */
+.markdown img {
+    border: 1px solid var(--line-2);
+    border-radius: var(--rad-sm);
+}
+
+.theme-back-to-top-button {
+    background-color: var(--bg-3) !important;
+    border: 1px solid var(--line-2);
 }
 
 /* ── Search ───────────────────────────────────────────── */
@@ -496,6 +667,14 @@ thead tr th {
 }
 
 /* ── Rumpty docs splash ───────────────────────────────── */
+/* CSS mirror of the console's SplashScreen: color-cycling 2x2 tiles,
+   RumptyCloud wordmark, LED + boot message, shifting radial glow. */
+@property --splash-glow {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: rgba(89, 194, 255, 0.08);
+}
+
 .rumpty-docs-splash {
     position: fixed;
     inset: 0;
@@ -504,14 +683,12 @@ thead tr th {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    background:
-        radial-gradient(circle at 50% 48%, rgba(89, 194, 255, 0.12), transparent 34%),
-        linear-gradient(180deg, #0c0f14 0%, #090c11 100%);
+    background: linear-gradient(180deg, #0c0f14 0%, #090c11 100%);
     color: var(--ink);
-    animation: rumpty-splash-fade 1.4s ease forwards;
+    animation: rumpty-splash-fade 2.2s ease forwards;
 }
 
+/* Retro grid backdrop */
 .rumpty-docs-splash::before {
     content: "";
     position: absolute;
@@ -524,58 +701,101 @@ thead tr th {
     background-size: 32px 32px;
 }
 
+/* Color-shifting radial glow (blue → emerald → orange, like the console) */
+.rumpty-docs-splash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, var(--splash-glow), transparent 40%);
+    animation: rumpty-splash-glow 6s ease-in-out infinite;
+}
+
 .rumpty-docs-splash__mark {
     position: relative;
     z-index: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
-    width: 4rem;
-    height: 4rem;
-    padding: 0.65rem;
-    border: 1px solid rgba(245, 239, 228, 0.12);
-    border-radius: 1rem;
-    background: #0b1117;
-    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45), 0 0 34px rgba(89, 194, 255, 0.12);
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-bottom: 1.5rem;
+    animation: rumpty-mark-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
 }
 
 .rumpty-docs-splash__mark span {
     display: block;
-    border-radius: 0.32rem;
-    animation: rumpty-tile-pulse 1.35s ease-in-out infinite;
+    border-radius: 0.375rem;
+    animation: rumpty-tile-cycle 2.5s ease-in-out infinite;
 }
 
+/* Each tile starts one color-step ahead, matching the console's stagger */
 .rumpty-docs-splash__mark span:nth-child(1) {
-    background: #3b82f6;
+    background: #59c2ff;
 }
 
 .rumpty-docs-splash__mark span:nth-child(2) {
-    background: #22c55e;
-    animation-delay: 0.12s;
+    background: #4fd99a;
+    animation-delay: -0.425s;
 }
 
 .rumpty-docs-splash__mark span:nth-child(3) {
-    background: #f97316;
-    animation-delay: 0.24s;
+    background: #ff6b2c;
+    animation-delay: -0.85s;
 }
 
 .rumpty-docs-splash__mark span:nth-child(4) {
-    background: #f8e7c9;
-    animation-delay: 0.36s;
+    background: #f1ead9;
+    animation-delay: -1.275s;
 }
 
-.rumpty-docs-splash__label {
+.rumpty-docs-splash__wordmark {
     position: relative;
     z-index: 1;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-2);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    animation: rumpty-splash-rise 0.4s ease 0.3s both;
 }
 
-.rumpty-docs-splash__label::after {
+.rumpty-docs-splash__wordmark span {
+    color: #59c2ff;
+}
+
+.rumpty-docs-splash__status {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    max-width: min(85vw, 420px);
+    animation: rumpty-splash-rise 0.4s ease 0.3s both;
+}
+
+.rumpty-docs-splash__led {
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #4fd99a;
+    box-shadow: 0 0 6px #4fd99a;
+    animation: rumpty-led-pulse 1.6s ease-in-out infinite;
+}
+
+.rumpty-docs-splash__message {
+    font-family: var(--font-mono);
+    font-size: 0.69rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: #4fd99a;
+}
+
+.rumpty-docs-splash__message::after {
     content: "";
     display: inline-block;
     width: 0.5em;
@@ -586,14 +806,67 @@ thead tr th {
     animation: rumpty-caret-blink 0.9s steps(2, start) infinite;
 }
 
-@keyframes rumpty-tile-pulse {
-    0%, 100% {
+@keyframes rumpty-tile-cycle {
+    0% {
+        background-color: #59c2ff;
         transform: scale(1);
-        filter: brightness(1);
+    }
+    25% {
+        background-color: #4fd99a;
     }
     50% {
-        transform: scale(1.1);
-        filter: brightness(1.18);
+        background-color: #ff6b2c;
+        transform: scale(1.08);
+    }
+    75% {
+        background-color: #f1ead9;
+    }
+    100% {
+        background-color: #59c2ff;
+        transform: scale(1);
+    }
+}
+
+@keyframes rumpty-mark-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rumpty-splash-rise {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rumpty-led-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.35;
+    }
+}
+
+@keyframes rumpty-splash-glow {
+    0%, 100% {
+        --splash-glow: rgba(89, 194, 255, 0.08);
+    }
+    33% {
+        --splash-glow: rgba(79, 217, 154, 0.08);
+    }
+    66% {
+        --splash-glow: rgba(255, 107, 44, 0.08);
     }
 }
 
@@ -607,7 +880,7 @@ thead tr th {
 }
 
 @keyframes rumpty-splash-fade {
-    0%, 72% {
+    0%, 82% {
         opacity: 1;
     }
     100% {
@@ -618,8 +891,13 @@ thead tr th {
 
 @media (prefers-reduced-motion: reduce) {
     .rumpty-docs-splash,
+    .rumpty-docs-splash::after,
+    .rumpty-docs-splash__mark,
     .rumpty-docs-splash__mark span,
-    .rumpty-docs-splash__label::after {
+    .rumpty-docs-splash__wordmark,
+    .rumpty-docs-splash__status,
+    .rumpty-docs-splash__led,
+    .rumpty-docs-splash__message::after {
         animation: none;
     }
 }

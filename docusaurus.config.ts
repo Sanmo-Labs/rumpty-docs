@@ -68,7 +68,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://rumptycloud.com/support',
+          href: 'https://discord.com/invite/ypbVhEzH',
           label: 'Support',
           position: 'right',
         },
