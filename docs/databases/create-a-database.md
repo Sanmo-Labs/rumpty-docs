@@ -12,13 +12,13 @@ Go to **Data → Databases → Create database**.
 
 ## Step 1: Database engine
 
-Choose the engine that fits your workload. Versions and sizes are selected separately.
+Choose the engine that fits your workload. Versions and sizes are selected separately. Postgres is the only engine you can select today; Redis and MySQL appear in the picker but are marked **Coming soon**.
 
 | Engine | Best for | Tags |
 |--------|----------|------|
 | **Postgres** | APIs, dashboards, SaaS backends, jobs, and anything that wants SQL with structure | SQL + transactions, Independent versions, Good default for most apps |
-| **Redis** | Queues, cache, sessions, rate limits, realtime counters, and coordination locks | Low-latency cache, Great beside your app, Persistent storage |
-| **MySQL** | Laravel, WordPress-style apps, internal tools, and services already built around MySQL | Familiar SQL, Broad app support, Independent versions |
+| **Redis** (coming soon) | Queues, cache, sessions, rate limits, realtime counters, and coordination locks | Low-latency cache, Great beside your app, Persistent storage |
+| **MySQL** (coming soon) | Laravel, WordPress-style apps, internal tools, and services already built around MySQL | Familiar SQL, Broad app support, Independent versions |
 
 ## Step 2: Version
 
@@ -39,7 +39,7 @@ Choose compute, memory, and storage. Version is selected separately.
 
 ## Step 4: Zone
 
-Choose where the database runs. New databases default to `olas-closet`. Your database will be provisioned in the selected zone with the resources included in the plan.
+Choose where the database runs. For now, new databases default to `olascloset`. Your database will be provisioned in the selected zone with the resources included in the plan.
 
 ## Step 5: Service basics
 
@@ -58,7 +58,7 @@ The right panel updates as you configure:
 | **Name** | `main-db` |
 | **Size** | Playground |
 | **Resources** | 1 CPU · 256 MB · 1 GB |
-| **Zone** | olas-closet |
+| **Zone** | olascloset |
 | **Endpoint** | Public database URL |
 
 **What you get:**

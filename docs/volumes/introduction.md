@@ -20,15 +20,18 @@ The Volumes overview shows:
 | **Available** | Total minus used |
 | **Total Used %** | Usage as a percentage |
 
-The table lists each volume with its name, status, size, filesystem, attached VM, mount path, and zone.
+The table lists each volume with its name, status, size, filesystem, attached VM, mount path, zone, and creation time.
 
 ## Volume statuses
 
 | Status | Meaning |
 |--------|---------|
-| `Ready` | Volume is available to attach |
-| `Attached` | Volume is mounted to a running VM |
-| `Failed` | Volume creation failed. Check Last Failure on the detail page |
+| `creating` | The volume is being provisioned |
+| `available` | Volume is ready to attach |
+| `attaching` / `detaching` | An attach or detach operation is in progress |
+| `formatting` | The volume is being formatted |
+| `attached` / `in-use` | Volume is attached to a VM |
+| `failed` | Volume creation failed. Check Last Failure on the detail page |
 
 ## What's next
 

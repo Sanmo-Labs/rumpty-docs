@@ -11,9 +11,10 @@ Get your first app running in under 5 minutes.
 ## Launch a virtual machine
 
 1. Go to **Compute → Virtual Machines → Create VM**
-2. Choose an OS image, plan, and region
-3. Attach your SSH key
-4. Click **Create VM**
+2. Name the VM and select a region
+3. Choose an OS image and version, then a plan
+4. Attach your SSH key
+5. Click **Create VM**
 
 Connect using the [Rumpty CLI](/virtual-machines/connecting) once it's ready:
 
@@ -29,21 +30,19 @@ Connect using the [Rumpty CLI](/virtual-machines/connecting) once it's ready:
 
 ## Deploy from GitHub
 
-1. Go to **Deployments → New Deployment**
-2. Choose **GitHub** as the source
-3. Authorise the platform to access your GitHub account
-4. Select your repository and branch
-5. Configure build settings (or let us auto-detect them)
-6. Click **Deploy**
+1. Go to **Compute → Deployments → New deployment**
+2. If GitHub isn't connected yet, click **Install GitHub App** and choose which repositories to share; you return to the form afterwards
+3. Select your repository and branch
+4. Build settings are auto-detected; adjust the port and environment variables if needed
+5. Choose a plan and click **Create deployment**
 
 Future pushes to your selected branch will trigger deployments automatically.
 
-## Deploy a packaged project
+## Launch a one-click app
 
-1. Go to **Deployments → New Deployment → Manual Upload**
-2. Upload your package or provide a Docker image URL
-3. Set any environment variables
-4. Click **Deploy**
+1. Go to **Compute → One-Click Apps**
+2. Pick a template (e.g. WordPress)
+3. Fill in the deploy form and click **Deploy**
 
 ## What's next?
 

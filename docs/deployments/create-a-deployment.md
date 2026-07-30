@@ -6,11 +6,11 @@ sidebar_label: Create a Deployment
 
 # Create a Deployment
 
-Go to **Compute → Deployments → New Deployment**.
+Go to **Compute → Deployments → New deployment**.
 
 ## Source
 
-Deployments are created from a **GitHub** repository (OAuth-connected, see [GitHub deploy](./github-deploy)). Connect your GitHub account, pick a repository and branch, and optionally set a **Root directory** (e.g. `apps/api`) for monorepos.
+Deployments are created from a **GitHub** repository (connected through the GitHub App, see [GitHub deploy](./github-deploy)). Give the deployment a **Name**, pick a repository and branch, and optionally set a **Root directory** (e.g. `apps/api`) for monorepos.
 
 ## Application type
 
@@ -38,26 +38,29 @@ The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the 
 
 ## Environment variables
 
-Add key/value pairs your app needs at build or runtime before the first deployment. You can add more later from the deployment's settings.
+Add key/value pairs your app needs before the first deployment. Values are stored encrypted and treated as secrets, and they are injected at **runtime** only; they are deliberately kept out of the build so secret values can't leak into the built image. You can add more later from the deployment's **Env** tab.
 
 ## Runtime size
 
 Pick a compute plan in the right panel:
 
-| Plan | Price | vCPU | Memory | Storage |
-|------|-------|------|--------|---------|
-| **Ephemeral Trial** | Free | 1 vCPU | 512 MB | 5 GB SSD |
-| **Launch** | $1.55/mo | 1 vCPU | 512 MB | 10 GB SSD |
-| **Micro** | $2.70/mo | 1 vCPU | 1 GB | 20 GB SSD |
-| **Core** | $4.60/mo | 1 vCPU | 2 GB | 30 GB SSD |
-| **Scale** | $6.15/mo | 2 vCPU | 2 GB | 50 GB SSD |
+| Plan | Price | CPU | Memory |
+|------|-------|-----|--------|
+| **Tiny** | ~$0.74/mo | 0.25 vCPU | 512 MB |
+| **Starter** | ~$1.48/mo | 0.75 vCPU | 512 MB |
+| **Scale** | ~$2.96/mo | 1 vCPU | 1 GB |
+| **Pro** | ~$5.93/mo | 2 vCPU | 2 GB |
+
+Prices are shown in the console as an hourly rate with an approximate monthly equivalent. The **Tiny** plan includes 3 free deployments per month.
 
 ## Start a build
 
 **Start a build after creating this deployment** is checked by default. Uncheck it if you want to configure more settings before the first build runs.
 
+**Automatically deploy when this branch receives new pushes** is also checked by default; see [GitHub deploy](./github-deploy) for how auto-deploy works.
+
 ## Auto-canceling Superseded Builds
 
-To maximize resource efficiency, Rumpty Cloud automatically cancels any older, ongoing runs (whether they are still `queued` or actively `building`) for a deployment if you trigger a newer run. This prevents redundant builds and ensures your latest commit or manual update is deployed as fast as possible.
+To maximize resource efficiency, RumptyCloud automatically cancels any older, ongoing runs (whether they are still `queued` or actively `building`) for a deployment if you trigger a newer run. This prevents redundant builds and ensures your latest commit or manual update is deployed as fast as possible.
 
 Click **Create deployment** to finish.

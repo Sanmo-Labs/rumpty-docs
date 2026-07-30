@@ -12,11 +12,13 @@ Go to **Storage → Volumes → Add Volume**.
 
 | Field | Details |
 |-------|---------|
-| **Volume name** | A label for the volume, e.g. `data-volume` |
-| **Volume size** | Slider from 20 GB to 500 GB |
+| **Volume name** | A label for the volume, e.g. `data-volume`. Letters, numbers, hyphens, and underscores only |
+| **Volume size** | Slider from 1 GB to 500 GB. Defaults to 20 GB |
 | **Region (Zone)** | Must match the zone of the VM you plan to attach it to |
 | **Description** | Optional note on what the volume is for |
-| **Format volume on creation** | Checked by default. Automatically formats with ext4. Uncheck only if you want to format manually after attaching. |
+| **Format volume on creation** | Checked by default. A blank volume is automatically formatted with ext4 when first attached. Uncheck only if you want to format manually after attaching. |
+
+The form shows an estimated monthly storage cost that updates as you change the size.
 
 Click **Create Volume**.
 

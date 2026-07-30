@@ -6,13 +6,13 @@ sidebar_label: SSH Keys
 
 # SSH Keys
 
-SSH keys are injected into new virtual machines so you can open a shell without passwords. Manage them under **Settings → SSH Keys**.
+SSH keys are injected into new virtual machines so you can open a shell without passwords. Keys are scoped to a workspace: manage them under **Settings → SSH keys** in the sidebar of the workspace they belong to. Adding and deleting keys requires a workspace role that can manage secrets.
 
 ## Add an SSH key
 
 1. Enter a **Key name** (e.g. `MacBook Pro`, `Framework laptop`, `CI deploy key`)
 2. Paste your **Public key** (e.g. `ssh-ed25519 AAAA...`)
-3. Click **+ Add key**
+3. Click **Add key**
 
 The key is saved and available to select when creating a VM.
 
@@ -28,12 +28,12 @@ Run this locally, then paste the contents of `~/.ssh/id_ed25519.pub` into the Pu
 
 ## Saved keys
 
-The **Saved SSH Keys** panel lists all keys on your account:
+The **Saved SSH keys** panel lists all keys in the workspace:
 
 | Field | Details |
 |-------|---------|
 | **Name** | The label you gave the key |
-| **Fingerprint** | SHA256 fingerprint for verification |
+| **Fingerprint** | Fingerprint of the public key, for verification |
 | **Created** | Date and time the key was added |
 
 ## Delete a key

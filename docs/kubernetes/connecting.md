@@ -9,21 +9,27 @@ sidebar_label: Connecting
 ## Download kubeconfig
 
 1. Open the cluster detail page
-2. Click **Download kubeconfig**
-3. Move the file to `~/.kube/config` or set `KUBECONFIG`:
+2. Click **Download Kubeconfig** (top right). The file is saved as `<cluster-slug>-kubeconfig.yaml`
+3. Point `kubectl` at the downloaded file:
 
 ```bash
-export KUBECONFIG=~/Downloads/your-cluster.yaml
+export KUBECONFIG=~/Downloads/<cluster-slug>-kubeconfig.yaml
 kubectl get nodes
 ```
 
-## Connecting a container registry
+The **Access** tab on the cluster detail page shows this command with your cluster's actual file name, and lets you copy the raw kubeconfig contents directly.
 
-To pull private images into your cluster, create an image pull secret:
+:::note
+The kubeconfig is generated shortly after the cluster reaches the running state. If the button shows **Generating Kubeconfig...**, wait a moment; the download becomes available automatically.
+:::
+
+## Pulling private images
+
+To pull images from a private container registry, create an image pull secret with your registry's credentials:
 
 ```bash
 kubectl create secret docker-registry regcred \
-  --docker-server=registry.yourplatform.com \
+  --docker-server=<your-registry-host> \
   --docker-username=<your-username> \
   --docker-password=<your-token>
 ```

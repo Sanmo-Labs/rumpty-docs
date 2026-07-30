@@ -76,4 +76,4 @@ Symptoms of a port mismatch: the build succeeds, but the deployment never become
 | `PORT` added as an environment variable | Has no effect. The platform's injected `PORT` always wins. Use the Port setting instead |
 | Health check path returns 404 or requires auth | The readiness path (default `/`) must return a successful response unauthenticated. Point **Readiness/health check path** at a route that does, e.g. `/healthz` |
 
-Runtime logs (deployment → **Logs**) usually show which port the app actually bound. Compare it against the Port setting when a deployment won't go active.
+Runtime logs (deployment → **Runtime Logs** tab) usually show which port the app actually bound. Compare it against the Port setting when a deployment won't go active.

@@ -10,7 +10,7 @@ The Deploy tab gives you everything needed to ship build artifacts to this VM, e
 
 ## How it works
 
-Your build runs in GitHub Actions (or locally). The Rumpty action uploads the compiled artifact to the VM and runs your after-deploy command. Your source code never leaves GitHub; only the build output is transferred.
+Your build runs in GitHub Actions. The Rumpty action uploads the build output to the VM and runs your after-deploy command. Your build stays in GitHub; only the artifact is transferred.
 
 ## GitHub Actions setup
 
@@ -25,13 +25,12 @@ Add these two secrets to your GitHub repository under **Settings → Secrets →
 
 ### Step 2: Configure a reverse proxy
 
-Set up a reverse proxy on the VM once to route traffic to your app. Rumpty only needs a deploy target directory and an after-deploy command.
+Set up a reverse proxy on the VM once to route traffic to your app. Rumpty only needs a deploy target directory and an after-deploy command. The Deploy tab includes example configs for nginx and HAProxy; Caddy or any other proxy works too.
 
 | Proxy | Config path | Best for |
 |-------|-------------|---------|
 | **nginx** | `/etc/nginx/sites-available/<vm-name>` | Static builds served from `/var/www` |
 | **HAProxy** | `/etc/haproxy/haproxy.cfg` | Forwarding traffic to a local app port |
-| **Caddy** | `/etc/caddy/Caddyfile` | Automatic HTTPS with minimal config |
 
 ### Step 3: Add the workflow file
 
@@ -39,6 +38,7 @@ The Deploy tab generates a ready-to-use workflow. Copy it to `.github/workflows/
 
 ```yaml
 name: Deploy to RumptyCloud
+
 on:
   push:
     branches: [main]
@@ -49,13 +49,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+
       - name: Build
-        run: npm ci && npm run build
-      # Rumpty action uploads artifact and runs after-deploy hook
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to RumptyCloud
+        uses: rumptycloud/deploy-action@v1
+        with:
+          token: ${{ secrets.RUMPTY_TOKEN }}
+          vm-id: ${{ secrets.RUMPTY_VM_ID }}
+          source: ./dist
+          target: /var/www/<vm-name>
+          after-deploy: sudo systemctl reload nginx
 ```
 
 ### Step 4: Push to deploy
@@ -66,10 +78,11 @@ Click **View app** on the Deploy tab to open the live URL.
 
 ## CLI deploy (local builds)
 
-For quick testing without GitHub Actions, build locally and deploy directly:
+For quick testing without GitHub Actions, build locally, copy the output to the VM, and run your after-deploy command:
 
 ```bash
-rumpty deploy <vm-name> --ws <workspace-id> --source ./dist --target /var/www
+rumpty copy ./dist <vm-name>:/var/www/<vm-name> --ws <workspace-slug>
+rumpty exec <vm-name> --ws <workspace-slug> -- sudo systemctl reload nginx
 ```
 
-The sample command with your VM name and workspace ID pre-filled is shown on the Deploy tab under **Sample CLI Command**.
+`rumpty copy` transfers files to the VM (rsync when available, scp otherwise); `rumpty exec` runs the remote command after `--`.

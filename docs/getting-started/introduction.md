@@ -7,17 +7,20 @@ slug: /getting-started/introduction
 
 # Welcome to Rumpty<span style={{color: '#59C2FF'}}>Cloud</span>
 
-RumptyCloud is a cloud platform for developers and everyone. Run virtual machines, deploy projects from GitHub or manually, spin up Kubernetes clusters, store files and data, and control network access, all organised into workspaces.
+RumptyCloud is a cloud platform for developers and everyone. Run virtual machines, deploy projects from GitHub, spin up Kubernetes clusters, store files and data, and control network access, all organised into workspaces.
 
 ## Core features
 
 | Feature               | Description                                                                                                       |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | **Virtual Machines**  | Linux VMs with private networking, SSH via the Rumpty CLI, snapshots, and metrics                                 |
-| **Deployments**       | Deploy packaged projects from a GitHub repository or a manual repo URL: web apps, static sites, and backend APIs |
-| **Kubernetes**        | Managed K8s clusters with autoscaling node pools                                                                  |
+| **Deployments**       | Build and deploy web apps, static sites, and backend APIs from a GitHub repository, with automatic deploys on push |
+| **One-Click Apps**    | Deploy prepackaged apps such as WordPress from ready-made templates                                               |
+| **Kubernetes**        | Managed Kubernetes clusters with your choice of version, worker count, and worker plan                           |
+| **Inference**         | Inference projects with an OpenAI-compatible endpoint and API key for hosted models                              |
 | **Volumes**           | Persistent block storage you can attach, detach, and move between VMs                                             |
 | **Buckets**           | S3-compatible object storage with public or private visibility                                                    |
+| **Snapshots**         | Point-in-time VM snapshots you can restore into new VMs                                                           |
 | **Databases**         | Managed Postgres, Redis, and MySQL with a public connection endpoint                                              |
 | **Firewall Policies** | Workspace-scoped network rules: default inbound deny with per-port allow rules                                   |
 

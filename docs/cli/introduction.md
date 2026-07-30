@@ -9,50 +9,52 @@ slug: /cli/introduction
 
 Manage workspaces, VMs, and resources on the RumptyCloud platform from your terminal.
 
-RumptyCloud
-
-Sanmọ̀Labs™ - Surpass your limits!
-
-rumpty 0.0.3
-
 ## Install
 
-[Download the CLI →](#) *(tar.gz)*
-
-Extract and move to a directory of your choice:
+Install the latest release with the install script:
 
 ```bash
-tar -xzf rumpty-*.tar.gz -C /usr/local/bin/rumpty-cli
+curl -fsSL https://get.rumptycloud.com | sh
 ```
 
-## Configure environment variables
+The script downloads the release for your OS and architecture, verifies its checksum, and installs the `rumpty` binary to `/usr/local/bin` (falling back to `~/.local/bin` when that directory is not writable). It warns if the install directory is not on your PATH.
 
-The CLI requires two environment variables to connect to the platform:
+Optional overrides:
 
 ```bash
-export RUMPTY_API_KEY="your-api-key"
-export RUMPTY_API_URL="https://api.rumptycloud.com"
+# Install a specific version
+curl -fsSL https://get.rumptycloud.com | RUMPTY_VERSION=v0.0.3 sh
+
+# Install to a custom directory
+curl -fsSL https://get.rumptycloud.com | RUMPTY_INSTALL_DIR="$HOME/.local/bin" sh
 ```
-
-Get your API key from [Settings → API Keys](/settings/api-keys).
-
-Add these to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.) to persist across sessions.
-
-## Add to PATH
-
-Add the CLI directory to your PATH:
-
-```bash
-export PATH="$PATH:/usr/local/bin/rumpty-cli"
-```
-
-Reload your shell or run `source ~/.bashrc` (or `~/.zshrc`) for the change to take effect.
 
 Verify the install:
 
 ```bash
 rumpty --version
 ```
+
+## Authenticate
+
+Sign in through your browser, which stores a session for later commands:
+
+```bash
+rumpty login
+```
+
+For CI and scripts, use an API key instead. Get one from [Personal API keys](/settings/api-keys) on your profile, then pass it with `rumpty login --token`, the `--token` flag on any command, or the `RUMPTY_API_KEY` environment variable. See [Login & Logout](./login).
+
+## Environment variables
+
+Every setting can also come from the environment, which is useful in CI:
+
+```bash
+export RUMPTY_API_KEY="your-api-key"
+export RUMPTY_WORKSPACE="your-workspace-slug"
+```
+
+Add these to your shell profile (`~/.bashrc`, `~/.zshrc`, etc.) to persist across sessions.
 
 ## Global flags
 
@@ -73,12 +75,24 @@ These flags work with any command:
 | [`login`](./login) | Authenticate with Rumpty |
 | [`logout`](./login#logout) | Remove the local Rumpty session |
 | `ssh` | Open an SSH session to a workspace VM |
-| `copy` | Copy files between your machine and a VM |
+| `copy` (alias `cp`) | Copy files between your machine and a VM |
 | `exec` | Run a non-interactive command on a VM |
 | `expose` | Expose a VM service with a public URL |
 | `unexpose` | Remove a VM service public URL |
-| `vm` | Manage workspace VMs |
+| `vm` | Manage workspace VMs: `ls`, `start`, `stop`, `reboot`, `delete`, `expose ls` |
 | `workspaces` | List workspaces you can access |
 | `completion` | Generate shell autocompletion script |
 
 Use `rumpty [command] --help` for details on any command.
+
+## Shell completion
+
+Generate and install the completion script for your shell:
+
+```bash
+rumpty completion zsh > "${fpath[1]}/_rumpty"
+rumpty completion bash | sudo tee /etc/bash_completion.d/rumpty > /dev/null
+rumpty completion fish > ~/.config/fish/completions/rumpty.fish
+```
+
+Completion also suggests live VM names and workspace slugs (e.g. `rumpty ssh <TAB>`, `rumpty --ws <TAB>`). Dynamic suggestions call the API, so they require authentication; if the API is unreachable, completion fails quietly instead of blocking the prompt.

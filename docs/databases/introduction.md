@@ -7,13 +7,13 @@ slug: /databases/introduction
 
 # Databases
 
-Managed Postgres, Redis, and MySQL databases for apps, demos, and internal tools. Go to **Data → Databases**.
+Managed databases for apps, demos, and internal tools. Postgres is available today; Redis and MySQL are marked coming soon in the console. Go to **Data → Databases**.
 
 ## Dashboard stats
 
 | Stat | Meaning |
 |------|---------|
-| **Total databases** | All database instances in the workspace |
+| **Total Databases** | All database instances in the workspace |
 | **Ready** | Databases that are live and accepting connections |
 | **Provisioning** | Databases currently being created |
 
@@ -22,12 +22,12 @@ Managed Postgres, Redis, and MySQL databases for apps, demos, and internal tools
 | Column | Meaning |
 |--------|---------|
 | **Database** | Name of the instance |
-| **Engine** | Postgres, Redis, or MySQL |
-| **Status** | `Ready`, `Provisioning`, or `Failed` |
-| **Connection** | Connection host (shown once ready) |
-| **Plan** | The size tier selected |
+| **Engine** | The database engine and version |
+| **Status** | Current state, for example `running`, `provisioning`, or `failed` |
+| **Connection** | Connection string or host, with a copy button (shown once ready) |
+| **Plan** | The size tier selected and its storage |
 | **Created** | Creation date |
-| **Actions** | Delete or manage |
+| **Actions** | View or delete |
 
 ## What's next
 

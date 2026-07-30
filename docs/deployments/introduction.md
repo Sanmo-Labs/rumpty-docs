@@ -1,6 +1,6 @@
 # Deployments
 
-Build apps from Git repositories or manual sources, review build logs, and run new releases. Every deployment tracks artifact usage (build images stored from deployment runs) against your 5 GB free allowance.
+Build apps from Git repositories, review build logs, and run new releases. The deployments overview also shows artifact usage (build images stored from deployment runs) against your free allowance.
 
 ## Dashboard stats
 
@@ -10,8 +10,8 @@ Your deployments overview shows four live counters:
 |------|---------|
 | **Deployments** | Total deployments in the workspace |
 | **Active** | Currently running |
-| **Building** | Build in progress |
-| **Needs Attention** | Failed or degraded |
+| **Building** | Build or deploy in progress |
+| **Needs attention** | In a failed state |
 
 ## What's next
 

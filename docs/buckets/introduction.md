@@ -16,18 +16,20 @@ S3-compatible image buckets for uploads, SDK access, and public or signed image 
 | **Buckets** | Total buckets in the workspace |
 | **Ready** | Buckets that are live and serving |
 | **Creating** | Buckets currently being provisioned |
-| **Visible Usage** | Total storage used across all buckets |
+| **Visible usage** | Total storage used across all buckets |
 
 ## Bucket table columns
 
 | Column | Meaning |
 |--------|---------|
 | **Bucket** | Name |
-| **Status** | `Ready` or `Creating` |
+| **Status** | `Ready`, `Creating`, or `Failed` |
 | **Used** | Storage consumed |
-| **S3 Bucket** | The underlying S3 bucket name |
+| **S3 bucket** | The S3 bucket name used with SDKs and the CLI |
 | **Visibility** | Public or Private |
 | **Created** | Creation date |
+
+Bucket status refreshes automatically while a bucket is being created.
 
 ## What's next
 

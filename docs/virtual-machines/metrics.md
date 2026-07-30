@@ -17,11 +17,11 @@ Percentage of vCPU utilisation over the selected period. Sustained high CPU may 
 RAM usage as a percentage of the plan's total. For example, 28.3% on a 512 MB plan means roughly 145 MB in use.
 
 **Disk Usage**
-Root disk utilisation percentage. This reflects the VM's root disk only; attached volumes report separately once the rumpty agent is running.
+Disk utilisation percentage for the VM's root disk.
 
 **Bandwidth**
-Inbound and outbound network throughput in B/s, shown as two separate series (In / Out). Useful for spotting traffic spikes or unexpected egress.
+Inbound and outbound network throughput in bytes per second, shown as two separate series (In / Out). Useful for spotting traffic spikes or unexpected egress.
 
 :::info
-Metrics require the rumpty agent to be running on the VM. If charts appear empty, confirm the agent is active.
+Metrics are collected while the VM is running; charts refresh automatically. Right after a VM starts, expect a short wait for the first samples to appear.
 :::

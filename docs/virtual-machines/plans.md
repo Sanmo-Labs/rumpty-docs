@@ -6,7 +6,7 @@ sidebar_label: Compute Plans
 
 # Compute Plans
 
-Choose a compute plan when creating a VM. Pricing is per month, billed hourly and prorated.
+Choose a compute plan when creating a VM. Prices are per month; usage accrues prorated for the time the VM exists within the billing cycle.
 
 | Plan | Price | vCPU | Memory | Storage | Bandwidth |
 |------|-------|------|--------|---------|-----------|
@@ -21,16 +21,16 @@ Choose a compute plan when creating a VM. Pricing is per month, billed hourly an
 The **Ephemeral Trial** plan is meant for quick testing, not production workloads:
 
 - Free, but time-limited to **3 days**
-- VM is **permanently deleted** on expiry; there is no recovery
+- The VM and its root disk are **permanently deleted** on expiry; there is no recovery
 - Only **one active ephemeral VM** is allowed per account at a time
 
-## Resizing
+## Changing plans
 
-You can move to a larger plan later from the VM's **Settings** tab. Resizing requires a restart.
+Plans cannot be changed in place. To move a workload to a different plan, take a [snapshot](./snapshots) of the VM, then create a new VM from that snapshot and select the new plan during creation.
 
 ## Choosing a plan
 
 - **Launch / Micro**: light workloads, small services, dev/test environments
 - **Core / Scale**: apps with steadier traffic or memory-heavier workloads
 
-If you're unsure, start with **Micro**; it's inexpensive and easy to resize up later.
+If you're unsure, start with **Micro**; it's inexpensive, and you can move to a larger plan later via a snapshot.
