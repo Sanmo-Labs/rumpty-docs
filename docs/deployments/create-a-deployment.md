@@ -10,33 +10,24 @@ Go to **Compute → Deployments → New Deployment**.
 
 ## Source
 
-Choose between **Manual** (paste a repository URL directly) or **GitHub** (OAuth-connected, see [GitHub deploy](./github-deploy)).
-
-For Manual, fill in:
-
-| Field | Example |
-|-------|---------|
-| **Name** | `orders-api` |
-| **Repository URL** | `https://github.com/acme/orders-api.git` |
-| **Branch** | `main` |
-| **Root directory** *(optional)* | `apps/api` — use this for monorepos |
+Deployments are created from a **GitHub** repository (OAuth-connected, see [GitHub deploy](./github-deploy)). Connect your GitHub account, pick a repository and branch, and optionally set a **Root directory** (e.g. `apps/api`) for monorepos.
 
 ## Application type
 
 | Type | Use for |
 |------|---------|
-| **Web or static app** | Frontend apps, docs, landing pages, sites |
-| **Backend API** | Services that expose an HTTP endpoint |
+| **Static Site/SPA** | Frontend apps, docs, landing pages, sites |
+| **Web Service/Backend** | Services that expose an HTTP endpoint |
 
-Selecting **Backend API** reveals a **Backend readiness path** field (default `/`) — the platform polls this endpoint to confirm your service is healthy before marking the deployment active.
+## Readiness/health check path
+
+The platform polls this path (default `/`) to confirm your service is healthy before marking the deployment active. It must return a successful response without authentication.
 
 ## Port
 
-Backend APIs also get a **Port** field (default `8080`). This is the port your app must listen on — the platform routes traffic to it, health-checks it, and injects it into your container as the `PORT` environment variable.
+The **Port** field (default `8080`) is the port your app must listen on — the platform routes traffic to it, health-checks it, and injects it into your container as the `PORT` environment variable. It's editable for **Web Service/Backend** apps; for **Static Site/SPA** deployments it's locked, since the platform serves your built assets from its own web server.
 
 The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the default always works. If your app listens on a hardcoded port instead, set this field to match. A mismatch here is the most common reason a deployment builds successfully but never becomes active — see [Ports & Health Checks](./ports) for details and troubleshooting.
-
-For **Web or static app** deployments the port is managed automatically and cannot be changed.
 
 ## Build method
 

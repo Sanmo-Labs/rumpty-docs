@@ -51,14 +51,14 @@ You cannot override `PORT` yourself. If you add a `PORT` variable in your deploy
 
 If your app listens on a fixed port you can't easily change (for example an image that always binds `3000`), set the deployment's **Port** setting to match instead:
 
-- **When creating** — the Port field appears when the application type is **Backend API**.
-- **After creating** — open the deployment, go to the **Settings** tab, and change **Port**. Save and redeploy.
+- **When creating** — the Port field is editable when the application type is **Web Service/Backend** (it's locked to 8080 for static sites).
+- **After creating** — open the deployment, go to the **Settings** tab, and change **Port**. Saving stores the new value; it takes effect on the **next deploy**, so trigger a new deployment run after saving.
 
 Everything follows the setting: routing, the health check, and the injected `PORT` value all move to the port you set.
 
 ## Static sites
 
-For the **Web or static app** type the port is not configurable. The platform serves your built assets from its own web server on a fixed port — there is nothing to set.
+For the **Static Site/SPA** type the port is not configurable. The platform serves your built assets from its own web server on a fixed port — there is nothing to set.
 
 ## Troubleshooting
 
@@ -70,6 +70,6 @@ Symptoms of a port mismatch: the build succeeds, but the deployment never become
 | App binds `127.0.0.1` / `localhost` | Bind `0.0.0.0` — health checks and traffic reach the container over the network, so a localhost-only listener is invisible to them |
 | `EXPOSE 3000` in the Dockerfile | `EXPOSE` is documentation only; it does not configure routing. Set the Port setting or read `$PORT` |
 | `PORT` added as an environment variable | Has no effect — the platform's injected `PORT` always wins. Use the Port setting instead |
-| Health check path returns 404 or requires auth | The readiness path (default `/`) must return a successful response unauthenticated. Point **Backend readiness path** at a route that does, e.g. `/healthz` |
+| Health check path returns 404 or requires auth | The readiness path (default `/`) must return a successful response unauthenticated. Point **Readiness/health check path** at a route that does, e.g. `/healthz` |
 
 Runtime logs (deployment → **Logs**) usually show which port the app actually bound — compare it against the Port setting when a deployment won't go active.

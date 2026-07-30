@@ -15,7 +15,7 @@ The GitHub App lets RumptyCloud access your repositories for deployments — cho
 ### Install
 
 1. Go to **Settings → Integrations**
-2. Click **Install GitHub App**
+2. Click **Connect GitHub App**
 3. You'll be redirected to GitHub to authorise the app
 4. Select which repositories RumptyCloud can access (specific repos or all)
 5. Confirm the installation
