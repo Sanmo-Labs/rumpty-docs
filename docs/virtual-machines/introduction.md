@@ -16,7 +16,7 @@ Each workspace (e.g. `QA | Testing`) acts as a rack: a logical grouping for your
 - assigned a **private IP** on the workspace's default network (e.g. `10.16.0.0/16`)
 - given a **guest hostname** derived from the VM name
 - provisioned with the OS image, SSH keys, and compute plan you select
-- ready for SSH access as soon as provisioning completes
+- ready for SSH access as `root` as soon as provisioning completes
 
 :::info
 VMs are **not exposed over a public IP** by default. To connect, you use the Rumpty CLI, which tunnels your SSH session through the platform securely, or the browser console on the VM's **Connect** tab.

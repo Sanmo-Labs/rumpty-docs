@@ -75,6 +75,7 @@ These flags work with any command:
 | [`login`](./login) | Authenticate with Rumpty |
 | [`logout`](./login#logout) | Remove the local Rumpty session |
 | `ssh` | Open an SSH session to a workspace VM |
+| [`sync`](./sync) | Sync a local folder to a bucket in object storage |
 | `copy` (alias `cp`) | Copy files between your machine and a VM |
 | `exec` | Run a non-interactive command on a VM |
 | `expose` | Expose a VM service with a public URL |

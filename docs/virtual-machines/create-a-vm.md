@@ -46,7 +46,7 @@ Your VM detail page shows:
 
 - **Status** (e.g. `RUNNING`)
 - **Spec summary**: vCPU, RAM, disk, region, OS image
-- **Private IP**, **guest username**, and, once an app is exposed, the app **port** and URL
+- **Private IP**, **guest username** (`root` on new VMs), and, once an app is exposed, the app **port** and URL
 - Tabs for **Connect**, **Metrics**, **Snapshots**, **Firewall**, **Deploy**, and **Settings**
 - **Start VM**, **Stop VM**, and **Reboot VM** actions in the header. Stopping interrupts running apps and SSH sessions; rebooting causes a short interruption while the VM comes back online.
 

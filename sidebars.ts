@@ -109,6 +109,16 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'CLI',
+      collapsed: false,
+      items: [
+        'cli/introduction',
+        'cli/login',
+        'cli/sync',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Others',
       collapsed: false,
       items: [

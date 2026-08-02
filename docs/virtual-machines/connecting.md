@@ -46,9 +46,9 @@ Follow the **Other install options** link on the same tab for alternative instal
 
 The VM detail page shows this command with your VM name and workspace slug already filled in.
 
-This opens a secure SSH session tunneled through the platform. No public IP or manual port-forwarding required.
+This opens a secure SSH session tunneled through the platform as `root`. No public IP or manual port-forwarding required.
 
-Useful flags: `--user` to log in as a different guest user, and `-i`/`--identity` to point at a specific private key. You can also set the workspace once with `$RUMPTY_WORKSPACE` instead of passing `--ws` each time.
+Useful flags: `--user` to log in as a different guest user if you have created one, and `-i`/`--identity` to point at a specific private key. You can also set the workspace once with `$RUMPTY_WORKSPACE` instead of passing `--ws` each time.
 
 ## Run commands and copy files
 

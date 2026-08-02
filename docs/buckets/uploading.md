@@ -6,6 +6,16 @@ sidebar_label: Uploading & Access Keys
 
 # Uploading Files & Access Keys
 
+## Sync a local folder
+
+The fastest way to get files into a bucket is the CLI's sync command, which uploads a whole folder and only transfers changes on repeat runs:
+
+```bash
+rumpty sync ~/sales-reports my-backups --watch
+```
+
+See [Sync a Local Folder](/cli/sync) for filtering, restore, and background daemon mode.
+
 ## Upload via the dashboard
 
 From the bucket detail page, drag and drop files into the upload area, or click **Upload files**. Supported types: images (PNG, JPEG, WebP, GIF, SVG), documents (PDF, TXT, HTML, Markdown, CSV, DOCX), and video (MP4, WebM, MOV, MKV, AVI, HLS playlists and segments).
