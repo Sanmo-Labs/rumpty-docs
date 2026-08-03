@@ -1,11 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="196" height="48" viewBox="0 0 196 48" fill="none">
-  <rect width="48" height="48" rx="10" fill="#0B1117"/>
-  <g transform="translate(10 10)">
-    <rect x="0" y="0" width="12" height="12" rx="2.5" fill="#3B82F6"/>
-    <rect x="16" y="0" width="12" height="12" rx="2.5" fill="#22C55E"/>
-    <rect x="0" y="16" width="12" height="12" rx="2.5" fill="#F97316"/>
-    <rect x="16" y="16" width="12" height="12" rx="2.5" fill="#F8E7C9"/>
-  </g>
-  <text x="58" y="31" fill="#F5EFE4" font-family="Space Grotesk, Inter, system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.4">Rumpty</text>
-  <text x="132" y="31" fill="#59C2FF" font-family="Space Grotesk, Inter, system-ui, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.4">Cloud</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+  <rect x="0" y="0" width="12" height="12" rx="2.5" fill="#59C2FF"/>
+  <rect x="14" y="0" width="12" height="12" rx="2.5" fill="#4FD99A"/>
+  <rect x="0" y="14" width="12" height="12" rx="2.5" fill="#FF6B2C"/>
+  <rect x="14" y="14" width="12" height="12" rx="2.5" fill="#F1EAD9"/>
 </svg>

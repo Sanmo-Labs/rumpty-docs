@@ -54,7 +54,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: '',
+      // "Cloud" is appended in accent color via .navbar__title::after in custom.css,
+      // because SVG <text> can't use web fonts when loaded through an <img> tag.
+      title: 'Rumpty',
       logo: {
         alt: 'RumptyCloud Logo',
         src: 'img/brand-logo.svg',

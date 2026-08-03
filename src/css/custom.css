@@ -896,3 +896,33 @@ main[class*="docMainContainer"] .row {
         animation: none;
     }
 }
+
+/* ── Navbar brand ────────────────────────────────────────
+   The logo image is the bare 2x2 mark; the wordmark is the
+   navbar title ("Rumpty") so it renders in the real web font,
+   with "Cloud" appended in accent color to match the landing page. */
+.navbar__logo {
+    display: flex;
+    align-items: center;
+    height: 22px;
+    width: 22px;
+    margin-right: 10px;
+}
+
+.navbar__logo img {
+    height: 100%;
+    width: 100%;
+}
+
+.navbar__title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+}
+
+.navbar__title::after {
+    content: 'Cloud';
+    color: var(--accent);
+}
