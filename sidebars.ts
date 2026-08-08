@@ -41,6 +41,7 @@ const sidebars: SidebarsConfig = {
             'deployments/create-a-deployment',
             'deployments/github-deploy',
             'deployments/ports',
+            'deployments/persistent-storage',
           ],
         },
         {

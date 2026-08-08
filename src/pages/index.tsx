@@ -230,7 +230,7 @@ export default function Home(): ReactNode {
               </p>
               <Link
                 className={styles.btnGhost}
-                href="https://discord.com/invite/ypbVhEzH"
+                href="https://discord.gg/Rukmqzg3uX"
               >
                 Contact support
               </Link>

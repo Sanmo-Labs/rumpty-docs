@@ -70,7 +70,7 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://discord.com/invite/ypbVhEzH',
+          href: 'https://discord.gg/Rukmqzg3uX',
           label: 'Support',
           position: 'right',
         },

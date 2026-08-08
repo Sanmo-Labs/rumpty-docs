@@ -40,6 +40,12 @@ The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the 
 
 Add key/value pairs your app needs before the first deployment. Values are stored encrypted and treated as secrets, and they are injected at **runtime** only; they are deliberately kept out of the build so secret values can't leak into the built image. You can add more later from the deployment's **Env** tab.
 
+## Persistent storage (optional)
+
+Deployment filesystems are wiped on every deploy. If your app needs files that survive deploys — a SQLite database, a search index, app-managed state — tick **Add persistent storage** and choose a mount path (e.g. `/data`) and size. Everything your app writes under that path is kept across deploys and restarts.
+
+Volumes come with trade-offs (deploys briefly stop the app, single instance, size only grows). See [Persistent Storage](./persistent-storage) for details and for guidance on when a [database](/databases/introduction) or [bucket](/buckets/introduction) is the better home for your data.
+
 ## Runtime size
 
 Pick a compute plan in the right panel:
