@@ -24,7 +24,7 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
-          // editUrl: 'https://github.com/rumptycloud/docs/tree/main/',
+          // editUrl: 'https://github.com/Sanmo-Labs/rumpty-docs/tree/main/',
         },
         blog: false,
         theme: { customCss: './src/css/custom.css' },
@@ -75,7 +75,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/rumptycloud/docs',
+          href: 'https://github.com/Sanmo-Labs/rumpty-docs',
           label: 'GitHub',
           position: 'right',
         },
