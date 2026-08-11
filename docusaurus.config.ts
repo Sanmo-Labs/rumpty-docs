@@ -111,6 +111,15 @@ const config: Config = {
             { label: 'Status Page', href: 'https://status.rumptycloud.com' },
           ],
         },
+        {
+          title: 'Community',
+          items: [
+            { label: 'Discord', href: 'https://discord.gg/Rukmqzg3uX' },
+            { label: 'YouTube', href: 'https://www.youtube.com/@rumptycloud' },
+            { label: 'GitHub', href: 'https://github.com/Sanmo-Labs' },
+            { label: 'Blog', href: 'https://blog.rumptycloud.com' },
+          ],
+        },
       ],
       copyright: `© ${new Date().getFullYear()} RumptyCloud. Built with Docusaurus.`,
     },

@@ -35,3 +35,7 @@ Attaching a policy replaces all previously open ports with only what the policy 
 ## Detach a policy
 
 From the resource's **Firewall** tab, click **Detach** on the attached policy's card. When no policies remain attached, the resource reverts to its built-in network behavior.
+
+:::note
+Deleting a policy's rules does not stop enforcement — an attached policy with no rules blocks all inbound traffic. To stop filtering, detach the policy.
+:::

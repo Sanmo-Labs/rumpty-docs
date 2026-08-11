@@ -10,7 +10,7 @@ Open a policy by clicking its name in the table. The policy detail page has two 
 
 ## Enforcement
 
-Every policy enforces **Default inbound deny**: traffic that doesn't match an allow rule is blocked. Outbound filtering is not enforced yet.
+While a policy is attached to a resource, it enforces **default inbound deny**: traffic that doesn't match an allow rule is blocked. This includes a policy whose rules have all been deleted — an attached policy with zero allow rules blocks **all** inbound traffic. Enforcement stops only when the policy is detached. Outbound filtering is not enforced yet.
 
 ## Default rules
 
@@ -37,6 +37,10 @@ Fill in the **Add allow rule** form:
 | **Description** | Optional label for the rule |
 
 Click **+ Add allow rule**.
+
+:::warning Source CIDRs and public traffic
+Public traffic (SSH, database connections, HTTPS) reaches your resource through RumptyCloud's edge routers, so the source address your firewall sees is the router's — not the original client's. A rule with a narrow CIDR (e.g. your office IP) will block the router itself and cut off that access entirely, rather than filtering clients by IP. Use `0.0.0.0/0` for ports that must be publicly reachable; narrow CIDRs are only meaningful for traffic originating inside your workspace.
+:::
 
 ## Edit or delete a rule
 
