@@ -30,16 +30,21 @@ Fill in the **Add allow rule** form:
 | Field | Details |
 |-------|---------|
 | **Direction** | Inbound (outbound not yet enforced) |
-| **Protocol** | TCP, UDP, or All |
-| **Port start** | Starting port, e.g. `22`. Leave blank to match all ports |
-| **Port end** | Ending port for a range; leave blank for single port |
-| **CIDR** | Source IP range, e.g. `0.0.0.0/0` for any, or `192.168.1.0/24` for a subnet. Shown in the **Source** column of the rules table |
+| **Protocol** | TCP, UDP, or All. Selecting All matches every port, so the port field is hidden |
+| **Port(s)** | A single port like `22`, or a range like `8000-9000`. Leave blank to match all ports. Preset buttons below the field fill in common services (SSH, HTTP, HTTPS, Postgres, MySQL, Redis) |
+| **Source (CIDR)** | Which IPs are allowed to connect, e.g. `0.0.0.0/0` for anywhere, or `192.168.1.0/24` for a subnet. Shown in the **Source** column of the rules table |
 | **Description** | Optional label for the rule |
 
 Click **+ Add allow rule**.
 
-:::warning Source CIDRs and public traffic
-Public traffic (SSH, database connections, HTTPS) reaches your resource through RumptyCloud's edge routers, so the source address your firewall sees is the router's — not the original client's. A rule with a narrow CIDR (e.g. your office IP) will block the router itself and cut off that access entirely, rather than filtering clients by IP. Use `0.0.0.0/0` for ports that must be publicly reachable; narrow CIDRs are only meaningful for traffic originating inside your workspace.
+:::tip Allowing another RumptyCloud resource
+If the client is another resource in your workspace — for example a VM that should be the only thing allowed to reach your database — use that resource's **private IP** with a `/32` suffix as the source, e.g. `10.42.0.7/32`. Traffic between workspace resources travels over the private network with its real source address, so narrow CIDRs work exactly as expected.
+:::
+
+:::info Where source CIDRs are enforced
+Source CIDRs are enforced against the client's real IP address for **SSH** and **database** connections from the internet, and for all traffic between resources inside your workspace. So a rule like `TCP 22 from 203.0.113.9/32` allows SSH only from that address — connections from anywhere else are dropped at the edge.
+
+**HTTP(S) app traffic does not honor source CIDRs yet.** For web apps and deployments, use `0.0.0.0/0` on HTTP ports; per-IP restrictions for HTTP are coming.
 :::
 
 ## Edit or delete a rule
@@ -48,4 +53,4 @@ Each rule in the Allow rules table has **Edit** and **Delete** actions on the ri
 
 ## Attached resources
 
-The **Attached resources** panel shows which VMs or databases this policy is currently enforcing rules on, with each resource's type and status. If empty, the policy exists but is not active anywhere. Attach it from the resource's Firewall tab.
+The **Attached resources** panel shows which VMs or databases this policy is currently enforcing rules on, with each resource's type and status. If empty, the policy exists but is not active anywhere. Click **Attach resource** to pick a VM or database from your workspace, or attach from the resource's Firewall tab — both do the same thing. Each attached row has a **Detach** action, which stops enforcement on that resource after confirmation.

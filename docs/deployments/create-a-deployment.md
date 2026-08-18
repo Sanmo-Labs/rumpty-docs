@@ -52,12 +52,12 @@ Pick a compute plan in the right panel:
 
 | Plan | Price | CPU | Memory |
 |------|-------|-----|--------|
-| **Tiny** | ~$0.74/mo | 0.25 vCPU | 512 MB |
-| **Starter** | ~$1.48/mo | 0.75 vCPU | 512 MB |
-| **Scale** | ~$2.96/mo | 1 vCPU | 1 GB |
-| **Pro** | ~$5.93/mo | 2 vCPU | 2 GB |
+| **Tiny** | ~$2/mo | 0.25 vCPU | 512 MB |
+| **Starter** | ~$4/mo | 0.75 vCPU | 1 GB |
+| **Scale** | ~$8/mo | 1 vCPU | 2 GB |
+| **Pro** | ~$15/mo | 2 vCPU | 4 GB |
 
-Prices are shown in the console as an hourly rate with an approximate monthly equivalent. The **Tiny** plan includes 3 free deployments per month.
+Prices are shown in the console as an hourly rate with an approximate monthly equivalent. The **Tiny** plan includes 3 free deployments.
 
 ## Start a build
 

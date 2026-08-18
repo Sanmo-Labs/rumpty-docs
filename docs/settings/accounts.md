@@ -45,7 +45,7 @@ Shows usage for the current billing period:
 
 **Usage breakdown** lists charges by resource type, e.g. `VM Runtime · 10.69 hour · 1 resource · $0.14`.
 
-Plan free allowances are also shown here as `used / included` counts. The Tiny deployment plan includes 5 free deployments; larger plans have no free allowance.
+Plan free allowances are also shown here as `used / included` counts. The Tiny deployment plan includes 3 free deployments; larger plans have no free allowance.
 
 ## Free usage
 

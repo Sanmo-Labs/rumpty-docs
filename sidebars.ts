@@ -106,6 +106,7 @@ const sidebars: SidebarsConfig = {
         'firewall-policies/create-a-policy',
         'firewall-policies/allow-rules',
         'firewall-policies/attaching',
+        'networking/outbound-email',
       ],
     },
     {
