@@ -898,7 +898,7 @@ main[class*="docMainContainer"] .row {
 }
 
 /* ── Navbar brand ────────────────────────────────────────
-   The logo image is the bare 2x2 mark; the wordmark is the
+   The logo image is the brand mark; the wordmark is the
    navbar title ("Rumpty") so it renders in the real web font,
    with "Cloud" appended in accent color to match the landing page. */
 .navbar__logo {
