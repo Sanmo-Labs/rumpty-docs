@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'RumptyCloud Documentation',
   tagline: 'Deploy and scale your infrastructure with ease',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/favicon.png',
   url: 'https://docs.rumptycloud.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
