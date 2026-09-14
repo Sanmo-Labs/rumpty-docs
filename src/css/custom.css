@@ -187,8 +187,8 @@ article h3 {
 }
 
 .navbar__logo {
-    height: 28px;
-    width: 28px;
+    height: clamp(32px, 8vw, 50px);
+    width: clamp(32px, 8vw, 50px);
     margin-right: 8px;
 }
 
@@ -906,8 +906,8 @@ main[class*="docMainContainer"] .row {
 .navbar__logo {
     display: flex;
     align-items: center;
-    height: 28px;
-    width: 28px;
+    height: clamp(32px, 8vw, 50px);
+    width: clamp(32px, 8vw, 50px);
     margin-right: 8px;
 }
 
