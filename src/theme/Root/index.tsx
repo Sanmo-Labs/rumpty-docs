@@ -25,19 +25,22 @@ type RootProps = {
   children: React.ReactNode;
 };
 
-export default function Root({children}: RootProps): JSX.Element {
-  const [showSplash, setShowSplash] = useState(true);
+export default function Root({children}: RootProps): React.ReactNode {
+  const [showSplash, setShowSplash] = useState(false);
   // Picked in useEffect (not at render time) so server and client HTML match.
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     // Only play the splash once per browser session — repeat visits and
     // refreshes go straight to content.
-    if (window.sessionStorage.getItem(SPLASH_SEEN_KEY)) {
-      setShowSplash(false);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    try {
+      if (window.sessionStorage.getItem(SPLASH_SEEN_KEY)) return;
+      window.sessionStorage.setItem(SPLASH_SEEN_KEY, '1');
+    } catch {
       return;
     }
-    window.sessionStorage.setItem(SPLASH_SEEN_KEY, '1');
+    setShowSplash(true);
     setMessage(BOOT_MESSAGES[Math.floor(Math.random() * BOOT_MESSAGES.length)]);
     const timeout = window.setTimeout(() => setShowSplash(false), SPLASH_DURATION_MS);
     return () => window.clearTimeout(timeout);

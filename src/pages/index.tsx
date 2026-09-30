@@ -1,256 +1,224 @@
-import type { ReactNode } from "react";
-import Link from "@docusaurus/Link";
-import Layout from "@theme/Layout";
-import styles from "./index.module.css";
+import {useEffect, useRef, useState, type ReactNode} from 'react';
+import Link from '@docusaurus/Link';
+import LayoutProvider from '@theme/Layout/Provider';
+import {PageMetadata, useColorMode} from '@docusaurus/theme-common';
+import DocsSearch from '../components/DocsSearch';
+import '../css/docs-home.css';
 
-type Product = {
-  code: string;
-  color: string;
-  title: string;
-  description: string;
-  to: string;
-};
-
-const products: Product[] = [
-  {
-    code: "DP",
-    color: "var(--accent)",
-    title: "Deployments",
-    description:
-      "Ship apps straight from GitHub with builds, auto-deploy, and rollbacks.",
-    to: "/deployments/introduction",
-  },
-  {
-    code: "VM",
-    color: "var(--accent-2)",
-    title: "Virtual Machines",
-    description:
-      "Provision VMs with SSH access, snapshots, metrics, and firewalls.",
-    to: "/virtual-machines/introduction",
-  },
-  {
-    code: "K8",
-    color: "var(--accent-3)",
-    title: "Kubernetes",
-    description: "Managed clusters with storage classes and kubectl access.",
-    to: "/kubernetes/introduction",
-  },
-  {
-    code: "DB",
-    color: "#f8e7c9",
-    title: "Databases",
-    description: "Managed databases with backups and private connectivity.",
-    to: "/databases/introduction",
-  },
-  {
-    code: "BK",
-    color: "var(--accent)",
-    title: "Buckets",
-    description:
-      "S3-compatible object storage for uploads, assets, and backups.",
-    to: "/buckets/introduction",
-  },
-  {
-    code: "VL",
-    color: "var(--accent-2)",
-    title: "Volumes",
-    description: "Persistent block storage you can attach and mount to VMs.",
-    to: "/volumes/introduction",
-  },
-  {
-    code: "FW",
-    color: "var(--accent-3)",
-    title: "Firewall Policies",
-    description: "Allow-rules you attach to workloads to control traffic.",
-    to: "/firewall-policies/introduction",
-  },
-  {
-    code: "CLI",
-    color: "#f8e7c9",
-    title: "CLI",
-    description: "Manage everything from your terminal with the Rumpty CLI.",
-    to: "/cli/introduction",
-  },
-];
-
-const popular: { title: string; to: string }[] = [
-  { title: "Quick start", to: "/getting-started/quick-start" },
-  { title: "Create a deployment", to: "/deployments/create-a-deployment" },
-  { title: "Ports & health checks", to: "/deployments/ports" },
-  { title: "GitHub deploy", to: "/deployments/github-deploy" },
-  { title: "Create a VM", to: "/virtual-machines/create-a-vm" },
-  { title: "Connect to a VM", to: "/virtual-machines/connecting" },
-  { title: "Create a database", to: "/databases/create-a-database" },
-  { title: "Upload to a bucket", to: "/buckets/uploading" },
-  { title: "Workspaces", to: "/getting-started/workspaces" },
-  { title: "API keys", to: "/settings/api-keys" },
-  { title: "Billing", to: "/billing/introduction" },
-  { title: "Audit logs", to: "/audit-logs/introduction" },
-];
-
-function ProductCard({
-  code,
-  color,
-  title,
-  description,
-  to,
-}: Product): ReactNode {
-  return (
-    <Link to={to} className={styles.card}>
-      <span className={styles.cardMark} style={{ color }}>
-        {code}
-      </span>
-      <span className={styles.cardBody}>
-        <span className={styles.cardTitle}>{title}</span>
-        <span className={styles.cardDesc}>{description}</span>
-      </span>
-      <span className={styles.cardArrow} aria-hidden="true">
-        →
-      </span>
-    </Link>
-  );
+function ThemeToggle() {
+  const {colorMode, setColorMode} = useColorMode();
+  return <button className="theme-toggle" type="button" aria-label="Toggle light and dark mode" onClick={() => setColorMode(colorMode === 'dark' ? 'light' : 'dark')}><span aria-hidden="true">◐</span></button>;
 }
 
 export default function Home(): ReactNode {
-  return (
-    <Layout description="RumptyCloud documentation: deployments, virtual machines, Kubernetes, databases, storage, and networking, built and operated in Lagos.">
-      <main className={styles.home}>
-        {/* Hero */}
-        <section className={styles.hero}>
-          <div className={styles.heroInner}>
-            <div className={styles.heroCopy}>
-              <p className={styles.eyebrow}>rumptycloud docs</p>
-              <h1 className={styles.heroTitle}>
-                Everything you need to{" "}
-                <span className={styles.heroAccent}>ship</span>.
-              </h1>
-              <p className={styles.heroLede}>
-                Deploy applications, provision infrastructure, store data,
-                configure networking, and integrate with RumptyCloud using
-                guides, tutorials, and API references.
-              </p>
-              <div className={styles.heroActions}>
-                <Link
-                  className={styles.btnPrimary}
-                  to="/getting-started/quick-start"
-                >
-                  Quick start
-                </Link>
-                <Link
-                  className={styles.btnGhost}
-                  href="https://console.rumptycloud.com"
-                >
-                  Open console
-                </Link>
-              </div>
-            </div>
-            <div className={styles.heroShell}>
-              <div className={styles.shellBar}>
-                <span className={styles.shellDot} />
-                <span className={styles.shellDot} />
-                <span className={styles.shellDot} />
-                <span className={styles.shellTitle}>rumpty ssh</span>
-              </div>
-              <pre className={styles.shellBody}>
-                <span className={styles.shellPrompt}>➜</span>
-                {"  ~ "}
-                <span className={styles.shellCmd}>
-                  rumpty ssh tet --ws platform
-                </span>
-                {"\n"}
-                <span className={styles.shellStep}>›</span>
-                <span className={styles.shellMuted}>
-                  {" Preparing SSH access for tet\n"}
-                </span>
-                <span className={styles.shellStep}>›</span>
-                <span className={styles.shellMuted}>
-                  {" Opening SSH session as rumpty\n"}
-                </span>
-                {
-                  "Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-124-generic x86_64)\n\n"
-                }
-                <span className={styles.shellMuted}>
-                  {" System information as of Thu Jul 30 01:23:54 UTC 2026\n\n"}
-                  {"  System load:  0.0               Processes:    113\n"}
-                  {"  Usage of /:   23.6% of 8.61GB   Memory usage: 38%\n\n"}
-                </span>
-                <span className={styles.shellBanner}>
-                  {"▄▖       ▗   ▄▖▜      ▌\n"}
-                  {"▙▘▌▌▛▛▌▛▌▜▘▌▌▌ ▐ ▛▌▌▌▛▌\n"}
-                  {"▌▌▙▌▌▌▌▙▌▐▖▙▌▙▖▐▖▙▌▙▌▙▌\n"}
-                  {"       ▌   ▄▌\n"}
-                </span>
-                {"\nRumptyCloud\n"}
-                <span className={styles.shellMuted}>
-                  {"Sanmọ̀Labs™ - Surpass your limits!\n"}
-                  {"Last login: Thu Jul 30 01:23:55 2026 from 100.64.0.4\n"}
-                </span>
-                <span className={styles.shellUser}>root@rockets</span>
-                {":"}
-                <span className={styles.shellPath}>~</span>
-                {"$ "}
-                <span className={styles.shellCaret} />
-              </pre>
-            </div>
-          </div>
-        </section>
+ const [menuOpen, setMenuOpen] = useState(false);
+ const page = useRef<HTMLDivElement>(null);
+ useEffect(() => {
+  const escape = (event: KeyboardEvent) => { if (event.key === 'Escape' && document.getElementById('menu-btn')?.getAttribute('aria-expanded') === 'true') {setMenuOpen(false); document.getElementById('menu-btn')?.focus();} };
+  document.addEventListener('keydown', escape);
+  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const animations: Animation[] = [];
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+   if (!entry.isIntersecting) return;
+   if (!media.matches) animations.push(entry.target.animate([{opacity: 0, transform: 'translateY(16px)'}, {opacity: 1, transform: 'none'}], {duration: 450, easing: 'ease-out'}));
+   observer.unobserve(entry.target);
+  }), {threshold: 0.1});
+  page.current?.querySelectorAll('.dsec, .dhero__inner').forEach(el => observer.observe(el));
+  const stop = () => {if(media.matches) animations.forEach(a => a.cancel());};
+  media.addEventListener('change', stop);
+  return () => {observer.disconnect(); animations.forEach(a => a.cancel()); media.removeEventListener('change', stop); document.removeEventListener('keydown', escape);};
+ }, []);
+ return <LayoutProvider><PageMetadata title="Documentation" description="Search RumptyCloud guides for deployments, virtual machines, databases, storage, Kubernetes, and the CLI." /><div className="docs-home" ref={page}><a className="skip" href="#main">Skip to content</a>
 
-        {/* Products */}
-        <section className={styles.section}>
-          <p className={styles.eyebrow}>explore by product</p>
-          <h2 className={styles.sectionTitle}>Pick where you're building.</h2>
-          <div className={styles.cardGrid}>
-            {products.map((product) => (
-              <ProductCard key={product.code} {...product} />
-            ))}
-          </div>
-        </section>
 
-        {/* Popular */}
-        <section className={styles.section}>
-          <p className={styles.eyebrow}>most viewed</p>
-          <h2 className={styles.sectionTitle}>Straight to the answer.</h2>
-          <div className={styles.popularGrid}>
-            {popular.map((item) => (
-              <Link key={item.to} to={item.to} className={styles.popularLink}>
-                {item.title}
-              </Link>
-            ))}
-          </div>
-        </section>
 
-        {/* Help strip */}
-        <section className={styles.section}>
-          <div className={styles.helpGrid}>
-            <div className={styles.helpCard}>
-              <h3 className={styles.helpTitle}>Need a hand?</h3>
-              <p className={styles.helpDesc}>
-                Our team answers real questions from real builders. No chat
-                bots.
-              </p>
-              <Link
-                className={styles.btnGhost}
-                href="https://discord.gg/Rukmqzg3uX"
-              >
-                Contact support
-              </Link>
-            </div>
-            <div className={styles.helpCard}>
-              <h3 className={styles.helpTitle}>Is it us or you?</h3>
-              <p className={styles.helpDesc}>
-                Check live platform status before you start debugging your own
-                app.
-              </p>
-              <Link
-                className={styles.btnGhost}
-                href="https://status.rumptycloud.com"
-              >
-                Platform status
-              </Link>
-            </div>
+
+  <header className="dnav">
+    <div className="dwrap dnav__bar">
+      <Link className="logo" href="/" aria-label="RumptyCloud Docs home">
+        <img className="logo__mark" src="/docs-design/icons/logo-mark.svg" width="20" height="20" alt="" />
+        <span className="logo__name">RumptyCloud</span>
+        <span className="logo__rule" aria-hidden="true"></span>
+        <span className="dnav__docs">Docs</span>
+      </Link>
+      <ThemeToggle /><nav className="dnav__actions" aria-label="Help">
+        <Link className="dnav__ghost" href="https://discord.gg/Rukmqzg3uX">Community</Link>
+        <Link className="dnav__ghost" href="https://discord.gg/Rukmqzg3uX">Support</Link>
+        <Link className="dnav__ghost" href="https://status.rumptycloud.com">Status</Link>
+        <Link className="btn btn--primary" href="https://console.rumptycloud.com"><span>Open console</span><span aria-hidden="true">↗</span></Link>
+      </nav>
+      <button className="menu-btn" id="menu-btn" type="button" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)} aria-controls="menu" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <div className="dnav__panel" id="menu" hidden={!menuOpen}>
+      <div className="dwrap">
+        <nav aria-label="Help, mobile">
+          <Link href="https://discord.gg/Rukmqzg3uX">Community</Link>
+          <Link href="https://discord.gg/Rukmqzg3uX">Support</Link>
+          <Link href="https://status.rumptycloud.com">Status</Link>
+        </nav>
+        <Link className="btn btn--primary btn--block" href="https://console.rumptycloud.com"><span>Open console</span><span aria-hidden="true">↗</span></Link>
+      </div>
+    </div>
+
+    <nav className="dtabs" aria-label="Documentation sections">
+      <div className="dwrap dtabs__row">
+        <Link href="/" aria-current="page">Home</Link>
+        <Link href="/getting-started/introduction">Get started</Link>
+        <Link href="/virtual-machines/introduction">Compute</Link>
+        <Link href="/buckets/introduction">Storage &amp; Data</Link>
+        <Link href="/firewall-policies/introduction">Networking</Link>
+        <Link href="/kubernetes/introduction">Kubernetes</Link>
+        <Link href="/cli/introduction">CLI</Link>
+        <Link href="https://blog.rumptycloud.com">Journal</Link>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section className="dhero">
+      <div className="dwrap dhero__inner">
+        <p className="dhero__eyebrow">RumptyCloud Documentation</p>
+        <h1 className="dhero__title">What are you building today?</h1>
+        <p className="dhero__sub">Search every guide and reference. Find the steps to deploy your app, connect your infrastructure, and keep building.</p>
+
+        <DocsSearch popular />
+      </div>
+    </section>
+
+    <div className="dwrap dbody">
+
+      <section className="dsec" aria-labelledby="start-title">
+        <div className="dsec__head">
+          <div>
+            <h2 className="dsec__title" id="start-title">Start here</h2>
+            <p className="dsec__sub">Pick a path and have something running in minutes.</p>
           </div>
-        </section>
-      </main>
-    </Layout>
-  );
+          <Link className="dsec__more" href="/getting-started/quick-start">Quick start <span className="arr">→</span></Link>
+        </div>
+        <div className="paths">
+          <article className="path">
+            <img src="/docs-design/img/start-deploy-864.webp" srcSet="/docs-design/img/start-deploy-432.webp 432w, /docs-design/img/start-deploy-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" loading="lazy" decoding="async" />
+            <div className="path__body">
+              <h3>Deploy an app</h3>
+              <p>Connect a GitHub repo and get a live URL. Every push ships a new build.</p>
+              <Link className="path__cta" href="/deployments/github-deploy">Deploy from GitHub <span className="arr">→</span></Link>
+            </div>
+          </article>
+          <article className="path">
+            <img src="/docs-design/img/start-vm-864.webp" srcSet="/docs-design/img/start-vm-432.webp 432w, /docs-design/img/start-vm-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" loading="lazy" decoding="async" />
+            <div className="path__body">
+              <h3>Launch a VM</h3>
+              <p>Spin up an Ubuntu server, add your SSH key and connect in under a minute.</p>
+              <Link className="path__cta" href="/virtual-machines/create-a-vm">Create a VM <span className="arr">→</span></Link>
+            </div>
+          </article>
+          <article className="path">
+            <img src="/docs-design/img/start-cli-864.webp" srcSet="/docs-design/img/start-cli-432.webp 432w, /docs-design/img/start-cli-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" loading="lazy" decoding="async" />
+            <div className="path__body">
+              <h3>Use the CLI</h3>
+              <p>Install rumpty and manage every resource from your terminal or CI.</p>
+              <Link className="path__cta" href="/cli/introduction">Install the CLI <span className="arr">→</span></Link>
+            </div>
+          </article>
+        </div>
+      </section>
+
+
+      <section className="dsec" aria-labelledby="viewed-title">
+        <div className="dsec__head">
+          <div>
+            <h2 className="dsec__title" id="viewed-title">Most viewed</h2>
+            <p className="dsec__sub">Quick links to the pages builders open most.</p>
+          </div>
+        </div>
+        <div className="viewed">
+          <nav className="viewed__col" aria-labelledby="v-start">
+            <h3 id="v-start">Get started</h3>
+            <Link href="/getting-started/quick-start">Quick start <span className="arr">→</span></Link>
+            <Link href="/getting-started/workspaces">Workspaces <span className="arr">→</span></Link>
+            <Link href="/settings/api-keys">API keys <span className="arr">→</span></Link>
+            <Link href="/cli/introduction">Install the CLI <span className="arr">→</span></Link>
+          </nav>
+          <nav className="viewed__col" aria-labelledby="v-compute">
+            <h3 id="v-compute">Compute</h3>
+            <Link href="/deployments/create-a-deployment">Create a deployment <span className="arr">→</span></Link>
+            <Link href="/deployments/github-deploy">Deploy from GitHub <span className="arr">→</span></Link>
+            <Link href="/virtual-machines/create-a-vm">Create a VM <span className="arr">→</span></Link>
+            <Link href="/virtual-machines/connecting">Connect to a VM <span className="arr">→</span></Link>
+          </nav>
+          <nav className="viewed__col" aria-labelledby="v-data">
+            <h3 id="v-data">Data</h3>
+            <Link href="/databases/create-a-database">Create a database <span className="arr">→</span></Link>
+            <Link href="/databases/backups">Backups <span className="arr">→</span></Link>
+            <Link href="/buckets/uploading">Upload to a bucket <span className="arr">→</span></Link>
+            <Link href="/volumes/attach-and-mount">Attach a volume <span className="arr">→</span></Link>
+          </nav>
+          <nav className="viewed__col" aria-labelledby="v-account">
+            <h3 id="v-account">Account</h3>
+            <Link href="/billing/introduction">Billing <span className="arr">→</span></Link>
+            <Link href="/audit-logs/introduction">Audit logs <span className="arr">→</span></Link>
+            <Link href="https://blog.rumptycloud.com">Journal <span className="arr">→</span></Link>
+            <Link href="https://github.com/Sanmo-Labs/rumpty-docs">Contribute to docs <span className="arr">→</span></Link>
+          </nav>
+        </div>
+      </section>
+
+
+      <section className="dsec" aria-labelledby="products-title">
+        <div className="dsec__head">
+          <div>
+            <h2 className="dsec__title" id="products-title">Explore by product</h2>
+            <p className="dsec__sub">Everything RumptyCloud runs for you.</p>
+          </div>
+
+        </div>
+        <div className="products">
+          <Link className="product" href="/deployments/introduction" data-tone="sky"><span className="product__code">DP</span><span className="product__name">Deployments</span><span className="product__desc">Ship apps straight from GitHub with builds, auto-deploy, and rollbacks.</span></Link>
+          <Link className="product" href="/virtual-machines/introduction" data-tone="orange"><span className="product__code">VM</span><span className="product__name">Virtual Machines</span><span className="product__desc">Provision VMs with SSH access, snapshots, metrics, and firewalls.</span></Link>
+          <Link className="product" href="/databases/introduction" data-tone="lime"><span className="product__code">DB</span><span className="product__name">Databases</span><span className="product__desc">Create databases, connect your apps, and manage access.</span></Link>
+          <Link className="product" href="/kubernetes/introduction" data-tone="sky"><span className="product__code">K8</span><span className="product__name">Kubernetes</span><span className="product__desc">Managed clusters with storage classes and kubectl access.</span></Link>
+          <Link className="product" href="/buckets/introduction" data-tone="sky"><span className="product__code">BK</span><span className="product__name">Buckets</span><span className="product__desc">S3-compatible object storage for uploads, assets, and backups.</span></Link>
+          <Link className="product" href="/volumes/introduction" data-tone="lime"><span className="product__code">VL</span><span className="product__name">Volumes</span><span className="product__desc">Persistent block storage you can attach and mount to VMs.</span></Link>
+          <Link className="product" href="/firewall-policies/introduction" data-tone="orange"><span className="product__code">FW</span><span className="product__name">Firewall Policies</span><span className="product__desc">Allow-rules you attach to workloads to control traffic.</span></Link>
+          <Link className="product" href="/cli/introduction" data-tone="lime"><span className="product__code">CLI</span><span className="product__name">CLI</span><span className="product__desc">Manage everything from your terminal with the Rumpty CLI.</span></Link>
+        </div>
+      </section>
+
+
+      <section className="dsec" aria-labelledby="help-title">
+        <div className="dsec__head">
+          <div>
+            <h2 className="dsec__title" id="help-title">Need a hand?</h2>
+            <p className="dsec__sub">Real people, a live status page and a community that answers.</p>
+          </div>
+        </div>
+        <div className="helpers">
+          <Link className="helper" href="https://discord.gg/Rukmqzg3uX"><span className="helper__title">Ask the community</span><span className="helper__desc">The team and other builders answer questions in Discord.</span><span className="helper__cta">Join Discord ↗</span></Link>
+          <Link className="helper" href="https://status.rumptycloud.com"><span className="helper__title">Is it us or you?</span><span className="helper__desc">Check live platform status before you start debugging.</span><span className="helper__cta">Status page ↗</span></Link>
+          <Link className="helper" href="https://discord.gg/Rukmqzg3uX"><span className="helper__title">Still stuck?</span><span className="helper__desc">Ask your question in our support community and get help from the team.</span><span className="helper__cta">Contact support ↗</span></Link>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+  <footer className="dfoot">
+    <div className="dwrap dfoot__row">
+      <p className="dfoot__brand"><img src="/docs-design/icons/logo-mark.svg" width="20" height="20" alt="" />© {new Date().getFullYear()} RumptyCloud</p>
+      <nav className="dfoot__links" aria-label="Footer">
+        <Link href="https://status.rumptycloud.com">Status</Link>
+        <Link href="https://discord.gg/Rukmqzg3uX">Discord</Link>
+        <Link href="https://github.com/Sanmo-Labs">GitHub</Link>
+        <Link href="https://www.youtube.com/channel/UCp7tjsn-Fb7oAUngUIdGq5Q">YouTube</Link>
+        <Link href="https://blog.rumptycloud.com">Blog</Link>
+      </nav>
+      <Link className="dfoot__status" href="https://status.rumptycloud.com"><i aria-hidden="true"></i>Platform status ↗</Link>
+    </div>
+  </footer>
+
+</div></LayoutProvider>;
 }

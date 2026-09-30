@@ -53,3 +53,15 @@ Each page is a Markdown (`.md`) file inside `docs/`. Edit the file and the dev s
 
 1. Create a `.md` file in the appropriate folder
 2. Add the page id to `sidebars.ts`
+
+## Docs homepage design
+
+The homepage adapts the RumptyCloud `docs-home` reference in React. Its scoped
+styles are in `src/css/docs-home.css`; illustrations, icons, and licensed fonts
+live in `static/docs-design/`. Existing documentation routes remain unchanged.
+
+`plugins/docs-search.ts` builds the search index from published Docusaurus docs,
+including their actual permalinks. Draft and unlisted pages are excluded. Search
+works on the homepage and `/search?q=...`, with `/` and Ctrl/Cmd+K shortcuts.
+
+Run `npm run typecheck` and `npm run build` before publishing.

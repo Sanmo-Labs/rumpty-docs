@@ -1,4 +1,5 @@
 import {themes as prismThemes} from 'prism-react-renderer';
+import docsSearch from './plugins/docs-search';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
@@ -17,6 +18,8 @@ const config: Config = {
 
   i18n: { defaultLocale: 'en', locales: ['en'] },
 
+  plugins: [docsSearch],
+
   presets: [
     [
       'classic',
@@ -33,21 +36,7 @@ const config: Config = {
   ],
 
   themeConfig: {
-    image: 'img/social-card.png',
-    metadata: [
-      {name: 'keywords', content: 'virtual machines, AI sandboxes, kubernetes, databases, storage, domains, CI/CD pipelines, cloud provider'},
-      {name: 'description', content: 'RumptyCloud Documentation - Provision and manage virtual machines, AI sandboxes, Kubernetes, databases, storage, domains, and CI/CD workflows with ease.'},
-      {property: 'og:title', content: 'RumptyCloud Documentation'},
-      {property: 'og:description', content: 'Provision and manage virtual machines, AI sandboxes, Kubernetes, databases, storage, domains, and CI/CD workflows with ease.'},
-      {property: 'og:type', content: 'website'},
-      {property: 'og:url', content: 'https://docs.rumptycloud.com/'},
-      {property: 'og:image', content: 'https://docs.rumptycloud.com/img/social-card.png'},
-      {property: 'og:site_name', content: 'RumptyCloud'},
-      {name: 'twitter:card', content: 'summary_large_image'},
-      {name: 'twitter:title', content: 'RumptyCloud Documentation'},
-      {name: 'twitter:description', content: 'Provision and manage virtual machines, AI sandboxes, Kubernetes, databases, storage, domains, and CI/CD workflows with ease.'},
-      {name: 'twitter:image', content: 'https://docs.rumptycloud.com/img/social-card.png'},
-    ],
+    image: 'docs-design/img/start-deploy-864.webp',
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
@@ -63,6 +52,7 @@ const config: Config = {
         srcDark: 'img/brand-logo.svg',
       },
       items: [
+        {to: '/search', label: 'Search', position: 'right'},
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
@@ -115,7 +105,7 @@ const config: Config = {
           title: 'Community',
           items: [
             { label: 'Discord', href: 'https://discord.gg/Rukmqzg3uX' },
-            { label: 'YouTube', href: 'https://www.youtube.com/@rumptycloud' },
+            { label: 'YouTube', href: 'https://www.youtube.com/channel/UCp7tjsn-Fb7oAUngUIdGq5Q' },
             { label: 'GitHub', href: 'https://github.com/Sanmo-Labs' },
             { label: 'Blog', href: 'https://blog.rumptycloud.com' },
           ],
