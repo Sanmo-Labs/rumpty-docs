@@ -387,7 +387,7 @@
 
 }
 .docs-home .path img {
- width: 100%; height: auto; aspect-ratio: 432 / 240; object-fit: cover; background: #2466c9; 
+ width: 100%; height: auto; aspect-ratio: 432 / 240; object-fit: cover; background: var(--bg-3); 
 }
 .docs-home .path__body {
  display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 20px 22px 24px; 

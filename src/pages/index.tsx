@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState, type ReactNode} from 'react';
+import {useEffect, useState, type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import LayoutProvider from '@theme/Layout/Provider';
 import {PageMetadata, useColorMode} from '@docusaurus/theme-common';
@@ -12,23 +12,12 @@ function ThemeToggle() {
 
 export default function Home(): ReactNode {
  const [menuOpen, setMenuOpen] = useState(false);
- const page = useRef<HTMLDivElement>(null);
  useEffect(() => {
   const escape = (event: KeyboardEvent) => { if (event.key === 'Escape' && document.getElementById('menu-btn')?.getAttribute('aria-expanded') === 'true') {setMenuOpen(false); document.getElementById('menu-btn')?.focus();} };
   document.addEventListener('keydown', escape);
-  const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const animations: Animation[] = [];
-  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-   if (!entry.isIntersecting) return;
-   if (!media.matches) animations.push(entry.target.animate([{opacity: 0, transform: 'translateY(16px)'}, {opacity: 1, transform: 'none'}], {duration: 450, easing: 'ease-out'}));
-   observer.unobserve(entry.target);
-  }), {threshold: 0.1});
-  page.current?.querySelectorAll('.dsec, .dhero__inner').forEach(el => observer.observe(el));
-  const stop = () => {if(media.matches) animations.forEach(a => a.cancel());};
-  media.addEventListener('change', stop);
-  return () => {observer.disconnect(); animations.forEach(a => a.cancel()); media.removeEventListener('change', stop); document.removeEventListener('keydown', escape);};
+  return () => document.removeEventListener('keydown', escape);
  }, []);
- return <LayoutProvider><PageMetadata title="Documentation" description="Search RumptyCloud guides for deployments, virtual machines, databases, storage, Kubernetes, and the CLI." /><div className="docs-home" ref={page}><a className="skip" href="#main">Skip to content</a>
+ return <LayoutProvider><PageMetadata title="Documentation" description="Search RumptyCloud guides for deployments, virtual machines, databases, storage, Kubernetes, and the CLI." /><div className="docs-home"><a className="skip" href="#main">Skip to content</a>
 
 
 
@@ -101,7 +90,7 @@ export default function Home(): ReactNode {
         </div>
         <div className="paths">
           <article className="path">
-            <img src="/docs-design/img/start-deploy-864.webp" srcSet="/docs-design/img/start-deploy-432.webp 432w, /docs-design/img/start-deploy-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" loading="lazy" decoding="async" />
+            <img src="/docs-design/img/start-deploy-864.webp" srcSet="/docs-design/img/start-deploy-432.webp 432w, /docs-design/img/start-deploy-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" fetchPriority="high" decoding="async" />
             <div className="path__body">
               <h3>Deploy an app</h3>
               <p>Connect a GitHub repo and get a live URL. Every push ships a new build.</p>
@@ -109,7 +98,7 @@ export default function Home(): ReactNode {
             </div>
           </article>
           <article className="path">
-            <img src="/docs-design/img/start-vm-864.webp" srcSet="/docs-design/img/start-vm-432.webp 432w, /docs-design/img/start-vm-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" loading="lazy" decoding="async" />
+            <img src="/docs-design/img/start-vm-864.webp" srcSet="/docs-design/img/start-vm-432.webp 432w, /docs-design/img/start-vm-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" decoding="async" />
             <div className="path__body">
               <h3>Launch a VM</h3>
               <p>Spin up an Ubuntu server, add your SSH key and connect in under a minute.</p>
@@ -117,7 +106,7 @@ export default function Home(): ReactNode {
             </div>
           </article>
           <article className="path">
-            <img src="/docs-design/img/start-cli-864.webp" srcSet="/docs-design/img/start-cli-432.webp 432w, /docs-design/img/start-cli-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" loading="lazy" decoding="async" />
+            <img src="/docs-design/img/start-cli-864.webp" srcSet="/docs-design/img/start-cli-432.webp 432w, /docs-design/img/start-cli-864.webp 864w" sizes="(min-width: 1440px) 432px, (min-width: 960px) 30vw, (min-width: 640px) 45vw, 100vw" width="432" height="240" alt="" decoding="async" />
             <div className="path__body">
               <h3>Use the CLI</h3>
               <p>Install rumpty and manage every resource from your terminal or CI.</p>
