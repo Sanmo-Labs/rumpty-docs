@@ -20,6 +20,39 @@ const config: Config = {
 
   plugins: [docsSearch],
 
+  headTags: [
+    {
+      tagName: 'style',
+      attributes: {},
+      innerHTML: 'html{background:#0c0f14;color-scheme:dark}html[data-theme=light]{background:#f8f5ed;color-scheme:light}',
+    },
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `(function(){var t;try{t=new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(e){}if(!t){try{t=window.localStorage.getItem("theme")}catch(e){}}var m=t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",m);document.documentElement.setAttribute("data-theme-choice",t||"system")})();`,
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        href: '/docs-design/fonts/space-grotesk-latin.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preload',
+        href: '/docs-design/fonts/bricolage-grotesque-latin.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: 'anonymous',
+      },
+    },
+  ],
+
   presets: [
     [
       'classic',
@@ -30,13 +63,17 @@ const config: Config = {
           // editUrl: 'https://github.com/Sanmo-Labs/rumpty-docs/tree/main/',
         },
         blog: false,
-        theme: { customCss: './src/css/custom.css' },
+        theme: { customCss: ['./src/css/custom.css', './src/css/docs-home.css'] },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
     image: 'docs-design/img/start-deploy-864.webp',
+    metadata: [
+      {name: 'theme-color', content: '#0c0f14'},
+      {name: 'color-scheme', content: 'dark light'},
+    ],
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,

@@ -7,14 +7,14 @@
   src: url("/docs-design/fonts/bricolage-grotesque-latin.woff2") format("woff2");
   font-weight: 600 800;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: "Space Grotesk";
   src: url("/docs-design/fonts/space-grotesk-latin.woff2") format("woff2");
   font-weight: 300 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -22,7 +22,7 @@
   src: url("/docs-design/fonts/arrows.woff2") format("woff2");
   font-weight: 300 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   unicode-range: U+2190-21FF;
 }
 @font-face {
@@ -30,14 +30,14 @@
   src: url("/docs-design/fonts/jetbrains-mono-latin-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/docs-design/fonts/jetbrains-mono-latin-500.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 
@@ -90,6 +90,19 @@
     /*--ifm-breadcrumb-item-background-active: green;*/
 
     --docusaurus-highlighted-code-line-bg: rgba(89, 194, 255, 0.08);
+
+    --ifm-background-color: var(--bg);
+    --ifm-background-surface-color: var(--bg-2);
+    --ifm-font-color-base: var(--ink);
+    --ifm-color-scheme: dark;
+}
+
+html, body, #__docusaurus {
+    background-color: var(--ifm-background-color);
+}
+
+html:not([data-has-hydrated='true']) * {
+    transition: none !important;
 }
 
 /* ── DARK MODE (primary) ─────────────────────────────── */

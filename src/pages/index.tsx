@@ -3,7 +3,6 @@ import Link from '@docusaurus/Link';
 import LayoutProvider from '@theme/Layout/Provider';
 import {PageMetadata, useColorMode} from '@docusaurus/theme-common';
 import DocsSearch from '../components/DocsSearch';
-import '../css/docs-home.css';
 
 function ThemeToggle() {
   const {colorMode, setColorMode} = useColorMode();
