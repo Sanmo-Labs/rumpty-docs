@@ -4,9 +4,73 @@ import LayoutProvider from '@theme/Layout/Provider';
 import {PageMetadata, useColorMode} from '@docusaurus/theme-common';
 import DocsSearch from '../components/DocsSearch';
 
+const HERO_TITLE = 'What are you building today?';
+
 function ThemeToggle() {
   const {colorMode, setColorMode} = useColorMode();
   return <button className="theme-toggle" type="button" aria-label="Toggle light and dark mode" onClick={() => setColorMode(colorMode === 'dark' ? 'light' : 'dark')}><span aria-hidden="true">◐</span></button>;
+}
+
+function HeroTitle() {
+  const [count, setCount] = useState(0);
+  const [caret, setCaret] = useState(true);
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(HERO_TITLE.length);
+      setCaret(false);
+      return;
+    }
+    let typed = 0;
+    let intervalId = 0;
+    let hideCaretId = 0;
+    const startId = window.setTimeout(() => {
+      intervalId = window.setInterval(() => {
+        typed += 1;
+        setCount(typed);
+        if (typed >= HERO_TITLE.length) {
+          window.clearInterval(intervalId);
+          hideCaretId = window.setTimeout(() => setCaret(false), 1400);
+        }
+      }, 36);
+    }, 220);
+    return () => {
+      window.clearTimeout(startId);
+      window.clearInterval(intervalId);
+      window.clearTimeout(hideCaretId);
+    };
+  }, []);
+  const nodes: ReactNode[] = [];
+  let index = 0;
+  HERO_TITLE.split(' ').forEach((word, wordIndex, words) => {
+    nodes.push(
+      <span className="dhero__word" key={wordIndex}>
+        {[...word].map((character) => {
+          const at = index++;
+          return (
+            <span key={at} className={at < count ? 'dhero__char is-in' : 'dhero__char'}>
+              {character}
+              {caret && at === count - 1 && <span className="dhero__caret" aria-hidden="true" />}
+            </span>
+          );
+        })}
+      </span>,
+    );
+    if (wordIndex < words.length - 1) {
+      const at = index++;
+      nodes.push(
+        <span key={`space-${wordIndex}`} className={at < count ? 'dhero__char is-in' : 'dhero__char'}>
+          {' '}
+          {caret && at === count - 1 && <span className="dhero__caret" aria-hidden="true" />}
+        </span>,
+      );
+    }
+  });
+  return (
+    <h1 className="dhero__title">
+      {nodes}
+      {caret && count === 0 && <span className="dhero__caret" aria-hidden="true" />}
+    </h1>
+  );
 }
 
 export default function Home(): ReactNode {
@@ -17,6 +81,7 @@ export default function Home(): ReactNode {
   return () => document.removeEventListener('keydown', escape);
  }, []);
  return <LayoutProvider><PageMetadata title="Documentation" description="Search RumptyCloud guides for deployments, virtual machines, databases, storage, Kubernetes, and the CLI." /><div className="docs-home"><a className="skip" href="#main">Skip to content</a>
+  <noscript><style>{`.docs-home .dhero__char{opacity:1!important}.docs-home .dhero__caret{display:none}`}</style></noscript>
 
 
 
@@ -70,7 +135,7 @@ export default function Home(): ReactNode {
     <section className="dhero">
       <div className="dwrap dhero__inner">
         <p className="dhero__eyebrow">RumptyCloud Documentation</p>
-        <h1 className="dhero__title">What are you building today?</h1>
+        <HeroTitle />
         <p className="dhero__sub">Search every guide and reference. Find the steps to deploy your app, connect your infrastructure, and keep building.</p>
 
         <DocsSearch popular />

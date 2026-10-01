@@ -274,6 +274,29 @@
   text-wrap: balance;
 
 }
+.docs-home .dhero__word {
+  white-space: nowrap;
+}
+.docs-home .dhero__char {
+  opacity: 0;
+}
+.docs-home .dhero__char.is-in {
+  opacity: 1;
+}
+.docs-home .dhero__caret {
+
+  display: inline-block;
+  width: 2px;
+  height: 0.78em;
+  margin-left: 3px;
+  background: var(--accent);
+  vertical-align: -0.04em;
+  animation: rumpty-caret .72s steps(1) infinite;
+
+}
+@keyframes rumpty-caret {
+  50% { opacity: 0; }
+}
 .docs-home .dhero__sub {
  max-width: 640px; font: 400 17px/1.6 var(--f-body); color: var(--ink-2); text-wrap: pretty; 
 }
@@ -720,6 +743,12 @@
 .docs-home .chip:active {
  transform: none; 
 }
+.docs-home .dhero__char {
+ opacity: 1;
+}
+.docs-home .dhero__caret {
+ display: none;
+}
 
 }
 
@@ -763,7 +792,6 @@
   to { opacity: 1; transform: none; }
  }
  .docs-home .dhero__eyebrow,
- .docs-home .dhero__title,
  .docs-home .dhero__sub,
  .docs-home .ask,
  .docs-home .popular,
@@ -774,7 +802,6 @@
  .docs-home .helper {
   animation: rumpty-rise .5s var(--ease-out-soft) backwards;
  }
- .docs-home .dhero__title { animation-delay: 70ms; }
  .docs-home .dhero__sub { animation-delay: 130ms; }
  .docs-home .ask { animation-delay: 190ms; }
  .docs-home .popular { animation-delay: 250ms; }
