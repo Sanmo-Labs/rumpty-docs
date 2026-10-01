@@ -757,4 +757,41 @@
  html { scroll-behavior: smooth; }
  .docs-home .dnav__actions .btn--primary { animation: console-pulse 3s ease-in-out infinite; }
  @keyframes console-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(89,194,255,0); } 50% { box-shadow: 0 0 0 5px rgba(89,194,255,.16); } }
+
+ @keyframes rumpty-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+ }
+ .docs-home .dhero__eyebrow,
+ .docs-home .dhero__title,
+ .docs-home .dhero__sub,
+ .docs-home .ask,
+ .docs-home .popular,
+ .docs-home .dsec__head,
+ .docs-home .path,
+ .docs-home .viewed,
+ .docs-home .product,
+ .docs-home .helper {
+  animation: rumpty-rise .5s var(--ease-out-soft) backwards;
+ }
+ .docs-home .dhero__title { animation-delay: 70ms; }
+ .docs-home .dhero__sub { animation-delay: 130ms; }
+ .docs-home .ask { animation-delay: 190ms; }
+ .docs-home .popular { animation-delay: 250ms; }
+ .docs-home .dsec__head { animation-delay: 180ms; }
+ .docs-home .path:nth-child(1) { animation-delay: 220ms; }
+ .docs-home .path:nth-child(2) { animation-delay: 290ms; }
+ .docs-home .path:nth-child(3) { animation-delay: 360ms; }
+ .docs-home .viewed { animation-delay: 240ms; }
+ .docs-home .product:nth-child(1) { animation-delay: 160ms; }
+ .docs-home .product:nth-child(2) { animation-delay: 210ms; }
+ .docs-home .product:nth-child(3) { animation-delay: 260ms; }
+ .docs-home .product:nth-child(4) { animation-delay: 310ms; }
+ .docs-home .product:nth-child(5) { animation-delay: 360ms; }
+ .docs-home .product:nth-child(6) { animation-delay: 410ms; }
+ .docs-home .product:nth-child(7) { animation-delay: 460ms; }
+ .docs-home .product:nth-child(8) { animation-delay: 510ms; }
+ .docs-home .helper:nth-child(1) { animation-delay: 200ms; }
+ .docs-home .helper:nth-child(2) { animation-delay: 270ms; }
+ .docs-home .helper:nth-child(3) { animation-delay: 340ms; }
 }
