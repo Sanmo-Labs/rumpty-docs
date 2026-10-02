@@ -13,43 +13,40 @@ function ThemeToggle() {
 
 function HeroTitle() {
   const [count, setCount] = useState(0);
-  const [caret, setCaret] = useState(true);
+  const [reduce, setReduce] = useState(false);
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setReduce(true);
       setCount(HERO_TITLE.length);
-      setCaret(false);
       return;
     }
     let typed = 0;
     let intervalId = 0;
-    let hideCaretId = 0;
     const startId = window.setTimeout(() => {
       intervalId = window.setInterval(() => {
         typed += 1;
         setCount(typed);
-        if (typed >= HERO_TITLE.length) {
-          window.clearInterval(intervalId);
-          hideCaretId = window.setTimeout(() => setCaret(false), 1400);
-        }
+        if (typed >= HERO_TITLE.length) window.clearInterval(intervalId);
       }, 36);
     }, 220);
     return () => {
       window.clearTimeout(startId);
       window.clearInterval(intervalId);
-      window.clearTimeout(hideCaretId);
     };
   }, []);
+  const caret = reduce ? null : <span className="dhero__caret" aria-hidden="true" />;
   const nodes: ReactNode[] = [];
   let index = 0;
   HERO_TITLE.split(' ').forEach((word, wordIndex, words) => {
     nodes.push(
       <span className="dhero__word" key={wordIndex}>
+        {count === 0 && wordIndex === 0 && caret}
         {[...word].map((character) => {
           const at = index++;
           return (
             <span key={at} className={at < count ? 'dhero__char is-in' : 'dhero__char'}>
               {character}
-              {caret && at === count - 1 && <span className="dhero__caret" aria-hidden="true" />}
+              {at === count - 1 && caret}
             </span>
           );
         })}
@@ -60,17 +57,12 @@ function HeroTitle() {
       nodes.push(
         <span key={`space-${wordIndex}`} className={at < count ? 'dhero__char is-in' : 'dhero__char'}>
           {' '}
-          {caret && at === count - 1 && <span className="dhero__caret" aria-hidden="true" />}
+          {at === count - 1 && caret}
         </span>,
       );
     }
   });
-  return (
-    <h1 className="dhero__title">
-      {nodes}
-      {caret && count === 0 && <span className="dhero__caret" aria-hidden="true" />}
-    </h1>
-  );
+  return <h1 className="dhero__title">{nodes}</h1>;
 }
 
 export default function Home(): ReactNode {

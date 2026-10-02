@@ -288,11 +288,15 @@
   display: inline-block;
   width: 2px;
   height: 0.78em;
-  margin-left: 3px;
+  margin-left: 2px;
   background: var(--accent);
   vertical-align: -0.04em;
   animation: rumpty-caret .72s steps(1) infinite;
 
+}
+.docs-home .dhero__char .dhero__caret {
+  position: relative;
+  z-index: 1;
 }
 @keyframes rumpty-caret {
   50% { opacity: 0; }
