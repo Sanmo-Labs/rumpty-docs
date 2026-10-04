@@ -43,10 +43,11 @@ export default function DocsSearch({popular = false, resultsPage = false}: {popu
   return <>
     <noscript><p>Enable JavaScript to search, or <a href="/">browse the documentation by product</a>.</p></noscript>
     <form className="ask" role="search" action="/search" method="get" onSubmit={event => {event.preventDefault(); history.push(`/search?q=${encodeURIComponent(query.trim())}`);}}>
-      <div className="ask__tabs"><span className="ask__tab"><img src="/docs-design/icons/search-18.svg" width="18" height="18" alt="" />Search docs</span></div>
-      <label className="ask__field"><span className="sr-only">Search the docs</span>
-        <input ref={input} id="docs-q" name="q" type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search guides and CLI commands…" autoComplete="off" spellCheck={false} aria-keyshortcuts="Meta+K Control+K /" aria-controls="docs-results" />
-        <kbd className="ask__kbd">{shortcut}</kbd><button type="submit" className="search-submit" aria-label="Search">→</button>
+      <label className="ask__field">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M8 14C11.3137 14 14 11.3137 14 8C14 4.68629 11.3137 2 8 2C4.68629 2 2 4.68629 2 8C2 11.3137 4.68629 14 8 14Z" stroke="currentColor" strokeWidth="1.6"/><path d="M12.5 12.5L16 16" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
+        <span className="sr-only">Search the docs</span>
+        <input ref={input} id="docs-q" name="q" type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Search guides, CLI commands and API…" autoComplete="off" spellCheck={false} aria-keyshortcuts="Meta+K Control+K /" aria-controls="docs-results" />
+        <kbd className="ask__kbd">{shortcut}</kbd>
       </label>
     </form>
     <div id="docs-results" className="search-results" hidden={!query.trim()}>

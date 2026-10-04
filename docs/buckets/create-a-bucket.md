@@ -1,7 +1,7 @@
 ---
 id: create-a-bucket
 title: Create a Bucket
-sidebar_label: Create a Bucket
+sidebar_label: Create a bucket
 ---
 
 # Create a Bucket

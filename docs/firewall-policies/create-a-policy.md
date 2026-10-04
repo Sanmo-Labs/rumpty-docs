@@ -1,7 +1,7 @@
 ---
 id: create-a-policy
 title: Create a Policy
-sidebar_label: Create a Policy
+sidebar_label: Create a policy
 ---
 
 # Create a Policy

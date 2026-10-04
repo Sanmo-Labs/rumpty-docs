@@ -1,15 +1,12 @@
 import {useEffect, useState, type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import LayoutProvider from '@theme/Layout/Provider';
-import {PageMetadata, useColorMode} from '@docusaurus/theme-common';
+import {PageMetadata} from '@docusaurus/theme-common';
+import DocsChrome from '../components/DocsChrome';
 import DocsSearch from '../components/DocsSearch';
+import ProductIcon from '../components/ProductIcons';
 
 const HERO_TITLE = 'What are you building today?';
-
-function ThemeToggle() {
-  const {colorMode, setColorMode} = useColorMode();
-  return <button className="theme-toggle" type="button" aria-label="Toggle light and dark mode" onClick={() => setColorMode(colorMode === 'dark' ? 'light' : 'dark')}><span aria-hidden="true">◐</span></button>;
-}
 
 function HeroTitle() {
   const [count, setCount] = useState(0);
@@ -66,69 +63,16 @@ function HeroTitle() {
 }
 
 export default function Home(): ReactNode {
- const [menuOpen, setMenuOpen] = useState(false);
- useEffect(() => {
-  const escape = (event: KeyboardEvent) => { if (event.key === 'Escape' && document.getElementById('menu-btn')?.getAttribute('aria-expanded') === 'true') {setMenuOpen(false); document.getElementById('menu-btn')?.focus();} };
-  document.addEventListener('keydown', escape);
-  return () => document.removeEventListener('keydown', escape);
- }, []);
- return <LayoutProvider><PageMetadata title="Documentation" description="Search RumptyCloud guides for deployments, virtual machines, databases, storage, Kubernetes, and the CLI." /><div className="docs-home"><a className="skip" href="#main">Skip to content</a>
+ return <LayoutProvider><PageMetadata title="Documentation" description="Search every RumptyCloud guide and reference: deployments, virtual machines, databases, Kubernetes, storage and the CLI." /><div className="docs-home"><a className="skip" href="#main">Skip to content</a>
   <noscript><style>{`.docs-home .dhero__char{opacity:1!important}.docs-home .dhero__caret{display:none}`}</style></noscript>
-
-
-
-
-  <header className="dnav">
-    <div className="dwrap dnav__bar">
-      <Link className="logo" href="/" aria-label="RumptyCloud Docs home">
-        <img className="logo__mark" src="/docs-design/icons/logo-mark.svg" width="20" height="20" alt="" />
-        <span className="logo__name">RumptyCloud</span>
-        <span className="logo__rule" aria-hidden="true"></span>
-        <span className="dnav__docs">Docs</span>
-      </Link>
-      <ThemeToggle /><nav className="dnav__actions" aria-label="Help">
-        <Link className="dnav__ghost" href="https://discord.gg/Rukmqzg3uX">Community</Link>
-        <Link className="dnav__ghost" href="https://discord.gg/Rukmqzg3uX">Support</Link>
-        <Link className="dnav__ghost" href="https://status.rumptycloud.com">Status</Link>
-        <Link className="btn btn--primary" href="https://console.rumptycloud.com"><span>Open console</span><span aria-hidden="true">↗</span></Link>
-      </nav>
-      <button className="menu-btn" id="menu-btn" type="button" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)} aria-controls="menu" aria-label="Menu">
-        <span></span><span></span>
-      </button>
-    </div>
-
-    <div className="dnav__panel" id="menu" hidden={!menuOpen}>
-      <div className="dwrap">
-        <nav aria-label="Help, mobile">
-          <Link href="https://discord.gg/Rukmqzg3uX">Community</Link>
-          <Link href="https://discord.gg/Rukmqzg3uX">Support</Link>
-          <Link href="https://status.rumptycloud.com">Status</Link>
-        </nav>
-        <Link className="btn btn--primary btn--block" href="https://console.rumptycloud.com"><span>Open console</span><span aria-hidden="true">↗</span></Link>
-      </div>
-    </div>
-
-    <nav className="dtabs" aria-label="Documentation sections">
-      <div className="dwrap dtabs__row">
-        <Link href="/" aria-current="page">Home</Link>
-        <Link href="/getting-started/introduction">Get started</Link>
-        <Link href="/virtual-machines/introduction">Compute</Link>
-        <Link href="/buckets/introduction">Storage &amp; Data</Link>
-        <Link href="/firewall-policies/introduction">Networking</Link>
-        <Link href="/kubernetes/introduction">Kubernetes</Link>
-        <Link href="/cli/introduction">CLI</Link>
-        <Link href="https://blog.rumptycloud.com">Journal</Link>
-      </div>
-    </nav>
-  </header>
-
+  <DocsChrome>
   <main id="main">
 
     <section className="dhero">
       <div className="dwrap dhero__inner">
         <p className="dhero__eyebrow">RumptyCloud Documentation</p>
         <HeroTitle />
-        <p className="dhero__sub">Search every guide and reference. Find the steps to deploy your app, connect your infrastructure, and keep building.</p>
+        <p className="dhero__sub">Search every guide and CLI command, and jump straight to the steps you need.</p>
 
         <DocsSearch popular />
       </div>
@@ -142,7 +86,7 @@ export default function Home(): ReactNode {
             <h2 className="dsec__title" id="start-title">Start here</h2>
             <p className="dsec__sub">Pick a path and have something running in minutes.</p>
           </div>
-          <Link className="dsec__more" href="/getting-started/quick-start">Quick start <span className="arr">→</span></Link>
+          <Link className="dsec__more" href="/getting-started/quick-start">All tutorials <span className="arr">→</span></Link>
         </div>
         <div className="paths">
           <article className="path">
@@ -206,7 +150,7 @@ export default function Home(): ReactNode {
             <h3 id="v-account">Account</h3>
             <Link href="/billing/introduction">Billing <span className="arr">→</span></Link>
             <Link href="/audit-logs/introduction">Audit logs <span className="arr">→</span></Link>
-            <Link href="https://blog.rumptycloud.com">Journal <span className="arr">→</span></Link>
+            <Link href="https://blog.rumptycloud.com">Changelog <span className="arr">→</span></Link>
             <Link href="https://github.com/Sanmo-Labs/rumpty-docs">Contribute to docs <span className="arr">→</span></Link>
           </nav>
         </div>
@@ -219,17 +163,17 @@ export default function Home(): ReactNode {
             <h2 className="dsec__title" id="products-title">Explore by product</h2>
             <p className="dsec__sub">Everything RumptyCloud runs for you.</p>
           </div>
-
+          <Link className="dsec__more" href="/virtual-machines/introduction">All products <span className="arr">→</span></Link>
         </div>
         <div className="products">
-          <Link className="product" href="/deployments/introduction" data-tone="sky"><span className="product__code">DP</span><span className="product__name">Deployments</span><span className="product__desc">Ship apps straight from GitHub with builds, auto-deploy, and rollbacks.</span></Link>
-          <Link className="product" href="/virtual-machines/introduction" data-tone="orange"><span className="product__code">VM</span><span className="product__name">Virtual Machines</span><span className="product__desc">Provision VMs with SSH access, snapshots, metrics, and firewalls.</span></Link>
-          <Link className="product" href="/databases/introduction" data-tone="lime"><span className="product__code">DB</span><span className="product__name">Databases</span><span className="product__desc">Create databases, connect your apps, and manage access.</span></Link>
-          <Link className="product" href="/kubernetes/introduction" data-tone="sky"><span className="product__code">K8</span><span className="product__name">Kubernetes</span><span className="product__desc">Managed clusters with storage classes and kubectl access.</span></Link>
-          <Link className="product" href="/buckets/introduction" data-tone="sky"><span className="product__code">BK</span><span className="product__name">Buckets</span><span className="product__desc">S3-compatible object storage for uploads, assets, and backups.</span></Link>
-          <Link className="product" href="/volumes/introduction" data-tone="lime"><span className="product__code">VL</span><span className="product__name">Volumes</span><span className="product__desc">Persistent block storage you can attach and mount to VMs.</span></Link>
-          <Link className="product" href="/firewall-policies/introduction" data-tone="orange"><span className="product__code">FW</span><span className="product__name">Firewall Policies</span><span className="product__desc">Allow-rules you attach to workloads to control traffic.</span></Link>
-          <Link className="product" href="/cli/introduction" data-tone="lime"><span className="product__code">CLI</span><span className="product__name">CLI</span><span className="product__desc">Manage everything from your terminal with the Rumpty CLI.</span></Link>
+          <Link className="product" href="/deployments/introduction" data-tone="sky"><ProductIcon name="deployments" /><span className="product__name">Deployments</span><span className="product__desc">Ship apps straight from GitHub with builds, auto-deploy, and rollbacks.</span></Link>
+          <Link className="product" href="/virtual-machines/introduction" data-tone="orange"><ProductIcon name="vm" /><span className="product__name">Virtual Machines</span><span className="product__desc">Provision VMs with SSH access, snapshots, metrics, and firewalls.</span></Link>
+          <Link className="product" href="/databases/introduction" data-tone="lime"><ProductIcon name="db" /><span className="product__name">Databases</span><span className="product__desc">Managed databases with backups and private connectivity.</span></Link>
+          <Link className="product" href="/kubernetes/introduction" data-tone="sky"><ProductIcon name="k8s" /><span className="product__name">Kubernetes</span><span className="product__desc">Managed clusters with storage classes and kubectl access.</span></Link>
+          <Link className="product" href="/buckets/introduction" data-tone="sky"><ProductIcon name="buckets" /><span className="product__name">Buckets</span><span className="product__desc">S3-compatible object storage for uploads, assets, and backups.</span></Link>
+          <Link className="product" href="/volumes/introduction" data-tone="lime"><ProductIcon name="volumes" /><span className="product__name">Volumes</span><span className="product__desc">Persistent block storage you can attach and mount to VMs.</span></Link>
+          <Link className="product" href="/firewall-policies/introduction" data-tone="orange"><ProductIcon name="firewall" /><span className="product__name">Firewall Policies</span><span className="product__desc">Allow-rules you attach to workloads to control traffic.</span></Link>
+          <Link className="product" href="/cli/introduction" data-tone="lime"><ProductIcon name="cli" /><span className="product__name">CLI</span><span className="product__desc">Manage everything from your terminal with the Rumpty CLI.</span></Link>
         </div>
       </section>
 
@@ -244,26 +188,11 @@ export default function Home(): ReactNode {
         <div className="helpers">
           <Link className="helper" href="https://discord.gg/Rukmqzg3uX"><span className="helper__title">Ask the community</span><span className="helper__desc">The team and other builders answer questions in Discord.</span><span className="helper__cta">Join Discord ↗</span></Link>
           <Link className="helper" href="https://status.rumptycloud.com"><span className="helper__title">Is it us or you?</span><span className="helper__desc">Check live platform status before you start debugging.</span><span className="helper__cta">Status page ↗</span></Link>
-          <Link className="helper" href="https://discord.gg/Rukmqzg3uX"><span className="helper__title">Still stuck?</span><span className="helper__desc">Ask your question in our support community and get help from the team.</span><span className="helper__cta">Contact support ↗</span></Link>
+          <Link className="helper" href="https://discord.gg/Rukmqzg3uX"><span className="helper__title">Still stuck?</span><span className="helper__desc">Open a ticket and a person on the team will get back to you.</span><span className="helper__cta">Contact support ↗</span></Link>
         </div>
       </section>
     </div>
   </main>
-
-
-  <footer className="dfoot">
-    <div className="dwrap dfoot__row">
-      <p className="dfoot__brand"><img src="/docs-design/icons/logo-mark.svg" width="20" height="20" alt="" />© {new Date().getFullYear()} RumptyCloud</p>
-      <nav className="dfoot__links" aria-label="Footer">
-        <Link href="https://status.rumptycloud.com">Status</Link>
-        <Link href="https://discord.gg/Rukmqzg3uX">Discord</Link>
-        <Link href="https://github.com/Sanmo-Labs">GitHub</Link>
-        <Link href="https://www.youtube.com/channel/UCp7tjsn-Fb7oAUngUIdGq5Q">YouTube</Link>
-        <Link href="https://blog.rumptycloud.com">Blog</Link>
-      </nav>
-      <Link className="dfoot__status" href="https://status.rumptycloud.com"><i aria-hidden="true"></i>Platform status ↗</Link>
-    </div>
-  </footer>
-
+  </DocsChrome>
 </div></LayoutProvider>;
 }

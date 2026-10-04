@@ -2,58 +2,63 @@
 id: create-a-vm
 title: Create a VM
 sidebar_label: Create a VM
+eyebrow: Guide · 10 steps · about 5 min
 ---
+
+<p className="eyebrow">Guide · 10 steps · about 5 min</p>
 
 # Create a VM
 
+Create a VM from the console in a few minutes. You’ll name it, pick a region and an OS image, add your SSH key and choose a compute plan.
+
+:::note Note
+The first time you create a VM you are asked to accept the Acceptable Use Policy.
+:::
+
 ## Steps
 
-1. Go to **Compute → Virtual Machines → Create VM**
-2. **Name** your VM
-3. **Select Region**: choose the data center nearest to you or your users to minimize latency
-4. **Select Image**: pick an OS family, then a specific **Version** (e.g. Ubuntu 24.04). The available images are listed on the form.
-5. **Networking**: your VM automatically joins the workspace's default private network (e.g. `10.16.0.0/16`) so resources can talk to each other securely. Custom Virtual Isolated Networks (VINs) are coming soon.
-6. **SSH Keys**: select an existing key, or click **Add New Key** to upload one
-7. **Select or Create Volumes** *(optional)*: attach existing volumes or create new ones for additional storage
-8. **Startup Configuration** *(optional)*: choose packages to install under **Install Packages**, or use **Add Script** to run a custom script on first boot (runs with root privileges)
-9. **Select Compute**: choose a plan (see [Compute plans](./plans))
-10. Review the **Total Payment** estimate at the top, then click **Create VM**
-
-:::note
-The first time you create a VM you are asked to accept the Acceptable Use Policy before the creation is submitted.
-:::
+<ol className="dsteps">
+  <li><div><h3>Open Create VM</h3><p>Go to Compute → Virtual Machines, then click Create VM.</p><span className="ui">Compute → Virtual Machines → Create VM</span></div></li>
+  <li><div><h3>Name your VM</h3><p>Give it a short name you’ll recognise in the list and in the CLI.</p><span className="ui">web-1</span></div></li>
+  <li><div><h3>Select a region</h3><p>Choose the data center nearest to you or your users to minimize latency.</p></div></li>
+  <li><div><h3>Pick an OS</h3><p>Choose an image and a specific version.</p><span className="ui">Ubuntu 24.04</span></div></li>
+  <li><div><h3>Networking</h3><p>Nothing to set. Your VM automatically joins the workspace’s default private network.</p></div></li>
+  <li><div><h3>SSH keys</h3><p>Select an existing key, or click Add New Key to upload one.</p><span className="ui">Add New Key</span></div></li>
+  <li><div><h3>Storage <span className="opt">Optional</span></h3><p>Select or create volumes to attach to the VM.</p></div></li>
+  <li><div><h3>Startup script <span className="opt">Optional</span></h3><p>Add packages or a script to run when the VM first boots.</p></div></li>
+  <li><div><h3>Select compute</h3><p>Choose a plan for the CPU and memory you need. See <a href="/virtual-machines/plans">Compute plans</a>.</p></div></li>
+  <li><div><h3>Review and create</h3><p>Check the payment summary, then click Create VM.</p><span className="ui">Create VM</span></div></li>
+</ol>
 
 ## Provisioning
 
-Once you click **Create VM**, you're taken to the VM detail page with a live progress panel showing the percentage complete, elapsed time, and step-by-step updates:
+Once you click Create VM, a live progress panel shows each step until your VM is ready.
 
-```
-Preparing your VM.
-Preparing your workspace environment.
-Preparing the VM disk.
-Configuring secure access.
-Starting the VM.
-Waiting for network readiness.
-Waiting for VM access.
-Virtual machine is ready.
-```
+<figure className="panel panel--prov" aria-label="Example: provisioning progress">
+  <div className="panel__head"><span className="panel__title panel__title--mono">web-1 · provisioning</span><span className="panel__meta">5 / 8</span></div>
+  <div className="panel__bar" role="progressbar" aria-label="Provisioning progress" aria-valuemin={0} aria-valuemax={8} aria-valuenow={4}><span style={{width: '56%'}}></span></div>
+  <ol className="prov">
+    <li className="is-done"><span className="dot"></span><span>Preparing your VM</span><span>done</span></li>
+    <li className="is-done"><span className="dot"></span><span>Preparing your workspace environment</span><span>done</span></li>
+    <li className="is-done"><span className="dot"></span><span>Preparing the VM disk</span><span>done</span></li>
+    <li className="is-done"><span className="dot"></span><span>Configuring secure access</span><span>done</span></li>
+    <li className="is-now"><span className="dot"></span><span>Starting the VM</span><span>in progress</span></li>
+    <li className="is-wait"><span className="dot"></span><span>Waiting for network readiness</span><span>waiting</span></li>
+    <li className="is-wait"><span className="dot"></span><span>Waiting for VM access</span><span>waiting</span></li>
+    <li className="is-wait"><span className="dot"></span><span>Virtual machine is ready</span><span>waiting</span></li>
+  </ol>
+</figure>
 
-The VM's status badge switches to `running` once provisioning finishes.
+The VM’s status badge switches to `running` once provisioning finishes.
 
 ## After creation
 
-Your VM detail page shows:
+The VM detail page shows everything about your new VM:
 
-- **Status** (e.g. `RUNNING`)
-- **Spec summary**: vCPU, RAM, disk, region, OS image
-- **Private IP**, **guest username** (`root` on new VMs), and, once an app is exposed, the app **port** and URL
-- Tabs for **Connect**, **Metrics**, **Snapshots**, **Firewall**, **Deploy**, and **Settings**
-- **Start VM**, **Stop VM**, and **Reboot VM** actions in the header. Stopping interrupts running apps and SSH sessions; rebooting causes a short interruption while the VM comes back online.
+- Status and specs: CPU, memory, disk, image and private IP
+- Tabs for [Connect](/virtual-machines/connecting), [Metrics](/virtual-machines/metrics), [Snapshots](/virtual-machines/snapshots), [Firewall](/virtual-machines/firewall), [Deploy](/virtual-machines/deploy) and [Settings](/virtual-machines/settings)
+- Start, Stop and Reboot in the header. Destroying a VM is in the Settings tab
 
-## Free trial: Ephemeral plan
-
-If you select the **Ephemeral Trial** compute plan, note the terms shown at the bottom of the create form:
-
-- Runs for up to **3 days**, then automatically expires
-- On expiry, the VM and its root disk are **permanently deleted**, so back up anything you need
-- You can run **one active ephemeral VM at a time**
+:::warning Free trial: Ephemeral plan
+Runs for up to 3 days, then automatically expires. On expiry, the VM and its root disk are permanently deleted. You can have one active Ephemeral VM at a time.
+:::

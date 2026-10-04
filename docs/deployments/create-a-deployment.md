@@ -1,7 +1,7 @@
 ---
 id: create-a-deployment
 title: Create a Deployment
-sidebar_label: Create a Deployment
+sidebar_label: Create a deployment
 ---
 
 # Create a Deployment

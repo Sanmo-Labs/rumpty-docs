@@ -1,7 +1,7 @@
 ---
 id: github-deploy
 title: GitHub Deployment
-sidebar_label: GitHub Deploy
+sidebar_label: GitHub deploy
 ---
 
 # GitHub Deployment

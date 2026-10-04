@@ -1,7 +1,7 @@
 ---
 id: ports
 title: Ports & Health Checks
-sidebar_label: Ports & Health Checks
+sidebar_label: Ports & health checks
 ---
 
 # Ports & Health Checks

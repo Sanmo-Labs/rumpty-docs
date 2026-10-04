@@ -1,7 +1,7 @@
 ---
 id: api-keys
 title: API Keys
-sidebar_label: API Keys
+sidebar_label: API keys
 ---
 
 # API Keys

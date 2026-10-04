@@ -1,7 +1,7 @@
 ---
 id: ssh-keys
 title: SSH Keys
-sidebar_label: SSH Keys
+sidebar_label: SSH keys
 ---
 
 # SSH Keys

@@ -1,7 +1,7 @@
 ---
 id: outbound-email
 title: Sending Email (SMTP)
-sidebar_label: Sending Email (SMTP)
+sidebar_label: Sending email (SMTP)
 ---
 
 # Sending Email (SMTP)

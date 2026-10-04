@@ -1,7 +1,7 @@
 ---
 id: storage
 title: Persistent Storage
-sidebar_label: Persistent Storage
+sidebar_label: Persistent storage
 ---
 
 # Persistent Storage

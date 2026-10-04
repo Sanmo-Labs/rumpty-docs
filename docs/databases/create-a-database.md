@@ -1,7 +1,7 @@
 ---
 id: create-a-database
 title: Create a Database
-sidebar_label: Create a Database
+sidebar_label: Create a database
 ---
 
 # Create a Database

@@ -1,7 +1,7 @@
 ---
 id: plans
 title: Compute Plans
-sidebar_label: Compute Plans
+sidebar_label: Compute plans
 ---
 
 # Compute Plans

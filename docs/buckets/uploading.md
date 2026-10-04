@@ -1,7 +1,7 @@
 ---
 id: uploading
 title: Uploading Files & Access Keys
-sidebar_label: Uploading & Access Keys
+sidebar_label: Uploading & access keys
 ---
 
 # Uploading Files & Access Keys

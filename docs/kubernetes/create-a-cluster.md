@@ -1,7 +1,7 @@
 ---
 id: create-a-cluster
 title: Create a Cluster
-sidebar_label: Create a Cluster
+sidebar_label: Create a cluster
 ---
 
 # Create a Cluster

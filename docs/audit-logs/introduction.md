@@ -1,7 +1,7 @@
 ---
 id: introduction
 title: Audit Logs
-sidebar_label: Audit Logs
+sidebar_label: Audit logs
 slug: /audit-logs/introduction
 ---
 

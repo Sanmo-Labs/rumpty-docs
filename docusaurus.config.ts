@@ -19,17 +19,23 @@ const config: Config = {
   i18n: { defaultLocale: 'en', locales: ['en'] },
 
   plugins: [docsSearch],
+  clientModules: ['./src/clientModules/docChrome.ts'],
 
   headTags: [
     {
       tagName: 'style',
       attributes: {},
-      innerHTML: 'html{background:#0c0f14;color-scheme:dark}html[data-theme=light]{background:#f8f5ed;color-scheme:light}',
+      innerHTML: 'html{background:#0c0f14;color-scheme:dark}html[data-theme=light]{background:#f5f0e5;color-scheme:light}',
     },
     {
       tagName: 'script',
       attributes: {},
       innerHTML: `(function(){var t;try{t=new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(e){}if(!t){try{t=window.localStorage.getItem("theme")}catch(e){}}var m=t||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",m);document.documentElement.setAttribute("data-theme-choice",t||"system")})();`,
+    },
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `(function(){function inject(){var toc=document.querySelector(".theme-doc-toc-desktop");if(!toc||!toc.parentElement||toc.parentElement.querySelector(".rail__links"))return;var d=document.createElement("div");d.className="rail__links";d.innerHTML='<a href="https://github.com/Sanmo-Labs/rumpty-docs">Edit this page ↗</a><a href="https://github.com/Sanmo-Labs/rumpty-docs/issues">Report an issue ↗</a>';toc.insertAdjacentElement("afterend",d)}var obs=new MutationObserver(inject);function start(){inject();obs.observe(document.documentElement,{childList:true,subtree:true})}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start()})();`,
     },
     {
       tagName: 'link',
@@ -63,7 +69,7 @@ const config: Config = {
           // editUrl: 'https://github.com/Sanmo-Labs/rumpty-docs/tree/main/',
         },
         blog: false,
-        theme: { customCss: ['./src/css/custom.css', './src/css/docs-home.css'] },
+        theme: { customCss: ['./src/css/custom.css', './src/css/docs-home.css', './src/css/docs-article.css'] },
       } satisfies Preset.Options,
     ],
   ],
@@ -80,75 +86,42 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      // "Cloud" is appended in accent color via .navbar__title::after in custom.css,
-      // because SVG <text> can't use web fonts when loaded through an <img> tag.
-      title: 'Rumpty',
+      title: 'RumptyCloud',
       logo: {
         alt: 'RumptyCloud Logo',
-        src: 'img/brand-logo.svg',
-        srcDark: 'img/brand-logo.svg',
+        src: 'docs-design/icons/logo-mark.svg',
+        srcDark: 'docs-design/icons/logo-mark.svg',
       },
       items: [
-        {to: '/search', label: 'Search', position: 'right'},
-        {
-          type: 'docSidebar',
-          sidebarId: 'docsSidebar',
-          position: 'left',
-          label: 'Documentation',
-        },
-        {
-          href: 'https://discord.gg/Rukmqzg3uX',
-          label: 'Support',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/Sanmo-Labs/rumpty-docs',
-          label: 'GitHub',
-          position: 'right',
-        },
+        {to: '/', label: 'Home', position: 'left', activeBaseRegex: '^/$'},
+        {to: '/getting-started/introduction', label: 'Get started', position: 'left'},
+        {to: '/virtual-machines/introduction', label: 'Compute', position: 'left'},
+        {to: '/buckets/introduction', label: 'Storage & Data', position: 'left'},
+        {to: '/firewall-policies/introduction', label: 'Networking', position: 'left'},
+        {to: '/cli/introduction', label: 'CLI', position: 'left'},
+        {to: '/billing/introduction', label: 'Account', position: 'left'},
+        {to: '/search', label: 'Search…', position: 'right'},
+        {href: 'https://discord.gg/Rukmqzg3uX', label: 'Community', position: 'right'},
+        {href: 'https://discord.gg/Rukmqzg3uX', label: 'Support', position: 'right'},
+        {href: 'https://status.rumptycloud.com', label: 'Status', position: 'right'},
+        {href: 'https://console.rumptycloud.com', label: 'Open console', position: 'right'},
       ],
     },
     footer: {
       style: 'dark',
       links: [
         {
-          title: 'Platform',
+          title: 'Footer',
           items: [
-            { label: 'Getting Started', to: '/getting-started/introduction' },
-            { label: 'Virtual Machines', to: '/virtual-machines/introduction' },
-            { label: 'Deployments', to: '/deployments/introduction' },
-            { label: 'Kubernetes', to: '/kubernetes/introduction' },
-          ],
-        },
-        {
-          title: 'Storage & Data',
-          items: [
-            { label: 'Volumes', to: '/volumes/introduction' },
-            { label: 'Buckets', to: '/buckets/introduction' },
-            { label: 'Databases', to: '/databases/introduction' },
-            { label: 'Firewall Policies', to: '/firewall-policies/introduction' },
-          ],
-        },
-        {
-          title: 'Account',
-          items: [
-            { label: 'Billing', to: '/billing/introduction' },
-            { label: 'Audit Logs', to: '/audit-logs/introduction' },
-            { label: 'Settings', to: '/settings/introduction' },
-            { label: 'Status Page', href: 'https://status.rumptycloud.com' },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            { label: 'Discord', href: 'https://discord.gg/Rukmqzg3uX' },
-            { label: 'YouTube', href: 'https://www.youtube.com/channel/UCp7tjsn-Fb7oAUngUIdGq5Q' },
-            { label: 'GitHub', href: 'https://github.com/Sanmo-Labs' },
-            { label: 'Blog', href: 'https://blog.rumptycloud.com' },
+            {label: 'Status', href: 'https://status.rumptycloud.com'},
+            {label: 'Discord', href: 'https://discord.gg/Rukmqzg3uX'},
+            {label: 'GitHub', href: 'https://github.com/Sanmo-Labs'},
+            {label: 'YouTube', href: 'https://www.youtube.com/channel/UCp7tjsn-Fb7oAUngUIdGq5Q'},
+            {label: 'Blog', href: 'https://blog.rumptycloud.com'},
           ],
         },
       ],
-      copyright: `© ${new Date().getFullYear()} RumptyCloud. Built with Docusaurus.`,
+      copyright: `© ${new Date().getFullYear()} RumptyCloud`,
     },
     prism: {
       theme: prismThemes.oneDark,

@@ -4,9 +4,11 @@ const sidebars: SidebarsConfig = {
   docsSidebar: [
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Get started',
       collapsed: false,
+      collapsible: false,
       items: [
+        {type: 'link', label: 'Overview', href: '/'},
         'getting-started/introduction',
         'getting-started/account-setup',
         'getting-started/workspaces',
@@ -17,6 +19,7 @@ const sidebars: SidebarsConfig = {
       type: 'category',
       label: 'Compute',
       collapsed: false,
+      collapsible: false,
       items: [
         {
           type: 'category',
@@ -58,8 +61,9 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Storage',
+      label: 'Storage & Data',
       collapsed: false,
+      collapsible: false,
       items: [
         {
           type: 'category',
@@ -79,13 +83,6 @@ const sidebars: SidebarsConfig = {
             'buckets/uploading',
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Data',
-      collapsed: false,
-      items: [
         {
           type: 'category',
           label: 'Databases',
@@ -93,39 +90,55 @@ const sidebars: SidebarsConfig = {
             'databases/introduction',
             'databases/create-a-database',
             'databases/connecting',
+            'databases/backups',
           ],
         },
       ],
     },
     {
       type: 'category',
-      label: 'Networking & Security',
+      label: 'Networking',
       collapsed: false,
+      collapsible: false,
       items: [
-        'firewall-policies/introduction',
-        'firewall-policies/create-a-policy',
-        'firewall-policies/allow-rules',
-        'firewall-policies/attaching',
-        'networking/outbound-email',
+        {
+          type: 'category',
+          label: 'Firewall Policies',
+          items: [
+            'firewall-policies/introduction',
+            'firewall-policies/create-a-policy',
+            'firewall-policies/allow-rules',
+            'firewall-policies/attaching',
+            'networking/outbound-email',
+          ],
+        },
       ],
     },
     {
       type: 'category',
-      label: 'CLI',
+      label: 'Tools',
       collapsed: false,
+      collapsible: false,
       items: [
-        'cli/introduction',
-        'cli/login',
-        'cli/sync',
+        {
+          type: 'category',
+          label: 'CLI',
+          items: [
+            'cli/introduction',
+            'cli/login',
+            'cli/sync',
+          ],
+        },
       ],
     },
     {
       type: 'category',
-      label: 'Others',
+      label: 'Account',
       collapsed: false,
+      collapsible: false,
       items: [
-        'audit-logs/introduction',
         'billing/introduction',
+        'audit-logs/introduction',
         {
           type: 'category',
           label: 'Settings',

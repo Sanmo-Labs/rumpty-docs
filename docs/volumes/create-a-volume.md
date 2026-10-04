@@ -1,7 +1,7 @@
 ---
 id: create-a-volume
 title: Create a Volume
-sidebar_label: Create a Volume
+sidebar_label: Create a volume
 ---
 
 # Create a Volume

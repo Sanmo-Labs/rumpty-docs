@@ -1,79 +1,71 @@
 ---
 id: connecting
-title: Connecting to Your VM
+title: Connecting to your VM
 sidebar_label: Connecting
+eyebrow: Guide · Virtual Machines
 ---
 
-# Connecting to Your VM
+<p className="eyebrow">Guide · Virtual Machines</p>
 
-VMs don't have a public IP by default. You can open a terminal in the browser, or connect through the **Rumpty CLI** rather than a plain `ssh` command.
+# Connecting to your VM
+
+VMs don’t have a public IP by default. Open a terminal in the browser, or connect through the Rumpty CLI instead of a plain ssh command.
+
+<div className="tiles tiles--2">
+  <a className="tile" href="#browser-console"><span className="tile__label">Browser console</span><span className="tile__value">Fastest way in. No keys or CLI needed.</span></a>
+  <a className="tile" href="#install-the-rumpty-cli"><span className="tile__label">Rumpty CLI</span><span className="tile__value">For everyday use, scripts and copying files.</span></a>
+</div>
 
 ## Browser console
 
-The fastest way in: on the VM detail page, open the **Connect** tab and click **Launch console**. A terminal to the VM opens in a new browser tab; no keys or CLI needed. The VM must be running.
+On the VM detail page, open the Connect tab and click Launch console. A terminal to the VM opens in a new browser tab. The VM must be running.
 
-:::note
-Browser console sessions are logged and disconnect after 15 minutes of inactivity. Use **Reconnect** to start a new session.
+:::note Note
+Browser console sessions are logged and disconnect after 15 minutes of inactivity. Use Reconnect to start a new session.
 :::
 
 ## Install the Rumpty CLI
 
-The **Connect** tab shows the install command:
+The Connect tab shows the install command:
 
-<div className="rumpty-shell">
-  <div className="rumpty-shell__bar" aria-hidden="true">
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__title">Rumpty CLI</span>
-  </div>
-  <pre><code>curl -fsSL https://get.rumptycloud.com | sh</code></pre>
-</div>
+```bash title="Terminal"
+curl -fsSL https://get.rumptycloud.com | sh
+```
 
-Follow the **Other install options** link on the same tab for alternative install methods.
+Follow Other install options on the same tab for other ways to install. Sign-in and every other command are in the [Rumpty CLI](/cli/introduction) docs.
 
 ## Connect to a VM
 
-<div className="rumpty-shell">
-  <div className="rumpty-shell__bar" aria-hidden="true">
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__title">Rumpty CLI</span>
-  </div>
-  <pre><code>rumpty ssh &lt;vm-name&gt; --ws &lt;workspace-slug&gt;</code></pre>
+```bash title="Terminal"
+rumpty ssh <vm-name> --ws <workspace-slug>
+```
+
+This opens a secure SSH session tunnelled through the platform as root. No public IP or manual port-forwarding needed. The VM detail page shows this command with your VM name and workspace slug filled in.
+
+<div className="table table--key table--mono">
+
+| Option | Use it to |
+| --- | --- |
+| `--user` | Log in as a different guest user you’ve created |
+| `-i, --identity` | Point at a specific private key |
+| `$RUMPTY_WORKSPACE` | Set the workspace once instead of passing `--ws` |
+
 </div>
-
-The VM detail page shows this command with your VM name and workspace slug already filled in.
-
-This opens a secure SSH session tunneled through the platform as `root`. No public IP or manual port-forwarding required.
-
-Useful flags: `--user` to log in as a different guest user if you have created one, and `-i`/`--identity` to point at a specific private key. You can also set the workspace once with `$RUMPTY_WORKSPACE` instead of passing `--ws` each time.
 
 ## Run commands and copy files
 
-Besides interactive SSH, the CLI can run one-off commands and transfer files:
+```bash title="Terminal"
+rumpty exec <vm-name> -- uptime
+rumpty copy ./app.tar.gz <vm-name>:/tmp/
+```
 
-<div className="rumpty-shell">
-  <div className="rumpty-shell__bar" aria-hidden="true">
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__dot"></span>
-    <span className="rumpty-shell__title">Rumpty CLI</span>
-  </div>
-  <pre><code>rumpty exec &lt;vm-name&gt; -- uptime
-rumpty copy ./app.tar.gz &lt;vm-name&gt;:/tmp/</code></pre>
-</div>
+`rumpty exec` runs a non-interactive command, so always put the remote command after `--`. `rumpty copy` (alias `cp`) uses `vm:path` syntax, with rsync when it’s available and scp as a fallback.
 
-`rumpty exec` runs a non-interactive command on the VM; always put the remote command after `--`. `rumpty copy` (alias `cp`) copies files to or from the VM using `vm:path` syntax; it uses rsync when available and falls back to scp.
+## Finding your workspace slug
 
-## Finding your workspace slug and VM name
+- The VM name is the title at the top of the VM detail page
+- The workspace slug is in the sample command under Connect, in the URL as the `workspace` query parameter, and in the workspace picker
 
-Both are shown on the VM detail page:
-
-- The **VM name** is the title at the top of the page
-- The **workspace slug** appears in the sample command shown under **Connect**. It is also visible in the browser URL as the `workspace` query parameter and in the workspace picker in the top navigation bar.
-
-## Private IP access
-
-If you need to reach the VM from another resource inside the same workspace (e.g. another VM), use its **private IP** shown on the VM detail page rather than going through the CLI tunnel.
+:::tip Private IP access
+To reach the VM from another resource in the same workspace, like another VM, use its private IP from the VM detail page instead of the CLI tunnel.
+:::

@@ -1,7 +1,7 @@
 ---
 id: login
 title: Login & Logout
-sidebar_label: Login & Logout
+sidebar_label: Login & logout
 ---
 
 # Login & Logout

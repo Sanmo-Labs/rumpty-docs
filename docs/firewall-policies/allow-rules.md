@@ -1,7 +1,7 @@
 ---
 id: allow-rules
 title: Allow Rules
-sidebar_label: Allow Rules
+sidebar_label: Allow rules
 ---
 
 # Allow Rules

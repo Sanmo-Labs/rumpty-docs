@@ -1,7 +1,7 @@
 ---
 id: attach-and-mount
 title: Attach and Mount
-sidebar_label: Attach & Mount
+sidebar_label: Attach & mount
 ---
 
 # Attach and Mount a Volume
