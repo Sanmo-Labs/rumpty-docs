@@ -17,13 +17,13 @@ Deleting a database removes the instance and its data. There is no platform-side
 Use your database's connection string (from the **Connection** tab) with standard client tools. For Postgres:
 
 ```bash
-pg_dump "postgresql://<username>:<password>@<host>:5432/<database>" > backup.sql
+pg_dump "postgresql://<username>:<password>@<host>:5432/<database>?sslmode=require" > backup.sql
 ```
 
 To restore into a new database:
 
 ```bash
-psql "postgresql://<username>:<password>@<host>:5432/<database>" < backup.sql
+psql "postgresql://<username>:<password>@<host>:5432/<database>?sslmode=require" < backup.sql
 ```
 
 Run dumps on a schedule from your own infrastructure or CI if you need regular backups.
