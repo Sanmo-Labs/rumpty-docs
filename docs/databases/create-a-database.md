@@ -12,13 +12,15 @@ Go to **Data → Databases → Create database**.
 
 ## Step 1: Database engine
 
-Choose the engine that fits your workload. Versions and sizes are selected separately. Postgres is the only engine you can select today; Redis and MySQL appear in the picker but are marked **Coming soon**.
+Choose the engine that fits your workload. Versions and sizes are selected separately.
 
 | Engine | Best for | Tags |
 |--------|----------|------|
 | **Postgres** | APIs, dashboards, SaaS backends, jobs, and anything that wants SQL with structure | SQL + transactions, Independent versions, Good default for most apps |
-| **Redis** (coming soon) | Queues, cache, sessions, rate limits, realtime counters, and coordination locks | Low-latency cache, Great beside your app, Persistent storage |
-| **MySQL** (coming soon) | Laravel, WordPress-style apps, internal tools, and services already built around MySQL | Familiar SQL, Broad app support, Independent versions |
+| **Redis** | Queues, cache, sessions, rate limits, realtime counters, and coordination locks | Low-latency cache, TLS public endpoint, Snapshot persistence |
+| **MySQL** | Laravel, WordPress-style apps, internal tools, and services already built around MySQL | Familiar SQL, Broad app support, Provisions in seconds |
+
+Redis sizes are memory-first: pick how much data you need to keep in memory.
 
 ## Step 2: Version
 
