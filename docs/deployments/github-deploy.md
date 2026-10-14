@@ -36,7 +36,7 @@ To turn it off later: open the deployment → **Settings** tab → toggle **Auto
 
 ## Environment variables
 
-Manage variables under the deployment's **Env** tab. Values are stored encrypted and treated as secrets; the API never echoes them back. Variables you add are injected at **runtime**; they are deliberately kept out of the build so secret values can't leak into the built image.
+Manage variables under the deployment's **Env** tab. Values are stored encrypted and treated as secrets; the API never echoes them back. They are available during the **build** and at **runtime**. Changing a variable requires a redeploy.
 
 ## Build logs
 

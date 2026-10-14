@@ -21,11 +21,12 @@ Open **Manage Profile → My profile** in the top-right navbar. The profile page
 
 ## Workspace settings
 
-Open **Settings** in the sidebar. Changes here affect only the selected workspace. It has four tabs:
+Open **Settings** in the sidebar. Changes here affect only the selected workspace. It has five tabs:
 
 | Tab | What it covers |
 |-----|----------------|
 | General | Workspace details and the permissions of your role |
 | [SSH keys](./ssh-keys) | Add and manage SSH keys injected into new VMs |
 | [GitHub](./integrations) | Connect GitHub for deployments |
+| [Notifications](./notifications) | Deploy, crash, and billing alerts — email plus an optional webhook |
 | Team | Members, roles, and invitations |

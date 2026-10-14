@@ -42,6 +42,7 @@ const sidebars: SidebarsConfig = {
             'deployments/github-deploy',
             'deployments/ports',
             'deployments/persistent-storage',
+            'deployments/scale-to-zero',
           ],
         },
         {
@@ -134,6 +135,7 @@ const sidebars: SidebarsConfig = {
             'settings/account',
             'settings/workspaces',
             'settings/integrations',
+            'settings/notifications',
             'settings/ssh-keys',
             'settings/api-keys',
           ],

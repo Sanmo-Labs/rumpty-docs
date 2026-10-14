@@ -10,7 +10,7 @@ Once provisioned, open the database detail page. It shows the engine, version, c
 
 ## Connection tab
 
-The Connection tab provides everything you need to connect:
+The Connection tab provides everything you need to connect. The examples below are for Postgres; see [Redis](#redis) and [MySQL](#mysql) for those engines.
 
 | Field | Example |
 |-------|---------|
@@ -91,7 +91,63 @@ conn, err := pgx.Connect(context.Background(), "postgresql://<username>:<passwor
 
 **ORMs and tools built on Node `pg`** (Drizzle, Knex, Sequelize, Prisma with `@prisma/adapter-pg`) follow the Node `pg` rules above: use `sslmode=verify-full&sslrootcert=...` or `sslmode=no-verify` in the connection string.
 
+## Redis
+
+Redis databases have an internal endpoint for apps in the same workspace, plus an optional public endpoint on a dedicated port. The public endpoint uses TLS, so its connection string starts with `rediss://`. Copy the host, port, and connection string from the Connection tab, and download the server certificate to verify the connection.
+
+```bash
+redis-cli --tls --cacert ./<database>-ca.crt -u "rediss://<username>:<password>@<host>:<port>" PING
+```
+
+**Node (ioredis):**
+
+```js
+import fs from "node:fs";
+import Redis from "ioredis";
+
+const redis = new Redis(process.env.REDIS_URL, {
+  tls: { ca: fs.readFileSync("./<database>-ca.crt") },
+});
+```
+
+**Python (redis-py):**
+
+```python
+import redis
+
+r = redis.from_url("rediss://<username>:<password>@<host>:<port>", ssl_ca_certs="./<database>-ca.crt")
+print(r.ping())
+```
+
+Apps in the same workspace should use the internal connection string, which stays on the private network.
+
+## MySQL
+
+MySQL databases have an internal endpoint for apps in the same workspace, plus an optional public endpoint on a dedicated port. Copy the host, port, database, and username from the Connection tab.
+
+```bash
+mysql -h <host> -P <port> -u <username> -p <database>
+```
+
+**Node (mysql2):**
+
+```js
+import mysql from "mysql2/promise";
+
+const conn = await mysql.createConnection(process.env.DATABASE_URL);
+```
+
+**Python (PyMySQL):**
+
+```python
+import pymysql
+
+conn = pymysql.connect(host="<host>", port=<port>, user="<username>", password="<password>", database="<database>")
+```
+
 ## Troubleshooting
+
+These errors apply to Postgres connections.
 
 | Error | Cause | Fix |
 |-------|-------|-----|

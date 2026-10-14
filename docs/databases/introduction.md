@@ -7,7 +7,7 @@ slug: /databases/introduction
 
 # Databases
 
-Managed databases for apps, demos, and internal tools. Postgres is available today; Redis and MySQL are marked coming soon in the console. Go to **Data → Databases**.
+Managed databases for apps, demos, and internal tools. Choose **Postgres**, **Redis**, or **MySQL**. Go to **Data → Databases**.
 
 ## Dashboard stats
 

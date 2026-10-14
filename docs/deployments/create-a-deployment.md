@@ -38,7 +38,7 @@ The easiest setup is to make your app read `$PORT` and bind `0.0.0.0`; then the 
 
 ## Environment variables
 
-Add key/value pairs your app needs before the first deployment. Values are stored encrypted and treated as secrets, and they are injected at **runtime** only; they are deliberately kept out of the build so secret values can't leak into the built image. You can add more later from the deployment's **Env** tab.
+Add key/value pairs your app needs before the first deployment. Values are stored encrypted and treated as secrets. They are available during the **build** and at **runtime**, so frameworks that inline values into the bundle (Vite, Next.js, CRA) see them. Changing a variable requires a redeploy. You can add more later from the deployment's **Env** tab.
 
 ## Persistent storage (optional)
 
@@ -48,16 +48,17 @@ Volumes come with trade-offs (deploys briefly stop the app, single instance, siz
 
 ## Runtime size
 
-Pick a compute plan in the right panel:
+Pick a compute plan in the right panel. **First 3 apps are free. After that, Tiny is $2 per app.**
 
-| Plan | Price | CPU | Memory |
-|------|-------|-----|--------|
-| **Tiny** | ~$2/mo | 0.25 vCPU | 512 MB |
-| **Starter** | ~$4/mo | 0.75 vCPU | 1 GB |
-| **Scale** | ~$8/mo | 1 vCPU | 2 GB |
-| **Pro** | ~$15/mo | 2 vCPU | 4 GB |
+| Plan | Price | CPU (burst) | Memory | Egress |
+|------|-------|-------------|---------|--------|
+| **Free** | $0 (3 apps) | up to 0.5 vCPU | 512 MB | 50 GB |
+| **Tiny** | $2/app | up to 0.5 vCPU | 512 MB | 50 GB |
+| **Starter** | $4/app | up to 1 vCPU | 1 GB | 75 GB |
+| **Scale** | $8/app | up to 1.5 vCPU | 2 GB | 250 GB |
+| **Pro** | $15/app | up to 2 vCPU | 4 GB | 500 GB |
 
-Prices are shown in the console as an hourly rate with an approximate monthly equivalent. The **Tiny** plan includes 3 free deployments.
+Prices are shown in the console as an hourly rate with an approximate monthly equivalent. CPU is the burst limit — the reservation underneath stays small so idle apps pack cheaply. Free apps always [sleep when idle](./scale-to-zero); paid plans can stay always-on. Browsers hitting a sleeping app see a wake page until it is ready.
 
 ## Start a build
 
