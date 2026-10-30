@@ -101,6 +101,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       collapsible: false,
       items: [
+        'networking/private-networking',
         {
           type: 'category',
           label: 'Firewall Policies',

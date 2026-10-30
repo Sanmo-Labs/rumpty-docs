@@ -35,7 +35,7 @@ Set the connection string as an environment variable:
 export DATABASE_URL="postgresql://<username>:<password>@<host>:5432/main_db?sslmode=require"
 ```
 
-In a deployment, add it under the deployment's **Environment variables** before the first build. Apps deployed on Rumpty Cloud in the same workspace should use the **internal connection string** instead; it stays on the private network.
+In a deployment, add it under the deployment's **Environment variables** before the first build. Apps deployed on Rumpty Cloud in the same workspace should use the **internal connection string** instead; it stays on the private network. Apps in a different workspace can connect only in some cases; see [Private networking](/networking/private-networking).
 
 ## Connect locally
 
@@ -157,6 +157,7 @@ These errors apply to Postgres connections.
 | `access denied` (TLS alert) | A firewall policy attached to the database doesn't allow your IP on port 5432. | Add a rule for your IP on the database's **Firewall** tab. |
 | `internal error` (TLS alert) | The database is starting, restarting, or not ready. | Wait a minute and retry. If it persists, check the database status in the console. |
 | Connection times out | Outbound port 5432 is blocked by your network, or the host is wrong. | Try another network, or check with your network admin. |
+| Connection times out from an app on Rumpty Cloud | The database is in a workspace the app's workspace isn't allowed to reach. | See [Private networking](/networking/private-networking) for when workspaces can reach each other and how to connect. |
 | `connection reset` after opening many connections quickly | The public endpoint limits how many connections one IP can open at once and in a short time. | Use a connection pool and reuse connections instead of opening one per request. |
 
 ## Metrics
