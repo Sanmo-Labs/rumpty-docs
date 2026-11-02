@@ -35,3 +35,4 @@ Bucket status refreshes automatically while a bucket is being created.
 
 - [Create a bucket](./create-a-bucket)
 - [Upload files and access keys](uploading.md)
+- [Access keys and S3 tools](access-keys-and-s3.md)

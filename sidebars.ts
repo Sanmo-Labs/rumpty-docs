@@ -81,6 +81,7 @@ const sidebars: SidebarsConfig = {
             'buckets/introduction',
             'buckets/create-a-bucket',
             'buckets/uploading',
+            'buckets/access-keys-and-s3',
           ],
         },
         {

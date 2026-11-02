@@ -46,6 +46,8 @@ aws s3 cp ./photo.jpg s3://<bucket-name>/photo.jpg \
   --endpoint-url https://s3.rumptycloud.com
 ```
 
+For what each key permission allows, multipart uploads, and setup for tools like rclone and `mc`, see [Access Keys & S3 Compatibility](access-keys-and-s3.md).
+
 ## Signed URLs (Private buckets)
 
 For private buckets, generate a signed URL server-side before serving a file to a client. Signed URLs expire after a set duration; objects are never directly public-read.
