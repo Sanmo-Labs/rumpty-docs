@@ -208,7 +208,7 @@ aws s3 sync ./site s3://<bucket-name>/site --endpoint-url https://s3.rumptycloud
 ```ini
 [rumpty]
 type = s3
-provider = Ceph
+provider = Other
 access_key_id = <your-key>
 secret_access_key = <your-secret>
 endpoint = https://s3.rumptycloud.com
