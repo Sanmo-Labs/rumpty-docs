@@ -50,7 +50,7 @@ Access keys work with the objects in a bucket, not the bucket's settings. Keys c
 - create or delete buckets
 - change the bucket policy, CORS rules, lifecycle rules, or versioning
 
-Requests for these return `AccessDenied`. Create and delete buckets from the dashboard.
+Requests for these return `AccessDenied`. Create and delete buckets, and choose which websites can use the bucket from the browser ([Browser uploads](#browser-uploads-cors)), from the dashboard.
 
 ## Multipart uploads
 
@@ -103,6 +103,94 @@ aws s3api abort-multipart-upload --bucket <bucket-name> \
   --endpoint-url https://s3.rumptycloud.com
 ```
 
+## Browser uploads (CORS)
+
+Your web app can let visitors upload files straight to your bucket, without the file passing through your server. Your server signs a short-lived upload URL with its access key, and the visitor's browser sends the file to that URL.
+
+Browsers only allow this if the bucket lists your site as an **allowed origin**. Otherwise the browser blocks the request before it's sent, and you see a CORS error in the console.
+
+You don't need allowed origins for:
+
+- server-side code, scripts, the AWS CLI, or other tools: CORS only applies to browsers
+- showing public files with `<img>`, `<video>`, or a plain link
+- uploads from the RumptyCloud dashboard, which is always allowed
+
+### Add your site
+
+1. Open the bucket in the dashboard and go to the **Allowed origins** tab.
+2. Enter your site's address, for example `https://app.example.com`, and click **Add**.
+3. Click **Save**. The change takes effect within a minute.
+
+An origin is the scheme, host, and port your site runs on, with no path: browsers send exactly that and match it exactly.
+
+| You enter | Allows |
+|-----------|--------|
+| `https://app.example.com` | only `https://app.example.com` |
+| `http://localhost:3000` | your local development server on port 3000 |
+| `https://*.example.com` | any subdomain, such as `https://preview.example.com` |
+| `*` | every website (you'll be asked to confirm) |
+
+`https://example.com` and `https://www.example.com` are different origins, as are the same host on different ports, so add each one your site uses. A bucket can have up to 20 allowed origins.
+
+Avoid `*` unless you're building something meant to be used from any site. Your keys stay private either way, but with `*` a leaked upload URL works from any website.
+
+### Example: presigned upload from the browser
+
+The server creates the upload URL; the secret key never reaches the browser.
+
+```js
+// Server (Node.js)
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
+const s3 = new S3Client({
+  region: "olas-closet",
+  endpoint: "https://s3.rumptycloud.com",
+  credentials: {
+    accessKeyId: process.env.RUMPTY_ACCESS_KEY_ID,
+    secretAccessKey: process.env.RUMPTY_SECRET_ACCESS_KEY,
+  },
+  forcePathStyle: true,
+});
+
+app.post("/upload-url", async (req, res) => {
+  const key = `uploads/${crypto.randomUUID()}-${req.body.filename}`;
+  const url = await getSignedUrl(
+    s3,
+    new PutObjectCommand({
+      Bucket: "<bucket-name>",
+      Key: key,
+      ContentType: req.body.contentType,
+    }),
+    { expiresIn: 300 },
+  );
+  res.json({ url, key });
+});
+```
+
+```js
+// Browser
+async function upload(file) {
+  const { url, key } = await fetch("/upload-url", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ filename: file.name, contentType: file.type }),
+  }).then((r) => r.json());
+
+  const res = await fetch(url, {
+    method: "PUT",
+    body: file,
+    headers: { "Content-Type": file.type },
+  });
+  if (!res.ok) throw new Error(`Upload failed: ${res.status}`);
+  return key;
+}
+```
+
+The key that signs the URL needs the **write** permission. In a public bucket the uploaded file is publicly readable right away; you don't need to set an ACL. Send the same `Content-Type` from the browser that the server signed, or the upload fails with `SignatureDoesNotMatch`. The **Allowed origins** tab in the dashboard shows this example filled in with your bucket's details.
+
+Large files work the same way with multipart uploads: browsers may send `PUT`, `POST`, `GET`, `HEAD`, and `DELETE` requests, and can read the `ETag` response header each part returns.
+
 ## Tool setup
 
 ### AWS CLI
@@ -147,7 +235,6 @@ If a bulk import needs more, split it across several keys or contact support.
 ## Not supported yet
 
 - **Versioning and object lock**: keys can read the versioning status (it's always off), but versioning can't be turned on, so deleted or overwritten objects can't be recovered.
-- **Uploads straight from a browser on your own domain**: bucket CORS rules only allow the RumptyCloud dashboard, so browsers block requests from other sites. Upload from your server instead, or from the dashboard.
 - **Keys limited to a folder**: a key's permissions apply to the whole bucket.
 
 ## Troubleshooting
@@ -155,6 +242,8 @@ If a bulk import needs more, split it across several keys or contact support.
 **`AccessDenied`**: the key is missing the permission for that operation (see [Permissions](#permissions)), the key was revoked, or the request targets a different bucket from the one the key belongs to. A newly created key can take a few seconds before it works.
 
 **`SignatureDoesNotMatch`**: usually a mistyped secret, or a region other than `olas-closet`.
+
+**CORS error in the browser** (`No 'Access-Control-Allow-Origin' header is present`, or a failed `OPTIONS` request): the page's origin isn't in the bucket's [allowed origins](#browser-uploads-cors). Compare the `Origin` request header in your browser's network tab with the list, including `www`, `http` vs `https`, and the port. Changes take up to a minute to apply.
 
 **Bucket name treated as a hostname** (DNS errors such as `<bucket-name>.s3.rumptycloud.com`): enable path-style addressing.
 
