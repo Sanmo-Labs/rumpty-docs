@@ -91,6 +91,7 @@ const sidebars: SidebarsConfig = {
             'databases/introduction',
             'databases/create-a-database',
             'databases/connecting',
+            'databases/postgres-extensions',
             'databases/backups',
           ],
         },
