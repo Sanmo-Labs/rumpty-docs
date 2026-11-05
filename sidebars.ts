@@ -28,6 +28,7 @@ const sidebars: SidebarsConfig = {
             'virtual-machines/introduction',
             'virtual-machines/create-a-vm',
             'virtual-machines/connecting',
+            'virtual-machines/desktop',
             'virtual-machines/plans',
             'virtual-machines/metrics',
             'virtual-machines/snapshots',

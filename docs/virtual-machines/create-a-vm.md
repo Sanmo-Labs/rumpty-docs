@@ -21,7 +21,7 @@ The first time you create a VM you are asked to accept the Acceptable Use Policy
   <li><div><h3>Open Create VM</h3><p>Go to Compute → Virtual Machines, then click Create VM.</p><span className="ui">Compute → Virtual Machines → Create VM</span></div></li>
   <li><div><h3>Name your VM</h3><p>Give it a short name you’ll recognise in the list and in the CLI.</p><span className="ui">web-1</span></div></li>
   <li><div><h3>Select a region</h3><p>Choose the data center nearest to you or your users to minimize latency.</p></div></li>
-  <li><div><h3>Pick an OS</h3><p>Choose an image and a specific version.</p><span className="ui">Ubuntu 24.04</span></div></li>
+  <li><div><h3>Pick an OS</h3><p>Choose an image and a specific version. Pick a Desktop version for a Linux desktop you use from the browser; see <a href="/virtual-machines/desktop">Cloud Desktops</a>.</p><span className="ui">Ubuntu 26.04</span></div></li>
   <li><div><h3>Networking</h3><p>Nothing to set. Your VM automatically joins the workspace’s default private network.</p></div></li>
   <li><div><h3>SSH keys</h3><p>Select an existing key, or click Add New Key to upload one.</p><span className="ui">Add New Key</span></div></li>
   <li><div><h3>Storage <span className="opt">Optional</span></h3><p>Select or create volumes to attach to the VM.</p></div></li>
