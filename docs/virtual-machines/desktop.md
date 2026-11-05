@@ -61,6 +61,6 @@ Copying text from the desktop back to your own computer isn’t supported yet.
 
 ## Good to know
 
-- There’s no sound, and video plays at a low frame rate. Cloud Desktops are best for development, testing, browsing and running tools
+- There’s no sound, and video plays at a low frame rate
 - The desktop runs on the VM’s own CPU and memory. For heavier apps or several browser tabs, pick a bigger plan
 - A desktop VM is a normal VM, so you can also [connect over SSH](/virtual-machines/connecting) or run commands with `rumpty exec`
