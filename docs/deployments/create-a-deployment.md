@@ -57,7 +57,7 @@ Pick a compute plan in the right panel:
 | **Scale** | ~$8/mo | 1 vCPU | 2 GB |
 | **Pro** | ~$15/mo | 2 vCPU | 4 GB |
 
-Prices are shown in the console as an hourly rate with an approximate monthly equivalent. The **Tiny** plan includes 3 free deployments.
+Prices are shown in the console as an hourly rate with an approximate monthly equivalent. The **Free** plan includes 5 free deployments per account (up to 1 vCPU, 512 MB RAM, 50 GB transfer, and automatic scale-to-zero).
 
 ## Start a build
 

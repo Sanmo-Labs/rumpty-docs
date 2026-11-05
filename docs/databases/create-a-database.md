@@ -34,10 +34,12 @@ Choose compute, memory, and storage. Version is selected separately.
 
 | Plan | Price | CPU | Memory | Storage |
 |------|-------|-----|--------|---------|
-| **Playground** | Free | 1 CPU | 256 MB | 1 GB |
+| **Playground** | Free | 0.5 vCPU | 256 MB | 1 GiB |
 | **Seed** | $1.15/mo | 1 CPU | 512 MB | 5 GB |
 | **Sprout** | $2.70/mo | 1 CPU | 1 GB | 10 GB |
 | **Bloom** | $4.60/mo | 1 CPU | 2 GB | 20 GB |
+
+Each account can run up to 2 free Playground databases at a time, across all engines and workspaces. Deleting one frees its slot once the deletion finishes.
 
 ## Step 4: Zone
 
