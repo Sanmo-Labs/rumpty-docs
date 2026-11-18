@@ -34,8 +34,8 @@ On its first attach, a volume that is not yet `formatted` is formatted with its
 This is asynchronous. It returns `202 Accepted` with an `operation_id`. See
 [Get an operation](/api/operations/get-an-operation). The `X-Idempotency` header is
 optional. A retry with the same key for the same volume returns the original operation with
-`200 OK`, before the volume's state is checked. `vm_uid` is not compared, so a retry naming
-another VM still returns the original attach.
+`200 OK`, before the volume's state is checked. The same key with a different `vm_uid`
+returns `409` with `action: idempotency_key_reused`.
 
 ## Authentication
 

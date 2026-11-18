@@ -108,6 +108,12 @@ UID of the database (for deletes, the snapshot's source database).
 
 </Param>
 
+<Param name={"snapshot_uid"} type={"string"}>
+
+UID of the snapshot the operation acts on. Omitted when it is not known.
+
+</Param>
+
 <Param name={"name"} type={"string"} required>
 
 The **database's** name for create and restore. The snapshot's name for deletes, except on a replayed delete made through [Delete a snapshot of a database](/api/databases/delete-a-snapshot-of-a-database), which returns the database's name.
@@ -181,6 +187,12 @@ UID of the queued operation. Poll it with [Get an operation](/api/operations/get
 <Param name={"database_uid"} type={"string"} required>
 
 UID of the database (for deletes, the snapshot's source database).
+
+</Param>
+
+<Param name={"snapshot_uid"} type={"string"}>
+
+UID of the snapshot the operation acts on. Omitted when it is not known.
 
 </Param>
 

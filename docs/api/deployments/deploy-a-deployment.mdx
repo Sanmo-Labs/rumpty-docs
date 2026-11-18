@@ -23,7 +23,7 @@ Saved environment variable and settings changes are picked up. Any earlier build
 still in progress is cancelled. While a live app rebuilds it keeps serving the current
 version, and its `display_status` is `updating`.
 
-A JSON body is required. Send `{}` to build the latest commit on the branch.
+The body is optional. Send no body, or `{}`, to build the latest commit on the branch.
 
 For a component deployment of a one-click app (which runs a prebuilt image) the body is
 ignored and this behaves like [Apply environment changes](/api/deployments/apply-environment-changes).
@@ -557,7 +557,7 @@ Commit message or label.
 
 <Param name={"trigger_actor"} type={"string"}>
 
-Who started the run. For manual runs, the username (or email) of the workspace owner account; for pushes and pull requests, the GitHub login.
+Who started the run. For manual runs, the username (or email) of the member who made the request; for pushes and pull requests, the GitHub login.
 
 </Param>
 
@@ -1254,7 +1254,7 @@ Commit message or label.
 
 <Param name={"trigger_actor"} type={"string"}>
 
-Who started the run. For manual runs, the username (or email) of the workspace owner account; for pushes and pull requests, the GitHub login.
+Who started the run. For manual runs, the username (or email) of the member who made the request; for pushes and pull requests, the GitHub login.
 
 </Param>
 

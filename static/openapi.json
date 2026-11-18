@@ -3261,7 +3261,7 @@
           },
           "trigger_actor": {
             "type": "string",
-            "description": "Who started the run. For manual runs, the username (or email) of the workspace owner account; for pushes and pull requests, the GitHub login."
+            "description": "Who started the run. For manual runs, the username (or email) of the member who made the request; for pushes and pull requests, the GitHub login."
           },
           "trigger_actor_url": {
             "type": "string",
@@ -5386,6 +5386,11 @@
             "type": "string",
             "description": "UID of the database (for deletes, the snapshot's source database).",
             "example": "019a9b10-5c6d-7e8f-9a0b-1c2d3e4f5a6b"
+          },
+          "snapshot_uid": {
+            "type": "string",
+            "description": "UID of the snapshot the operation acts on. Omitted when it is not known.",
+            "example": "019a9d3f-1a2b-7c3d-8e4f-5a6b7c8d9e0f"
           },
           "name": {
             "type": "string",
@@ -7520,7 +7525,7 @@
         }
       },
       "VmOperationReplay": {
-        "description": "Replay. The `X-Idempotency` key was already used for this action on this VM, so the existing operation is returned and nothing is queued. `status` is the operation's current status and `vm_status` the VM's current status (`deleted` once the VM is gone). The request body, if any, is not compared.",
+        "description": "Replay. The `X-Idempotency` key was already used for this action on this VM, so the existing operation is returned and nothing is queued. `status` is the operation's current status and `vm_status` the VM's current status (`deleted` once the VM is gone). For [Set the app port](/api/virtual-machines/set-the-vm-app-port) the key is tied to the requested port; for [Resize a VM](/api/virtual-machines/resize-a-vm) the requested plan is not compared.",
         "headers": {
           "X-Idempotency-Replay": {
             "description": "Always `true` on a replay.",
@@ -13696,7 +13701,7 @@
         "operationId": "setVmAppPort",
         "summary": "Set the VM app port",
         "x-slug": "set-the-vm-app-port",
-        "description": "Points the VM's own app URL (`app_url`) at a different port on the VM. The VM's `app_port`\nonly changes once the switch has finished, so it always shows the port being served.\n\nThis is asynchronous. It returns `202 Accepted` with an `operation_id`. See\n[Get an operation](/api/operations/get-an-operation). Send an `X-Idempotency` key to make\nretries safe: a retry with the same key returns the original operation with `200`, even\nafter the port has switched. The requested port is not compared on a replay.\n",
+        "description": "Points the VM's own app URL (`app_url`) at a different port on the VM. The VM's `app_port`\nonly changes once the switch has finished, so it always shows the port being served.\n\nThis is asynchronous. It returns `202 Accepted` with an `operation_id`. See\n[Get an operation](/api/operations/get-an-operation). Send an `X-Idempotency` key to make\nretries safe: a retry with the same key returns the original operation with `200`, even\nafter the port has switched. The same key with a different `port` returns `409` with\n`action: idempotency_key_reused`.\n",
         "tags": [
           "Virtual Machines"
         ],
@@ -16773,7 +16778,7 @@
         "operationId": "deployDeployment",
         "summary": "Deploy a deployment",
         "x-slug": "deploy-a-deployment",
-        "description": "Queues a new build of the deployment's branch and rolls it out when the build succeeds.\nSaved environment variable and settings changes are picked up. Any earlier build that is\nstill in progress is cancelled. While a live app rebuilds it keeps serving the current\nversion, and its `display_status` is `updating`.\n\nA JSON body is required. Send `{}` to build the latest commit on the branch.\n\nFor a component deployment of a one-click app (which runs a prebuilt image) the body is\nignored and this behaves like [Apply environment changes](/api/deployments/apply-environment-changes).\n\nThis is asynchronous. It returns `202 Accepted` with an `operation_id` and the new `run`.\nSee [Get an operation](/api/operations/get-an-operation).\n",
+        "description": "Queues a new build of the deployment's branch and rolls it out when the build succeeds.\nSaved environment variable and settings changes are picked up. Any earlier build that is\nstill in progress is cancelled. While a live app rebuilds it keeps serving the current\nversion, and its `display_status` is `updating`.\n\nThe body is optional. Send no body, or `{}`, to build the latest commit on the branch.\n\nFor a component deployment of a one-click app (which runs a prebuilt image) the body is\nignored and this behaves like [Apply environment changes](/api/deployments/apply-environment-changes).\n\nThis is asynchronous. It returns `202 Accepted` with an `operation_id` and the new `run`.\nSee [Get an operation](/api/operations/get-an-operation).\n",
         "tags": [
           "Deployments"
         ],
@@ -16789,7 +16794,7 @@
           }
         ],
         "requestBody": {
-          "required": true,
+          "required": false,
           "content": {
             "application/json": {
               "schema": {
@@ -22646,7 +22651,7 @@
         "operationId": "createDatabaseSnapshot",
         "summary": "Create a database snapshot",
         "x-slug": "create-a-database-snapshot",
-        "description": "Queues a point-in-time snapshot of the database's data volume and returns `202 Accepted`.\nThe snapshot is listed straight away with status `creating` and becomes `available` when\nthe operation succeeds. If the operation fails, the snapshot is removed. Follow it with\n[Get an operation](/api/operations/get-an-operation).\n\n- The database must be `ready`.\n- Only container-runtime databases support snapshots. Others return `400`.\n- The response does not contain the new snapshot's UID, and its `name` is the\n  **database's** name. Find the snapshot with\n  [List snapshots of a database](/api/databases/list-snapshots-of-a-database).\n- Snapshots are kept when the database is deleted.\n\n`X-Idempotency` is optional. A retry with the same key and the same `name` returns the\noriginal operation with `200 OK`, before the database's state is checked. The same key with\na different `name`, or for a different database, returns `409`\n(`action: idempotency_key_reused`).\n",
+        "description": "Queues a point-in-time snapshot of the database's data volume and returns `202 Accepted`.\nThe snapshot is listed straight away with status `creating` and becomes `available` when\nthe operation succeeds. If the operation fails, the snapshot is removed. Follow it with\n[Get an operation](/api/operations/get-an-operation).\n\n- The database must be `ready`.\n- Only container-runtime databases support snapshots. Others return `400`.\n- The new snapshot's UID is in `snapshot_uid`. The response's `name` is the\n  **database's** name.\n- Snapshots are kept when the database is deleted.\n\n`X-Idempotency` is optional. A retry with the same key and the same `name` returns the\noriginal operation with `200 OK`, before the database's state is checked. The same key with\na different `name`, or for a different database, returns `409`\n(`action: idempotency_key_reused`).\n",
         "tags": [
           "Databases"
         ],
@@ -23857,7 +23862,7 @@
         "operationId": "attachVolume",
         "summary": "Attach a volume",
         "x-slug": "attach-a-volume",
-        "description": "Queues attaching an `available` volume to a VM. The volume moves to `attaching` straight\naway and to `in-use` when the operation succeeds. If attaching fails, the volume goes back\nto `available` and `last_failure` explains why.\n\nRequirements:\n\n- The volume must be `available`.\n- The VM must be in this workspace, `running`, and in the same zone as the volume.\n\nOn its first attach, a volume that is not yet `formatted` is formatted with its\n`filesystem`. Once the VM's guest agent reports the mounted filesystem, `device_name`,\n`mount_path` and `usage` appear on the volume. Volumes are mounted under `/mnt/rumpty/`.\n\nThis is asynchronous. It returns `202 Accepted` with an `operation_id`. See\n[Get an operation](/api/operations/get-an-operation). The `X-Idempotency` header is\noptional. A retry with the same key for the same volume returns the original operation with\n`200 OK`, before the volume's state is checked. `vm_uid` is not compared, so a retry naming\nanother VM still returns the original attach.\n",
+        "description": "Queues attaching an `available` volume to a VM. The volume moves to `attaching` straight\naway and to `in-use` when the operation succeeds. If attaching fails, the volume goes back\nto `available` and `last_failure` explains why.\n\nRequirements:\n\n- The volume must be `available`.\n- The VM must be in this workspace, `running`, and in the same zone as the volume.\n\nOn its first attach, a volume that is not yet `formatted` is formatted with its\n`filesystem`. Once the VM's guest agent reports the mounted filesystem, `device_name`,\n`mount_path` and `usage` appear on the volume. Volumes are mounted under `/mnt/rumpty/`.\n\nThis is asynchronous. It returns `202 Accepted` with an `operation_id`. See\n[Get an operation](/api/operations/get-an-operation). The `X-Idempotency` header is\noptional. A retry with the same key for the same volume returns the original operation with\n`200 OK`, before the volume's state is checked. The same key with a different `vm_uid`\nreturns `409` with `action: idempotency_key_reused`.\n",
         "tags": [
           "Volumes"
         ],

@@ -25,9 +25,8 @@ the operation succeeds. If the operation fails, the snapshot is removed. Follow 
 
 - The database must be `ready`.
 - Only container-runtime databases support snapshots. Others return `400`.
-- The response does not contain the new snapshot's UID, and its `name` is the
-  **database's** name. Find the snapshot with
-  [List snapshots of a database](/api/databases/list-snapshots-of-a-database).
+- The new snapshot's UID is in `snapshot_uid`. The response's `name` is the
+  **database's** name.
 - Snapshots are kept when the database is deleted.
 
 `X-Idempotency` is optional. A retry with the same key and the same `name` returns the
@@ -112,6 +111,12 @@ UID of the database (for deletes, the snapshot's source database).
 
 </Param>
 
+<Param name={"snapshot_uid"} type={"string"}>
+
+UID of the snapshot the operation acts on. Omitted when it is not known.
+
+</Param>
+
 <Param name={"name"} type={"string"} required>
 
 The **database's** name for create and restore. The snapshot's name for deletes, except on a replayed delete made through [Delete a snapshot of a database](/api/databases/delete-a-snapshot-of-a-database), which returns the database's name.
@@ -185,6 +190,12 @@ UID of the queued operation. Poll it with [Get an operation](/api/operations/get
 <Param name={"database_uid"} type={"string"} required>
 
 UID of the database (for deletes, the snapshot's source database).
+
+</Param>
+
+<Param name={"snapshot_uid"} type={"string"}>
+
+UID of the snapshot the operation acts on. Omitted when it is not known.
 
 </Param>
 
