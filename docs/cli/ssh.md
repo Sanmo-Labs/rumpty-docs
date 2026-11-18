@@ -14,7 +14,7 @@ sidebar_label: SSH
 rumpty ssh my-vm
 ```
 
-If you belong to more than one workspace, pass the slug with `--ws` (or set `RUMPTY_WORKSPACE`):
+Name the workspace with `--ws` (or set `RUMPTY_WORKSPACE` once and leave the flag off):
 
 ```bash
 rumpty ssh my-vm --ws acme-dev
@@ -25,7 +25,7 @@ You land in a shell on the VM. Leave it with `exit` or Ctrl-D.
 ## Requirements
 
 - A signed-in session (`rumpty login`) or the `RUMPTY_API_KEY` environment variable. See [Login & Logout](./login).
-- A workspace: the `--ws` flag, `$RUMPTY_WORKSPACE`, or your default workspace.
+- A workspace: the `--ws` flag or `$RUMPTY_WORKSPACE`. The examples without `--ws` assume `RUMPTY_WORKSPACE` is set.
 
 ## Flags
 

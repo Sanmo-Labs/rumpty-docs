@@ -79,7 +79,7 @@ These flags work with any command:
 | [`copy`](./copy) (alias `cp`) | Copy files between your machine and a VM |
 | [`exec`](./exec) | Run a non-interactive command on a VM |
 | [`expose`](./expose) | Expose a VM service with a public URL |
-| [`unexpose`](./expose#remove-one) | Remove a VM service public URL |
+| [`unexpose`](./expose#remove-an-exposed-service) | Remove a VM service public URL |
 | [`vm`](./vm) | Manage workspace VMs: `ls`, `start`, `stop`, `reboot`, `delete`, `expose ls` |
 | [`workspaces`](./workspaces) | List workspaces you can access |
 | `completion` | Generate shell autocompletion script |

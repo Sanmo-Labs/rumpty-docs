@@ -26,7 +26,9 @@ List the exposed URLs for a VM:
 rumpty vm expose ls test-vm8 --ws production-team-019e2b95
 ```
 
-Remove one:
+## Remove an exposed service
+
+`rumpty unexpose` removes a URL by its name:
 
 ```bash
 rumpty unexpose test-vm8 --ws production-team-019e2b95 --name openclaw
@@ -35,7 +37,7 @@ rumpty unexpose test-vm8 --ws production-team-019e2b95 --name openclaw
 ## Requirements
 
 - A signed-in session (`rumpty login`) or the `RUMPTY_API_KEY` environment variable. See [Login & Logout](./login).
-- A workspace: the `--ws` flag, `$RUMPTY_WORKSPACE`, or your default workspace.
+- A workspace: the `--ws` flag or `$RUMPTY_WORKSPACE`. The examples without `--ws` assume `RUMPTY_WORKSPACE` is set.
 
 :::warning
 The service inside the VM must listen on `0.0.0.0:<port>`, not only `127.0.0.1`. A service bound to `127.0.0.1` accepts connections from inside the VM itself, but not from the Rumpty HTTP route.

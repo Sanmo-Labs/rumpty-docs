@@ -60,7 +60,7 @@ Pick a compute plan in the right panel. Five sizes are offered:
 
 Paid sizes bill hourly for the compute that runs, with the monthly figure as an always-on ceiling. Free apps always sleep when idle (scale-to-zero is forced on Free, with a ~8 second cold start on the first request after a sleep), and up to 5 free apps are included per account. On paid sizes scale-to-zero is optional: under **Autoscaling** you can keep the app always on, tune **Sleep after idle (minutes)**, and set **Min/Max instances** to scale out under load (each running instance is billed at the plan rate).
 
-You can change a deployment's plan later from its **Settings** tab under **Compute plan**; the new plan is recorded and applies on the next deploy.
+You can change a deployment's plan later from its **Settings** tab under **Compute plan**. Billing switches to the new rate straight away. If the app is live, it is redeployed on the new size with a rolling update (no rebuild, no downtime); if nothing is live yet, the new plan is used on the first deploy.
 
 ## Start a build
 

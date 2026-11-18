@@ -1,5 +1,5 @@
 ---
-id: one-click-apps
+id: introduction
 title: One-Click Apps
 sidebar_label: One-Click Apps
 ---
@@ -31,11 +31,11 @@ Go to **Compute → One-Click Apps**.
 | WordPress | 7.1 | CMS | NGN 14,445.00/mo |
 | n8n | 2.31.5 | Automation | NGN 5,872.50/mo |
 
-The "from" price is the app's recommended compute plan. Apps tagged **Database** run a dedicated database alongside the app; apps tagged **Web** run standalone.
+The "from" price is the monthly total for the app's default setup: the default plan for each part of the app (for example the web app and its database) plus its storage. Apps tagged **Database** run a dedicated database alongside the app; apps tagged **Web** run standalone.
 
 ## Deploy an app
 
-1. Open the app's card and select **Deploy <app name>**.
+1. Open the app's card and select its **Deploy** button.
 2. Enter an **App name**. It becomes the app's address on a `rumptycloud.com` subdomain, served over HTTPS. You can attach a custom domain later.
 3. Choose a **Compute plan**. Each app card recommends a plan (for example, Uptime Kuma recommends Tiny).
 4. Review the **Estimated cost**. Apps are billed by the hour, only while running; the figure shown is the full-month estimate for the selected plan.

@@ -29,7 +29,7 @@ rumpty exec my-vm --ws acme -t -- sudo systemctl reload nginx
 ## Requirements
 
 - A signed-in session (`rumpty login`) or the `RUMPTY_API_KEY` environment variable. See [Login & Logout](./login).
-- A workspace: the `--ws` flag, `$RUMPTY_WORKSPACE`, or your default workspace.
+- A workspace: the `--ws` flag or `$RUMPTY_WORKSPACE`. The examples without `--ws` assume `RUMPTY_WORKSPACE` is set.
 
 ## Flags
 
