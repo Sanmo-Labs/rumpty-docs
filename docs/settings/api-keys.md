@@ -6,7 +6,7 @@ sidebar_label: API keys
 
 # API Keys
 
-API keys are tokens for CLI tools and automation, used with the Rumpty CLI and GitHub Actions workflows. Manage them under **Manage Profile → My profile → Personal API keys**.
+API keys are tokens for CLI tools and automation, used with the Rumpty CLI, the [MCP server](/mcp) and GitHub Actions workflows. Manage them under **Manage Profile → My profile → Personal API keys**.
 
 API keys are personal: they inherit your current role in each workspace and must not be shared with teammates.
 
@@ -44,5 +44,7 @@ API keys are used by the Rumpty CLI for authentication:
 ```bash
 rumpty login --token <your-api-key>
 ```
+
+AI agents in Cursor, Claude Code and VS Code use them to connect to the [MCP server](/mcp).
 
 They are also used as the `RUMPTY_TOKEN` secret in GitHub Actions deploy workflows. See [Deploy](/virtual-machines/deploy) for the full GitHub Actions setup.

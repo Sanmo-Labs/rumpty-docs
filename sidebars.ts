@@ -124,6 +124,7 @@ const sidebars: SidebarsConfig = {
       collapsed: false,
       collapsible: false,
       items: [
+        'mcp/introduction',
         {
           type: 'category',
           label: 'CLI',

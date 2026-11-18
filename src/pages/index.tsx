@@ -131,6 +131,7 @@ export default function Home(): ReactNode {
             <Link href="/getting-started/workspaces">Workspaces <span className="arr">→</span></Link>
             <Link href="/settings/api-keys">API keys <span className="arr">→</span></Link>
             <Link href="/cli/introduction">Install the CLI <span className="arr">→</span></Link>
+            <Link href="/mcp">Connect an AI agent (MCP) <span className="arr">→</span></Link>
           </nav>
           <nav className="viewed__col" aria-labelledby="v-compute">
             <h3 id="v-compute">Compute</h3>
@@ -173,6 +174,7 @@ export default function Home(): ReactNode {
           <Link className="product" href="/buckets/introduction" data-tone="sky"><ProductIcon name="buckets" /><span className="product__name">Buckets</span><span className="product__desc">S3-compatible object storage for uploads, assets, and backups.</span></Link>
           <Link className="product" href="/volumes/introduction" data-tone="lime"><ProductIcon name="volumes" /><span className="product__name">Volumes</span><span className="product__desc">Persistent block storage you can attach and mount to VMs.</span></Link>
           <Link className="product" href="/firewall-policies/introduction" data-tone="orange"><ProductIcon name="firewall" /><span className="product__name">Firewall Policies</span><span className="product__desc">Allow-rules you attach to workloads to control traffic.</span></Link>
+          <Link className="product" href="/mcp" data-tone="sky"><ProductIcon name="mcp" /><span className="product__name">MCP Server</span><span className="product__desc">Let AI agents in Cursor, Claude Code and VS Code run your cloud.</span></Link>
           <Link className="product" href="/cli/introduction" data-tone="lime"><ProductIcon name="cli" /><span className="product__name">CLI</span><span className="product__desc">Manage everything from your terminal with the Rumpty CLI.</span></Link>
         </div>
       </section>
