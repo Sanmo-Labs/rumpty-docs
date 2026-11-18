@@ -132,6 +132,7 @@ export default function Home(): ReactNode {
             <Link href="/settings/api-keys">API keys <span className="arr">→</span></Link>
             <Link href="/cli/introduction">Install the CLI <span className="arr">→</span></Link>
             <Link href="/mcp">Connect an AI agent (Rumpty MCP) <span className="arr">→</span></Link>
+            <Link href="/api">API reference <span className="arr">→</span></Link>
           </nav>
           <nav className="viewed__col" aria-labelledby="v-compute">
             <h3 id="v-compute">Compute</h3>
@@ -176,6 +177,7 @@ export default function Home(): ReactNode {
           <Link className="product" href="/firewall-policies/introduction" data-tone="orange"><ProductIcon name="firewall" /><span className="product__name">Firewall Policies</span><span className="product__desc">Allow-rules you attach to workloads to control traffic.</span></Link>
           <Link className="product" href="/mcp" data-tone="sky"><ProductIcon name="mcp" /><span className="product__name">Rumpty MCP</span><span className="product__desc">Let AI agents in Cursor, Claude Code and VS Code run your cloud.</span></Link>
           <Link className="product" href="/cli/introduction" data-tone="lime"><ProductIcon name="cli" /><span className="product__name">CLI</span><span className="product__desc">Manage everything from your terminal with the Rumpty CLI.</span></Link>
+          <Link className="product" href="/api" data-tone="orange"><ProductIcon name="api" /><span className="product__name">API</span><span className="product__desc">Automate RumptyCloud from your own code with the REST API.</span></Link>
         </div>
       </section>
 
