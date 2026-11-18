@@ -2,6 +2,7 @@
 id: introduction
 title: "Rumpty MCP: Connect Cursor, Claude Code & VS Code"
 sidebar_label: Rumpty MCP
+image: /img/og-mcp.jpg
 slug: /mcp
 description: Connect Cursor, Claude Code, VS Code or any MCP client to RumptyCloud. AI agents get over 100 tools to deploy apps, read logs, and manage VMs, databases, buckets, firewalls and billing.
 keywords:
