@@ -1,10 +1,11 @@
 ---
 id: introduction
-title: "MCP Server: Connect Cursor, Claude Code & VS Code"
-sidebar_label: MCP server
+title: "Rumpty MCP: Connect Cursor, Claude Code & VS Code"
+sidebar_label: Rumpty MCP
 slug: /mcp
 description: Connect Cursor, Claude Code, VS Code or any MCP client to RumptyCloud. AI agents get over 100 tools to deploy apps, read logs, and manage VMs, databases, buckets, firewalls and billing.
 keywords:
+  - Rumpty MCP
   - RumptyCloud MCP
   - Model Context Protocol
   - MCP server
@@ -14,9 +15,9 @@ keywords:
   - AI agent cloud deployment
 ---
 
-# MCP Server
+# Rumpty MCP
 
-The RumptyCloud MCP server lets AI agents manage your account. Connect Cursor, Claude Code, VS Code or any other [Model Context Protocol](https://modelcontextprotocol.io) client, then ask in plain language: "deploy my repo and show me the build logs", "why is my app crashing?", "create a free Postgres database and connect it to my API".
+Rumpty MCP lets AI agents manage your account. Connect Cursor, Claude Code, VS Code or any other [Model Context Protocol](https://modelcontextprotocol.io) client, then ask in plain language: "deploy my repo and show me the build logs", "why is my app crashing?", "create a free Postgres database and connect it to my API".
 
 | | |
 |---|---|
@@ -40,7 +41,7 @@ Add the server to `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (one
 ```json
 {
   "mcpServers": {
-    "rumptycloud": {
+    "rumpty": {
       "url": "https://mcp.rumptycloud.com/mcp",
       "headers": { "Authorization": "Bearer rumpty_..." }
     }
@@ -48,12 +49,12 @@ Add the server to `~/.cursor/mcp.json` (all projects) or `.cursor/mcp.json` (one
 }
 ```
 
-Restart Cursor or toggle the server under **Settings → MCP**. RumptyCloud appears with its tools listed.
+Restart Cursor or toggle the server under **Settings → MCP**. Rumpty MCP appears with its tools listed.
 
 ### Claude Code
 
 ```bash
-claude mcp add --transport http rumptycloud \
+claude mcp add --transport http rumpty \
   https://mcp.rumptycloud.com/mcp \
   --header "Authorization: Bearer rumpty_..."
 ```
@@ -67,7 +68,7 @@ Add the server to `.vscode/mcp.json` in your project:
 ```json
 {
   "servers": {
-    "rumptycloud": {
+    "rumpty": {
       "type": "http",
       "url": "https://mcp.rumptycloud.com/mcp",
       "headers": { "Authorization": "Bearer rumpty_..." }

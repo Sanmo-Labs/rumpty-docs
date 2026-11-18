@@ -98,7 +98,7 @@ const config: Config = {
         {to: '/virtual-machines/introduction', label: 'Compute', position: 'left'},
         {to: '/buckets/introduction', label: 'Storage & Data', position: 'left'},
         {to: '/firewall-policies/introduction', label: 'Networking', position: 'left'},
-        {to: '/mcp', label: 'MCP', position: 'left'},
+        {to: '/mcp', label: 'Rumpty MCP', position: 'left'},
         {to: '/cli/introduction', label: 'CLI', position: 'left'},
         {to: '/billing/introduction', label: 'Account', position: 'left'},
         {to: '/search', label: 'Search…', position: 'right'},
