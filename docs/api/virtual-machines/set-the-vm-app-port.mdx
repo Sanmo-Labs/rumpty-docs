@@ -158,7 +158,7 @@ Path of the server-sent events stream with the operation's progress.
 
 <ResponseBlock status={"200"}>
 
-Replay. The `X-Idempotency` key was already used for this action on this VM, so the existing operation is returned and nothing is queued. `status` is the operation's current status and `vm_status` the VM's current status (`deleted` once the VM is gone). For [Set the app port](/api/virtual-machines/set-the-vm-app-port) the key is tied to the requested port; for [Resize a VM](/api/virtual-machines/resize-a-vm) the requested plan is not compared.
+Replay. The `X-Idempotency` key was already used for this action on this VM, so the existing operation is returned and nothing is queued. `status` is the operation's current status and `vm_status` the VM's current status (`deleted` once the VM is gone). For [Set the app port](/api/virtual-machines/set-the-vm-app-port) the key is also tied to the requested port, and for [Resize a VM](/api/virtual-machines/resize-a-vm) to the requested plan; reusing it with a different one returns `409` with `action: idempotency_key_reused`.
 
 </ResponseBlock>
 

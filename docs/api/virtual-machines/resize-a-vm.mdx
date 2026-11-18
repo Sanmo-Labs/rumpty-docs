@@ -33,8 +33,8 @@ away (usage so far is settled at the old rate first).
 The VM must be `running` or `stopped`. This is asynchronous. It returns `202 Accepted` with
 an `operation_id`. See [Get an operation](/api/operations/get-an-operation). Send an
 `X-Idempotency` key to make retries safe: a retry with the same key returns the original
-operation with `200`, even after the resize has finished. The request body is not
-compared on a replay.
+operation with `200`, even after the resize has finished. The same key with a different
+`plan_slug` returns `409` with `action: idempotency_key_reused`.
 
 ## Authentication
 
@@ -167,7 +167,7 @@ Path of the server-sent events stream with the operation's progress.
 
 <ResponseBlock status={"200"}>
 
-Replay. The `X-Idempotency` key was already used for this action on this VM, so the existing operation is returned and nothing is queued. `status` is the operation's current status and `vm_status` the VM's current status (`deleted` once the VM is gone). For [Set the app port](/api/virtual-machines/set-the-vm-app-port) the key is tied to the requested port; for [Resize a VM](/api/virtual-machines/resize-a-vm) the requested plan is not compared.
+Replay. The `X-Idempotency` key was already used for this action on this VM, so the existing operation is returned and nothing is queued. `status` is the operation's current status and `vm_status` the VM's current status (`deleted` once the VM is gone). For [Set the app port](/api/virtual-machines/set-the-vm-app-port) the key is also tied to the requested port, and for [Resize a VM](/api/virtual-machines/resize-a-vm) to the requested plan; reusing it with a different one returns `409` with `action: idempotency_key_reused`.
 
 </ResponseBlock>
 

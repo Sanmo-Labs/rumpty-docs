@@ -225,3 +225,15 @@
 .menu__list-item.api-sidebar-item--put > .menu__link::before { content: 'PUT'; color: var(--api-put); }
 .menu__list-item.api-sidebar-item--patch > .menu__link::before { content: 'PATCH'; color: var(--api-patch); }
 .menu__list-item.api-sidebar-item--delete > .menu__link::before { content: 'DEL'; color: var(--api-delete); }
+
+/* Tables on API pages wrap long text instead of using the theme's 560px scrolling tables on phones. */
+html[class*='docs-doc-id-api/'] .theme-doc-markdown table { display: table; width: 100%; overflow: hidden; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown thead { display: table-header-group; min-width: 0; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown tbody { display: table-row-group; min-width: 0; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown td { overflow-wrap: anywhere; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown td code { white-space: normal; overflow-wrap: anywhere; }
+/* Error tables: a fixed, narrow status column. */
+.theme-doc-markdown .api-page__main table { table-layout: fixed; }
+.theme-doc-markdown .api-page__main th:first-child,
+.theme-doc-markdown .api-page__main td:first-child { width: 88px; white-space: nowrap; }
+.theme-doc-markdown .api-page__main td:first-child code { white-space: nowrap; }

@@ -166,24 +166,30 @@ function pyLiteral(v, indent = 0) {
   return e.length ? `{\n${e.map(([k, x]) => `${pad}${JSON.stringify(k)}: ${pyLiteral(x, indent + 1)}`).join(',\n')},\n${end}}` : '{}';
 }
 
-function codeSamples({method, url, headers, body}) {
+// download: the file name to save a non-JSON success response (e.g. a PDF) to.
+function codeSamples({method, url, headers, body, download}) {
   const M = method.toUpperCase();
   const curl = [`curl -X ${M} "${url}"`, `  -H "Authorization: Bearer $RUMPTY_TOKEN"`,
     ...Object.entries(headers).map(([k, v]) => `  -H "${k}: ${v}"`)];
   if (body !== undefined) curl.push(`  -H "Content-Type: application/json"`, `  -d '${JSON.stringify(body, null, 2).replace(/'/g, "'\\''")}'`);
+  if (download) curl.push(`  -o ${download}`);
 
   const jsHeaders = [`    Authorization: \`Bearer \${process.env.RUMPTY_TOKEN}\`,`,
     ...Object.entries(headers).map(([k, v]) => `    ${JSON.stringify(k)}: ${JSON.stringify(v)},`)];
   if (body !== undefined) jsHeaders.push(`    "Content-Type": "application/json",`);
   const js = [`const response = await fetch("${url}", {`, `  method: "${M}",`, '  headers: {', ...jsHeaders, '  },'];
   if (body !== undefined) js.push(`  body: JSON.stringify(${JSON.stringify(body, null, 2).replace(/\n/g, '\n  ')}),`);
-  js.push('});', '', 'const result = await response.json();');
+  js.push('});', '');
+  if (download) js.unshift('import {writeFile} from "node:fs/promises";', ''), js.push(`await writeFile("${download}", Buffer.from(await response.arrayBuffer()));`);
+  else js.push('const result = await response.json();');
 
   const pyHeaders = [`"Authorization": f"Bearer {os.environ['RUMPTY_TOKEN']}"`, ...Object.entries(headers).map(([k, v]) => `${JSON.stringify(k)}: ${JSON.stringify(v)}`)];
   const py = ['import os', 'import requests', '', `response = requests.${method}(`, `    "${url}",`,
     `    headers={${pyHeaders.join(', ')}},`];
   if (body !== undefined) py.push(`    json=${pyLiteral(body, 1)},`);
-  py.push(')', '', 'result = response.json()');
+  py.push(')', '');
+  if (download) py.push(`with open("${download}", "wb") as f:`, '    f.write(response.content)');
+  else py.push('result = response.json()');
 
   return [['cURL', 'bash', curl.join(' \\\n')], ['JavaScript', 'js', js.join('\n')], ['Python', 'python', py.join('\n')]];
 }
@@ -215,6 +221,10 @@ function renderOperation(spec, deref, {pathKey, method, op, tag}) {
     return {status, description: res.description, schema: c?.schema ? deref(c.schema) : null, example: c?.example ?? (c?.schema ? exampleFor(deref(c.schema)) : undefined)};
   });
   const success = responses.filter(r => r.status.startsWith('2'));
+  // A success response with no JSON body (e.g. application/pdf) is a file download.
+  const fileType = order.filter(s => s.startsWith('2')).map(s => Object.keys(deref(op.responses[s]).content ?? {}))
+    .find(types => types.length && !types.includes('application/json'))?.[0];
+  const download = fileType ? `${op['x-slug'].replace(/^(get|download)-(a|an|the)-/, '').replace(/-(pdf|csv|zip)$/, '')}.${fileType.split('/').pop()}` : undefined;
   const failures = responses.filter(r => !r.status.startsWith('2'));
 
   const L = [];
@@ -258,7 +268,7 @@ function renderOperation(spec, deref, {pathKey, method, op, tag}) {
   }
 
   L.push('</ApiMain>', '<ApiAside>', '', '<Tabs groupId="api-language" className="api-code-tabs">', '');
-  for (const [label, lang, code] of codeSamples({method, url, headers, body: bodyExample})) {
+  for (const [label, lang, code] of codeSamples({method, url, headers, body: bodyExample, download})) {
     L.push(`<TabItem value=${attr(slugify(label))} label=${attr(label)}>`, '', '```' + lang, code, '```', '', '</TabItem>', '');
   }
   L.push('</Tabs>', '');
