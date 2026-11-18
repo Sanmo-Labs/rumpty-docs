@@ -1,0 +1,378 @@
+[
+  {
+    "type": "category",
+    "label": "Get started",
+    "collapsible": false,
+    "collapsed": false,
+    "items": [
+      "api/index",
+      {
+        "type": "category",
+        "label": "Operations",
+        "link": {
+          "type": "doc",
+          "id": "api/operations/index"
+        },
+        "items": [
+          "api/operations/list-operations",
+          "api/operations/get-an-operation"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Account",
+    "collapsible": false,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "category",
+        "label": "Account",
+        "link": {
+          "type": "doc",
+          "id": "api/account/index"
+        },
+        "items": [
+          "api/account/get-your-profile",
+          "api/account/update-your-profile",
+          "api/account/get-acceptable-use-policy-status",
+          "api/account/accept-the-acceptable-use-policy",
+          "api/account/list-audit-logs"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Workspaces",
+        "link": {
+          "type": "doc",
+          "id": "api/workspaces/index"
+        },
+        "items": [
+          "api/workspaces/list-workspaces",
+          "api/workspaces/create-a-workspace",
+          "api/workspaces/delete-a-workspace",
+          "api/workspaces/get-notification-settings",
+          "api/workspaces/update-notification-settings",
+          "api/workspaces/get-workspace-settings",
+          "api/workspaces/update-workspace-settings",
+          "api/workspaces/list-members",
+          "api/workspaces/change-a-members-role",
+          "api/workspaces/remove-a-member",
+          "api/workspaces/list-invitations",
+          "api/workspaces/invite-a-member",
+          "api/workspaces/resend-an-invitation",
+          "api/workspaces/revoke-an-invitation",
+          "api/workspaces/look-up-an-invitation",
+          "api/workspaces/preview-an-invitation",
+          "api/workspaces/accept-an-invitation"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "API Keys",
+        "link": {
+          "type": "doc",
+          "id": "api/api-keys/index"
+        },
+        "items": [
+          "api/api-keys/list-api-keys",
+          "api/api-keys/create-an-api-key",
+          "api/api-keys/revoke-an-api-key"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "SSH Keys",
+        "link": {
+          "type": "doc",
+          "id": "api/ssh-keys/index"
+        },
+        "items": [
+          "api/ssh-keys/list-ssh-keys",
+          "api/ssh-keys/add-an-ssh-key",
+          "api/ssh-keys/delete-an-ssh-key"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Billing",
+        "link": {
+          "type": "doc",
+          "id": "api/billing/index"
+        },
+        "items": [
+          "api/billing/get-your-wallet-balance",
+          "api/billing/list-wallet-entries",
+          "api/billing/list-payment-transactions",
+          "api/billing/list-saved-cards",
+          "api/billing/remove-a-saved-card",
+          "api/billing/get-billing-summary",
+          "api/billing/list-invoices",
+          "api/billing/get-an-invoice",
+          "api/billing/download-an-invoice-pdf"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Compute",
+    "collapsible": false,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "category",
+        "label": "Virtual Machines",
+        "link": {
+          "type": "doc",
+          "id": "api/virtual-machines/index"
+        },
+        "items": [
+          "api/virtual-machines/list-plans",
+          "api/virtual-machines/list-images",
+          "api/virtual-machines/list-zones",
+          "api/virtual-machines/list-vms",
+          "api/virtual-machines/create-a-vm",
+          "api/virtual-machines/get-vm-summary",
+          "api/virtual-machines/get-a-vm",
+          "api/virtual-machines/delete-a-vm",
+          "api/virtual-machines/start-a-vm",
+          "api/virtual-machines/stop-a-vm",
+          "api/virtual-machines/reboot-a-vm",
+          "api/virtual-machines/resize-a-vm",
+          "api/virtual-machines/get-current-vm-metrics",
+          "api/virtual-machines/get-vm-metric-history",
+          "api/virtual-machines/list-a-vms-firewall-policies",
+          "api/virtual-machines/list-custom-domains",
+          "api/virtual-machines/add-a-custom-domain",
+          "api/virtual-machines/delete-a-custom-domain",
+          "api/virtual-machines/verify-a-custom-domain",
+          "api/virtual-machines/list-vm-apps",
+          "api/virtual-machines/expose-a-vm-app",
+          "api/virtual-machines/unexpose-a-vm-app",
+          "api/virtual-machines/set-the-vm-app-port",
+          "api/virtual-machines/run-a-command-on-a-vm"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Snapshots",
+        "link": {
+          "type": "doc",
+          "id": "api/snapshots/index"
+        },
+        "items": [
+          "api/snapshots/list-vm-snapshots",
+          "api/snapshots/create-a-snapshot",
+          "api/snapshots/restore-a-snapshot",
+          "api/snapshots/delete-a-vm-snapshot",
+          "api/snapshots/list-snapshots",
+          "api/snapshots/get-a-snapshot",
+          "api/snapshots/delete-a-snapshot"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Kubernetes",
+        "link": {
+          "type": "doc",
+          "id": "api/kubernetes/index"
+        },
+        "items": [
+          "api/kubernetes/list-clusters",
+          "api/kubernetes/create-a-cluster",
+          "api/kubernetes/get-a-cluster",
+          "api/kubernetes/delete-a-cluster"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Deployments",
+        "link": {
+          "type": "doc",
+          "id": "api/deployments/index"
+        },
+        "items": [
+          "api/deployments/list-deployment-plans",
+          "api/deployments/list-deployments",
+          "api/deployments/create-a-deployment",
+          "api/deployments/get-the-deployment-summary",
+          "api/deployments/get-the-free-app-quota",
+          "api/deployments/list-deployment-activity",
+          "api/deployments/get-a-deployment",
+          "api/deployments/update-a-deployment",
+          "api/deployments/delete-a-deployment",
+          "api/deployments/list-activity-for-a-deployment",
+          "api/deployments/deploy-a-deployment",
+          "api/deployments/apply-environment-changes",
+          "api/deployments/restart-a-deployment",
+          "api/deployments/change-a-deployment-plan",
+          "api/deployments/list-custom-domains",
+          "api/deployments/add-a-custom-domain",
+          "api/deployments/verify-a-custom-domain",
+          "api/deployments/delete-a-custom-domain",
+          "api/deployments/list-environment-variables",
+          "api/deployments/set-an-environment-variable",
+          "api/deployments/reveal-an-environment-variable",
+          "api/deployments/delete-an-environment-variable",
+          "api/deployments/list-deployment-runs",
+          "api/deployments/get-a-deployment-run",
+          "api/deployments/list-deployment-run-logs",
+          "api/deployments/redeploy-a-run",
+          "api/deployments/delete-a-run-artifact",
+          "api/deployments/get-current-deployment-metrics",
+          "api/deployments/get-deployment-metric-history",
+          "api/deployments/get-deployment-traffic",
+          "api/deployments/list-deployment-firewall-policies"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Apps",
+        "link": {
+          "type": "doc",
+          "id": "api/apps/index"
+        },
+        "items": [
+          "api/apps/list-app-templates",
+          "api/apps/list-apps",
+          "api/apps/create-an-app",
+          "api/apps/get-an-app",
+          "api/apps/delete-an-app"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Git Connections",
+        "link": {
+          "type": "doc",
+          "id": "api/git-connections/index"
+        },
+        "items": [
+          "api/git-connections/get-the-github-app-install-url",
+          "api/git-connections/list-github-app-installations",
+          "api/git-connections/list-reusable-github-app-installations",
+          "api/git-connections/link-a-github-app-installation",
+          "api/git-connections/disconnect-a-github-app-installation",
+          "api/git-connections/list-github-repositories",
+          "api/git-connections/list-repository-branches",
+          "api/git-connections/detect-a-repositorys-app-type"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Storage & Data",
+    "collapsible": false,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "category",
+        "label": "Databases",
+        "link": {
+          "type": "doc",
+          "id": "api/databases/index"
+        },
+        "items": [
+          "api/databases/list-database-plans",
+          "api/databases/list-database-versions",
+          "api/databases/list-databases",
+          "api/databases/create-a-database",
+          "api/databases/get-the-free-database-quota",
+          "api/databases/get-a-database",
+          "api/databases/delete-a-database",
+          "api/databases/get-database-credentials",
+          "api/databases/list-database-tables",
+          "api/databases/browse-table-rows",
+          "api/databases/run-a-read-only-query",
+          "api/databases/list-keys",
+          "api/databases/get-a-key",
+          "api/databases/rotate-the-database-password",
+          "api/databases/resize-a-database",
+          "api/databases/get-current-database-metrics",
+          "api/databases/get-database-metric-history",
+          "api/databases/list-a-databases-firewall-policies",
+          "api/databases/list-snapshots-of-a-database",
+          "api/databases/create-a-database-snapshot",
+          "api/databases/restore-a-database-snapshot",
+          "api/databases/delete-a-snapshot-of-a-database",
+          "api/databases/list-database-snapshots",
+          "api/databases/get-a-database-snapshot",
+          "api/databases/delete-a-database-snapshot"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Volumes",
+        "link": {
+          "type": "doc",
+          "id": "api/volumes/index"
+        },
+        "items": [
+          "api/volumes/list-volumes",
+          "api/volumes/create-a-volume",
+          "api/volumes/get-the-volume-summary",
+          "api/volumes/get-a-volume",
+          "api/volumes/delete-a-volume",
+          "api/volumes/attach-a-volume",
+          "api/volumes/detach-a-volume"
+        ]
+      },
+      {
+        "type": "category",
+        "label": "Buckets",
+        "link": {
+          "type": "doc",
+          "id": "api/buckets/index"
+        },
+        "items": [
+          "api/buckets/get-storage-pricing",
+          "api/buckets/get-account-storage-usage",
+          "api/buckets/list-buckets",
+          "api/buckets/create-a-bucket",
+          "api/buckets/get-workspace-bucket-usage",
+          "api/buckets/delete-a-bucket",
+          "api/buckets/set-bucket-allowed-origins",
+          "api/buckets/list-bucket-objects",
+          "api/buckets/create-an-upload",
+          "api/buckets/complete-an-upload",
+          "api/buckets/create-an-object-read-url",
+          "api/buckets/delete-an-object",
+          "api/buckets/list-bucket-access-keys",
+          "api/buckets/create-a-bucket-access-key",
+          "api/buckets/revoke-a-bucket-access-key"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "category",
+    "label": "Networking",
+    "collapsible": false,
+    "collapsed": false,
+    "items": [
+      {
+        "type": "category",
+        "label": "Firewall Policies",
+        "link": {
+          "type": "doc",
+          "id": "api/firewall-policies/index"
+        },
+        "items": [
+          "api/firewall-policies/list-firewall-policies",
+          "api/firewall-policies/create-a-firewall-policy",
+          "api/firewall-policies/get-a-firewall-policy",
+          "api/firewall-policies/update-a-firewall-policy",
+          "api/firewall-policies/delete-a-firewall-policy",
+          "api/firewall-policies/add-a-firewall-rule",
+          "api/firewall-policies/update-a-firewall-rule",
+          "api/firewall-policies/delete-a-firewall-rule",
+          "api/firewall-policies/attach-a-firewall-policy",
+          "api/firewall-policies/detach-a-firewall-policy"
+        ]
+      }
+    ]
+  }
+]

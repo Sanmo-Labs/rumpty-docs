@@ -1,0 +1,239 @@
+/* API reference: two-column operation pages (prose left, sticky code right). */
+
+:root {
+  --api-get: #59c2ff;
+  --api-post: #8bd450;
+  --api-put: #f5b942;
+  --api-patch: #f5b942;
+  --api-delete: #ff7a59;
+}
+[data-theme='light'] {
+  --api-get: #0b6fb0;
+  --api-post: #3f7d14;
+  --api-put: #9a6400;
+  --api-patch: #9a6400;
+  --api-delete: #c2410c;
+}
+
+/* API pages hide the TOC, which drops Docusaurus' docItemCol class (and the article's padding),
+   while the 808px article cap still applies. Restore the padding and let the two columns use the width. */
+.theme-doc-markdown:has(.api-page) { max-width: 1440px; }
+@media (min-width: 997px) {
+  main[class*="docMainContainer"] .row > .col:has(.api-page) {
+    padding: 40px 56px 140px !important;
+    background: var(--bg);
+  }
+}
+
+.api-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 56px;
+  align-items: start;
+}
+.api-page__main { min-width: 0; }
+.api-page__main > h2 {
+  margin-top: 40px;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.15rem;
+}
+.api-page__main > p { margin-bottom: 1rem; }
+.api-page__aside { min-width: 0; }
+.api-page__aside-inner {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: calc(100vh - var(--ifm-navbar-height) - 48px);
+  overflow-y: auto;
+}
+.api-page__aside .tabs-container {
+  margin-bottom: 0 !important;
+  border: 1px solid var(--line-2);
+  border-radius: var(--rad-sm);
+  background: var(--bg-2);
+  overflow: hidden;
+}
+.api-page__aside .tabs {
+  padding: 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+.api-page__aside .tabs__item {
+  padding: 10px 10px;
+  border-radius: 0;
+  font: 500 0.8rem var(--font-body);
+  color: var(--ink-3);
+}
+.api-page__aside .tabs__item:hover { background: none; color: var(--ink); }
+.api-page__aside .tabs__item--active { color: var(--ink); border-bottom-color: var(--accent); }
+.api-page__aside .tabs-container > .margin-top--md { margin-top: 0 !important; }
+.api-page__aside .tabs-container div[class*="codeBlockContainer"] {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.api-page__aside pre { max-height: 440px; font-size: 0.78rem; margin: 0; border-radius: 0; }
+
+@media (max-width: 1279px) {
+  .api-page { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .api-page__aside-inner { position: static; max-height: none; overflow: visible; margin-top: 32px; }
+}
+
+/* Method badge */
+.api-method {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.4em;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font: 700 0.72rem/1.4 var(--font-mono);
+  letter-spacing: 0.02em;
+  color: var(--api-get);
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+.api-method--post { color: var(--api-post); }
+.api-method--put { color: var(--api-put); }
+.api-method--patch { color: var(--api-patch); }
+.api-method--delete { color: var(--api-delete); }
+
+/* Endpoint bar */
+.api-endpoint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 4px 0 24px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--rad-sm);
+  background: var(--bg-2);
+}
+.api-endpoint__path {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.api-endpoint__param { color: var(--accent); }
+.api-endpoint__copy {
+  flex: none;
+  padding: 3px 10px;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-2);
+  font: 500 0.75rem var(--font-body);
+  cursor: pointer;
+}
+.api-endpoint__copy:hover { color: var(--ink); border-color: var(--line-3); }
+
+/* Parameters */
+.api-param {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.api-param:last-child { border-bottom: 0; }
+.api-param__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+}
+.api-param__name {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+.api-param__type { font: 0.78rem var(--font-mono); color: var(--ink-3); }
+.api-param__required {
+  font: 600 0.7rem var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-3);
+}
+.api-param__optional { font: 0.7rem var(--font-mono); color: var(--ink-3); }
+.api-param__body { margin-top: 6px; font-size: 0.92rem; color: var(--ink-2); }
+.api-param__body > p { margin: 0 0 6px; }
+.api-param__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+.api-param__meta code { font-size: 0.78rem; }
+
+.api-param-children {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--rad-sm);
+}
+.api-param-children > summary {
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.api-param-children > summary::-webkit-details-marker { display: none; }
+.api-param-children > summary::before { content: '+ '; font-family: var(--font-mono); }
+.api-param-children[open] > summary::before { content: '− '; }
+.api-param-children[open] > summary { border-bottom: 1px solid var(--line); }
+.api-param-children__hide,
+.api-param-children[open] .api-param-children__show { display: none; }
+.api-param-children[open] .api-param-children__hide { display: inline; }
+.api-param-children__list { padding: 0 14px; }
+
+/* Response status */
+.api-response { display: flex; align-items: baseline; gap: 10px; margin: 8px 0 4px; }
+.api-response__desc > p { margin: 0; }
+.api-status {
+  flex: none;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font: 700 0.75rem var(--font-mono);
+  color: var(--api-post);
+  background: color-mix(in srgb, currentColor 14%, transparent);
+}
+.api-status--warn { color: var(--api-put); }
+.api-status--err { color: var(--api-delete); }
+
+/* Sidebar: method chip before each operation link */
+.menu__list-item.api-sidebar-item > .menu__link::before {
+  content: 'GET';
+  flex: none;
+  width: 3.3em;
+  margin-right: 8px;
+  font: 700 0.62rem/1 var(--font-mono);
+  color: var(--api-get);
+}
+.menu__list-item.api-sidebar-item--post > .menu__link::before { content: 'POST'; color: var(--api-post); }
+.menu__list-item.api-sidebar-item--put > .menu__link::before { content: 'PUT'; color: var(--api-put); }
+.menu__list-item.api-sidebar-item--patch > .menu__link::before { content: 'PATCH'; color: var(--api-patch); }
+.menu__list-item.api-sidebar-item--delete > .menu__link::before { content: 'DEL'; color: var(--api-delete); }
+
+/* Tables on API pages wrap long text instead of using the theme's 560px scrolling tables on phones. */
+html[class*='docs-doc-id-api/'] .theme-doc-markdown table { display: table; width: 100%; overflow: hidden; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown thead { display: table-header-group; min-width: 0; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown tbody { display: table-row-group; min-width: 0; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown td { overflow-wrap: anywhere; }
+html[class*='docs-doc-id-api/'] .theme-doc-markdown td code { white-space: normal; overflow-wrap: anywhere; }
+/* Error tables: a fixed, narrow status column. */
+.theme-doc-markdown .api-page__main table { table-layout: fixed; }
+.theme-doc-markdown .api-page__main th:first-child,
+.theme-doc-markdown .api-page__main td:first-child { width: 88px; white-space: nowrap; }
+.theme-doc-markdown .api-page__main td:first-child code { white-space: nowrap; }

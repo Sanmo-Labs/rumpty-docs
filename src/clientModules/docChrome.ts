@@ -1,4 +1,5 @@
 function eyebrowForPath(path: string): string | undefined {
+  if (path.startsWith('/api')) return 'API Reference';
   if (path.startsWith('/getting-started/quick-start')) return 'Guide · about 5 min';
   if (path.startsWith('/getting-started')) return 'Get started';
   if (path.startsWith('/virtual-machines/create-a-vm')) return 'Guide · 10 steps · about 5 min';

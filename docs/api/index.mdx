@@ -1,0 +1,143 @@
+---
+title: API Reference
+sidebar_label: Overview
+description: Manage RumptyCloud resources programmatically with the REST API.
+---
+
+The RumptyCloud REST API lets you create and manage virtual machines, Kubernetes clusters, databases,
+storage, deployments and networking from your own code and CI pipelines. The [Rumpty CLI](/cli/introduction)
+and the [Rumpty MCP](/mcp) use the same API.
+
+The full OpenAPI 3.1 spec is available at [`/openapi.json`](pathname:///openapi.json). Import it into
+Postman or Insomnia, or use it to generate a client.
+
+## Base URL
+
+```text
+https://api.rumptycloud.com
+```
+
+All endpoints are versioned under `/v1`. Requests and responses use JSON, so send
+`Content-Type: application/json` with every request body.
+
+## Authentication
+
+Authenticate with a personal [API key](/settings/api-keys), passed as a bearer token:
+
+```bash
+curl https://api.rumptycloud.com/v1/vms \
+  -H "Authorization: Bearer $RUMPTY_TOKEN" \
+  -H "X-Workspace-Slug: acme"
+```
+
+API keys look like `rumpty_<prefix>_<secret>`. A key acts as you, with your role in each workspace, so
+keep it secret and never commit it. Create keys in the console under
+**Manage Profile → My profile → Personal API keys**, or with [Create an API key](/api/api-keys/create-an-api-key).
+
+## Workspaces
+
+Most resources belong to a [workspace](/getting-started/workspaces). For workspace-scoped endpoints,
+send the workspace slug in the `X-Workspace-Slug` header. You can also pass it as the `workspace_slug`
+query parameter. Each endpoint page says whether the header is required.
+
+## Responses
+
+Successful responses are wrapped in an envelope. The payload is in `data`:
+
+```json
+{
+  "success": true,
+  "message": "ok",
+  "data": { }
+}
+```
+
+## Errors
+
+Errors return a non-2xx status code and an error body:
+
+```json
+{
+  "success": false,
+  "message": "workspace not found or access denied",
+  "code": 403
+}
+```
+
+| Field | Description |
+|---|---|
+| `success` | Always `false` for errors. |
+| `message` | Human-readable explanation. |
+| `code` | HTTP status code. Authentication errors omit it. |
+| `action` | Optional hint for the next step, for example `past_due` when the account needs funds. |
+
+| Status | Meaning |
+|---|---|
+| `400` | The request is malformed or failed validation. |
+| `401` | The API key is missing, invalid, expired or revoked. |
+| `402` | The account is past due, so new paid resources cannot be created. |
+| `403` | You cannot access the workspace, or your role does not allow the action. |
+| `404` | The resource does not exist, or you cannot access it. |
+| `409` | The request conflicts with the resource's current state. |
+| `429` | You hit the rate limit. |
+| `5xx` | Something went wrong on our side. Retry with backoff. |
+
+## Rate limits
+
+Requests are rate-limited per client and route. Every response includes these headers:
+
+| Header | Description |
+|---|---|
+| `X-RateLimit-Limit` | Requests allowed in the current window. |
+| `X-RateLimit-Remaining` | Requests left in the current window. |
+| `X-RateLimit-Reset` | Unix time when the window resets. |
+
+When you exceed the limit, the API returns `429` with a `Retry-After` header that gives the number of
+seconds to wait.
+
+## Long-running operations
+
+Actions such as creating, resizing or deleting a VM run asynchronously. The API accepts the request
+straight away with `202 Accepted` and the work continues in the background. The response includes an
+`operation_id`. Poll the resource, or use [Get an operation](/api/operations/get-an-operation), to follow
+its progress.
+
+## Idempotent requests
+
+Network failures happen. To retry an action safely, send an `X-Idempotency` header with a unique value,
+such as a UUID, on actions that queue work: creating, deleting, resizing, starting or stopping
+resources.
+
+```bash
+curl -X POST https://api.rumptycloud.com/v1/vms/<uid>/stop \
+  -H "Authorization: Bearer $RUMPTY_TOKEN" \
+  -H "X-Workspace-Slug: acme" \
+  -H "X-Idempotency: 5f0c9e7a-2d1b-4c3e-8f6a-9b0d1e2f3a4b"
+```
+
+If you repeat a request with the same key, the API does not run the action again. It returns the
+original operation with `200 OK` instead of `202`, and adds these headers:
+
+| Header | Meaning |
+|---|---|
+| `X-Idempotency-Replay: true` | This response replays an earlier request. Nothing new was queued. |
+| `X-Idempotency-Completed: true` | The original operation has already finished. |
+
+The response body has `is_replay: true`. The replay check runs before any state checks, so a retry gets
+the original result even after the first request changed the resource. For example, a retried stop does
+not fail with "already stopped".
+
+Keys are scoped to you and the workspace. Reusing a key for a *different* action or resource returns
+`409` with `action: idempotency_key_reused`. Use a new key for every distinct action. The header is
+optional. Without it, each request is treated as new.
+
+## Suspended accounts
+
+While an account is past due, requests that create new paid resources return `402` with
+`action: past_due`. If the balance stays unpaid after the grace period, the account is suspended. Its VMs,
+databases, Kubernetes clusters and apps are powered off. Storage (volumes, snapshots and buckets) keeps
+its data and keeps billing until you delete it.
+
+Once the balance is paid, the resources that suspension powered off restart automatically, usually
+within a minute. Resources you had stopped yourself stay stopped. The suspension email says whether, and
+when, unpaid resources will be permanently deleted.

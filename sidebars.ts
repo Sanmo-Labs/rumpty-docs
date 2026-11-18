@@ -1,4 +1,5 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import apiSidebar from './src/api/sidebar.json';
 
 const sidebars: SidebarsConfig = {
   docsSidebar: [
@@ -159,6 +160,7 @@ const sidebars: SidebarsConfig = {
       ],
     },
   ],
+  apiSidebar: apiSidebar as SidebarsConfig[string],
 };
 
 export default sidebars;
