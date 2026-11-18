@@ -132,6 +132,12 @@ const sidebars: SidebarsConfig = {
           items: [
             'cli/introduction',
             'cli/login',
+            'cli/workspaces',
+            'cli/ssh',
+            'cli/copy',
+            'cli/exec',
+            'cli/vm',
+            'cli/expose',
             'cli/sync',
           ],
         },

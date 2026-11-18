@@ -74,14 +74,14 @@ These flags work with any command:
 |---------|-------------|
 | [`login`](./login) | Authenticate with Rumpty |
 | [`logout`](./login#logout) | Remove the local Rumpty session |
-| `ssh` | Open an SSH session to a workspace VM |
+| [`ssh`](./ssh) | Open an SSH session to a workspace VM |
 | [`sync`](./sync) | Sync a local folder to a bucket in object storage |
-| `copy` (alias `cp`) | Copy files between your machine and a VM |
-| `exec` | Run a non-interactive command on a VM |
-| `expose` | Expose a VM service with a public URL |
-| `unexpose` | Remove a VM service public URL |
-| `vm` | Manage workspace VMs: `ls`, `start`, `stop`, `reboot`, `delete`, `expose ls` |
-| `workspaces` | List workspaces you can access |
+| [`copy`](./copy) (alias `cp`) | Copy files between your machine and a VM |
+| [`exec`](./exec) | Run a non-interactive command on a VM |
+| [`expose`](./expose) | Expose a VM service with a public URL |
+| [`unexpose`](./expose#remove-one) | Remove a VM service public URL |
+| [`vm`](./vm) | Manage workspace VMs: `ls`, `start`, `stop`, `reboot`, `delete`, `expose ls` |
+| [`workspaces`](./workspaces) | List workspaces you can access |
 | `completion` | Generate shell autocompletion script |
 
 Use `rumpty [command] --help` for details on any command.
