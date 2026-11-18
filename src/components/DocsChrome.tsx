@@ -9,7 +9,9 @@ const TABS = [
   {href: '/virtual-machines/introduction', label: 'Compute', match: (path: string) => /\/(virtual-machines|deployments)(\/|$)/.test(path)},
   {href: '/buckets/introduction', label: 'Storage & Data', match: (path: string) => /\/(buckets|volumes|databases)(\/|$)/.test(path)},
   {href: '/firewall-policies/introduction', label: 'Networking', match: (path: string) => path.startsWith('/firewall')},
+  {href: '/mcp', label: 'Rumpty MCP', match: (path: string) => path.startsWith('/mcp')},
   {href: '/cli/introduction', label: 'CLI', match: (path: string) => path.startsWith('/cli')},
+  {href: '/api', label: 'API', match: (path: string) => /^\/api(\/|$)/.test(path)},
   {href: '/billing/introduction', label: 'Account', match: (path: string) => /\/(billing|audit-logs|settings)(\/|$)/.test(path)},
 ];
 
