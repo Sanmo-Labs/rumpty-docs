@@ -23,7 +23,7 @@ Optional overrides:
 
 ```bash
 # Install a specific version
-curl -fsSL https://get.rumptycloud.com | RUMPTY_VERSION=v0.0.3 sh
+curl -fsSL https://get.rumptycloud.com | RUMPTY_VERSION=v0.0.6 sh
 
 # Install to a custom directory
 curl -fsSL https://get.rumptycloud.com | RUMPTY_INSTALL_DIR="$HOME/.local/bin" sh
